@@ -25,6 +25,7 @@ const Cards = ({ hospitalName, imageUrl, address, phone, fax, emergency, website
         '&:hover': { transform: 'scale(1.05)' },
         cursor: 'pointer',
         marginBottom: '20px',
+        marginRight: '20px',
       }}
     >
       <CardMedia

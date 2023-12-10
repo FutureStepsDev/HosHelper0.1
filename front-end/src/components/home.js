@@ -1,12 +1,27 @@
-import React from "react";
-import Cards from './hospitalCart'
-import hospitalData from '../datas/HospitalDatas'
+import React, { useState, useEffect } from 'react';
+import Cards from './hospitalCart';
+import hospitalData from './datas/HospitalDatas';
+import './home.css';
 
-const Home=() =>{
+const Home = () => {
+  const [startIndex, setStartIndex] = useState(0);
+  const hospitalsPerPage = 3;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+   
+      setStartIndex((prevIndex) => (prevIndex + hospitalsPerPage) % hospitalData.length);
+    }, 20000); 
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const displayedHospitals = hospitalData.slice(startIndex, startIndex + hospitalsPerPage);
+
   return (
-    <div className="App">
-     
-        {hospitalData.map((hospital, index) => (
+    <div className="cards">
+      <div className="card-container">
+        {displayedHospitals.map((hospital, index) => (
           <Cards
             key={index}
             hospitalName={hospital.hospitalName}
@@ -18,11 +33,9 @@ const Home=() =>{
             websites={hospital.websites}
           />
         ))}
-      
-    
-
+      </div>
     </div>
   );
-}
+};
 
-export default Home
+export default Home;

@@ -1,0 +1,17 @@
+.cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45vh; /* Set a height to center vertically in the viewport */
+    margin-right: 20px
+  }
+  
+
+
+.card-container {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scrollbar-width: thin; /* Optional: Customize scrollbar appearance in Firefox */
+    margin-top: 40px; /* Add top margin to create space between cards */
+  }
+  
