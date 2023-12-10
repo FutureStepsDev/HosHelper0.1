@@ -1,13 +1,11 @@
-import "./App.css";
-import Footer from "./components/NavBar&&Footer/Footer";
-import NavBar from "./components/NavBar&&Footer/NavBar";
-function App() {
-  return (
-    <div className="App">
-      <NavBar />
-      <Footer />
-    </div>
-  );
-}
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
 
-export default App;
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
