@@ -1,28 +1,11 @@
-
-import './App.css';
-// import Profile from './components/profile';
-import Cards from './components/hospitalCart'
-import hospitalData from './datas/HospitalDatas';
-
+import "./App.css";
+import Footer from "./components/NavBar&&Footer/Footer";
+import NavBar from "./components/NavBar&&Footer/NavBar";
 function App() {
   return (
     <div className="App">
-     
-        {hospitalData.map((hospital, index) => (
-          <Cards
-            key={index}
-            hospitalName={hospital.hospitalName}
-            imageUrl={hospital.imageUrl}
-            address={hospital.address}
-            phone={hospital.phone}
-            fax={hospital.fax}
-            emergency={hospital.emergency}
-            websites={hospital.websites}
-          />
-        ))}
-      
-    
-      {/* <Profile/> */}
+      <NavBar />
+      <Footer />
     </div>
   );
 }

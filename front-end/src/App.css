@@ -1,8 +1,7 @@
 .App {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  grid-gap: 20px;
+  text-align: center;
 }
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
