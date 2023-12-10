@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+
 import './App.css';
-import Profile from './components/profile';
+// import Profile from './components/profile';
+import Cards from './components/hospitalCart'
+import hospitalData from './datas/HospitalDatas';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Profile/>
+     
+        {hospitalData.map((hospital, index) => (
+          <Cards
+            key={index}
+            hospitalName={hospital.hospitalName}
+            imageUrl={hospital.imageUrl}
+            address={hospital.address}
+            phone={hospital.phone}
+            fax={hospital.fax}
+            emergency={hospital.emergency}
+            websites={hospital.websites}
+          />
+        ))}
+      
+    
+      {/* <Profile/> */}
     </div>
   );
 }
