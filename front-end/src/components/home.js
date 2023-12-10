@@ -1,8 +1,8 @@
 
-import Cards from './components/hospitalCart'
+import Cards from './hospitalCart'
 import hospitalData from './datas/HospitalDatas';
 
-const home=() =>{
+const Home=() =>{
   return (
     <div className="App">
      
@@ -25,4 +25,4 @@ const home=() =>{
   );
 }
 
-export default home
+export default Home
