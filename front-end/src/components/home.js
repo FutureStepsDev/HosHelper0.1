@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Cards from './pages/hospitalCart';
-import hospitalData from './datas/HospitalDatas';
-import './home.css';
+import React, { useState, useEffect } from "react";
+import Cards from "./pages/hospitalCart";
+import hospitalData from "./datas/HospitalDatas";
+import "./home.css";
 
 const Home = () => {
   const [startIndex, setStartIndex] = useState(0);
@@ -9,14 +9,18 @@ const Home = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-   
-      setStartIndex((prevIndex) => (prevIndex + hospitalsPerPage) % hospitalData.length);
-    }, 20000); 
+      setStartIndex(
+        (prevIndex) => (prevIndex + hospitalsPerPage) % hospitalData.length
+      );
+    }, 20000);
 
     return () => clearInterval(interval);
   }, []);
 
-  const displayedHospitals = hospitalData.slice(startIndex, startIndex + hospitalsPerPage);
+  const displayedHospitals = hospitalData.slice(
+    startIndex,
+    startIndex + hospitalsPerPage
+  );
 
   return (
     <div className="cards">
