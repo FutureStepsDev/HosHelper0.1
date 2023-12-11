@@ -1,7 +1,7 @@
 module.exports ={
     HOST: 'localhost',
     USER: 'root',
-    PASSWORD:'0000', 
+    PASSWORD:'root', 
     DATABASE: 'HOSHELPER0.1',
     DIALECT: 'mysql',
     pool: {
