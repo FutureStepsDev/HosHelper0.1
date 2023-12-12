@@ -14,6 +14,7 @@ import Menu from "@material-ui/core/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Drawer from "@material-ui/core/Drawer";
 import Sidebar from "./SideBar";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -157,8 +158,13 @@ const NavBar = () => {
           <div>
             <Button color="inherit">Hospital</Button>
             <Button color="inherit">pharmacy</Button>
-            <Button color="inherit">Sign In</Button>
-            <Button color="inherit">Sign Up</Button>
+            <Button color="inherit" component={Link} to="/login">
+              Sign In
+            </Button>
+            <Button color="inherit" component={Link} to="/signup">
+              Sign Up
+            </Button>
+
           </div>
 
           {auth && (

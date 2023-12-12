@@ -13,7 +13,7 @@ const Login = ({ setUserData }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("", {
+      const response = await axios.post("http://localhost:7000/auth/signin", {
         email,
         password,
       });
@@ -75,8 +75,8 @@ const Login = ({ setUserData }) => {
       )}
       <Button
         onClick={handleLogin}
-        component={Link} // Use Link as the component for the button
-        to="/" // Specify the path to the SignUp page
+        component={Link} 
+        to="/" 
         variant="contained"
         style={{ backgroundColor: '#5A4FCF', color: 'white' }}
         fullWidth

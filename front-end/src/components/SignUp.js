@@ -6,33 +6,34 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 const SignUp = () => {
-  const [name, setName] = useState('');
+  const [UserName, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('user');
+  const [role, setRole] = useState('');
   const [image, setImage] = useState('');
   const [error, setError] = useState('');
 
   const handleAddUser = async () => {
-    try {
-      const response = await axios.post('', {
-        name,
-        email,
-        password,
-        role,
-        image,
-      });
+    axios.post ("http://localhost:7000/auth/signup",{UserName,email,password,role,image}).then(response=>console.log("done")).catch(err=>console.log("err"))
+//     try {
+//      // const res= await axios.post('http://localhost:7000/auth/signup', {
+      
+//   UserName,
+//   email,
+//   password,
+//   role,
+//   image,
+// });
+// res.data && window.location.replace("/signin");
+//     } catch (err) {
+//       console.error('Error adding user:', err);
 
-      window.location.href = '/login';
-    } catch (err) {
-      console.error('Error adding user:', err);
-
-      if (err.response?.data?.error) {
-        setError(err.response.data.error);
-      } else {
-        setError('An error occurred. Please try again.');
-      }
-    }
+//       if (err.response?.data?.error) {
+//         setError(err.response.data.error);
+//       } else {
+//         setError('An error occurred. Please try again.');
+//       }
+//     }
   };
 
   const validatePassword = () => {
@@ -58,7 +59,7 @@ const SignUp = () => {
     }
     return true;
   };
-
+console.log(role)
   return (
     <Container component="main" maxWidth="xs" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', padding: '10px', borderRadius: '10px', marginTop: '50px', color: 'white' }}>
       <Typography variant="h4" gutterBottom>
@@ -68,7 +69,7 @@ const SignUp = () => {
       <TextField
         fullWidth
         margin="normal"
-        label={name.trim() === '' ? ' Name' : ''}
+        label={UserName.trim() === '' ? ' UserName' : ''}
         type="text"
         variant="outlined"
         onChange={(e) => setName(e.target.value)}
@@ -107,9 +108,9 @@ const SignUp = () => {
         onChange={(e) => setRole(e.target.value)}
         style={{ width: '100%', padding: '8px', backgroundColor: 'white', color: '#0C2340' }}
       >
-        <option value="user">User</option>
-        <option value="admin">Admin</option>
-        <option value="seller">Seller</option>
+        <option value="Patient">Patient</option>
+        <option value="Pharmacy">Pharmacy</option>
+        <option value="Doctor">Doctor</option>
       </select>
 
       <TextField
