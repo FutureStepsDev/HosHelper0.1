@@ -13,16 +13,15 @@ const SignUp = () => {
   const [image, setImage] = useState('');
   const [error, setError] = useState('');
 
-  const handleAddUser = async () => {
-    axios.post ("http://localhost:7000/auth/signup",{UserName,email,password,role,image}).then(response=>console.log("done")).catch(err=>console.log("err"))
+//   const handleAddUser = async () => {
 //     try {
-//      // const res= await axios.post('http://localhost:7000/auth/signup', {
+//      const res= await axios.post('http://localhost:7000/auth/signup', {
       
 //   UserName,
 //   email,
 //   password,
 //   role,
-//   image,
+//   image
 // });
 // res.data && window.location.replace("/signin");
 //     } catch (err) {
@@ -34,7 +33,23 @@ const SignUp = () => {
 //         setError('An error occurred. Please try again.');
 //       }
 //     }
-  };
+//   };
+const handleAddUser = async (e) => {
+  e.preventDefault()
+  setError(false)
+  console.log({ username, email, password });
+  try {
+    const res = await axios.post("http://localhost:7000/auth/signin", {
+      username,
+      email,
+      password,
+      role,
+      image
+    })
+  res.data && window.location.replace("/signin")
+  } catch (error) {
+    setError(true)
+  }
 
   const validatePassword = () => {
     if (password.length < 6) {
