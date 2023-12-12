@@ -35,21 +35,21 @@ const SignUp = () => {
 //     }
 //   };
 const handleAddUser = async (e) => {
-  e.preventDefault()
   setError(false)
-  console.log({ username, email, password });
+  e.preventDefault()
+
   try {
-    const res = await axios.post("http://localhost:7000/auth/signin", {
-      username,
+    const res = await axios.post("http://localhost:7000/auth/signup", {
+      UserName,
       email,
       password,
       role,
       image
     })
-  res.data && window.location.replace("/signin")
+  res.data && window.location.replace("/login")
   } catch (error) {
     setError(true)
-  }
+  }}
 
   const validatePassword = () => {
     if (password.length < 6) {
@@ -140,11 +140,11 @@ console.log(role)
       />
 
       <Button
-        onClick={() => {
+        onClick={(e) => {
           setError('');
 
           if (validateEmail() && validatePassword() && validateRole()) {
-            handleAddUser();
+            handleAddUser(e);
           }
         }}
         variant="contained"
