@@ -3,33 +3,17 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-
+import Map from './Map'; // Import the Map component
 
 const placeholderImageUrl =
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
+ 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
 
 const Cards = ({ hospitalName, imageUrl, address, phone, fax, emergency, websites }) => {
- 
+ const displayImageUrl = imageUrl || placeholderImageUrl;
 
-  const displayImageUrl = imageUrl || placeholderImageUrl;
+ const hasData = hospitalName || address || phone || fax || emergency || websites;
 
-  
-  const hasData = hospitalName || address || phone || fax || emergency || websites;
-
-  const mapContainerStyle = {
-    width: '100%',
-    height: '150px',
-    borderRadius: '8px',
-    marginTop: '8px',
-  };
-
-  const center = {
-    lat: 37.7749, // Replace with the actual latitude of the hospital
-    lng: -122.4194, // Replace with the actual longitude of the hospital
-  };
-
-  return hasData ? (
+ return hasData ? (
     <Card
       sx={{
         maxWidth: 250,
@@ -65,18 +49,10 @@ const Cards = ({ hospitalName, imageUrl, address, phone, fax, emergency, website
             </React.Fragment>
           )}
         </Typography>
-        <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
-          <GoogleMap
-            mapContainerStyle={mapContainerStyle}
-            center={center}
-            zoom={14} // Adjust the zoom level as needed
-          >
-            <Marker position={center} />
-          </GoogleMap>
-        </LoadScript>
+        <Map address={address} /> {/* Pass the address information to the Map component */}
       </CardContent>
     </Card>
-  ) : null;
-}
+ ) : null;
+};
 
 export default Cards;
