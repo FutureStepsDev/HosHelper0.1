@@ -21,7 +21,7 @@ const Map = ({ address }) => {
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         center={center}
-        zoom={14} // Adjust the zoom level as needed
+        zoom={25} // Adjust the zoom level as needed
       >
         <Marker position={center} />
       </GoogleMap>
