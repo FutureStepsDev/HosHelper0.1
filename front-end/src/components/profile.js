@@ -1,13 +1,12 @@
-import React from 'react';
-import { Avatar, Typography, Paper, makeStyles } from '@material-ui/core';
-
+import React from "react";
+import { Avatar, Typography, Paper, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     width: theme.spacing(10),
@@ -17,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
-
 
 const Profile = ({ name, imageUrl, bio }) => {
   const classes = useStyles();
@@ -38,12 +36,12 @@ const Profile = ({ name, imageUrl, bio }) => {
 // Example user
 const UserProfile = () => {
   const user = {
-    name: 'John Doe',
-    imageUrl: 'https://placekitten.com/200/200', 
-    bio: 'Web Developer | React Enthusiast',
+    name: "John Doe",
+    imageUrl: "https://placekitten.com/200/200",
+    bio: "Web Developer | React Enthusiast",
   };
 
   return <Profile {...user} />;
 };
 
-export default UserProfile;
+export default Profile;
