@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardMedia, CardContent, Typography } from '@mui/material';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import 'dotenv/config';
+// import 'dotenv/config';
 
 const placeholderImageUrl =
  'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
@@ -66,7 +66,7 @@ const Cards = ({ hospitalName, imageUrl, address, phone, fax, emergency, website
             </React.Fragment>
           )}
         </Typography>
-        <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
+        <LoadScript googleMapsApiKey="AIzaSyBP2EqZSIvI6eu3uN36GN5oRVVh7RTRXnQ">
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center={location}

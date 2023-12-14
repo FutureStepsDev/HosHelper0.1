@@ -5,7 +5,7 @@ import Footer from "./components/NavBar&&Footer/Footer";
 import NavBar from "./components/NavBar&&Footer/NavBar";
 import Home from "./components/home";
 import Profile from "./components/profile";
-import Map from './components/pages/Map';
+// import Map from './components/pages/Map';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path='/map'></Route>
+          {/* <Route path='/map'></Route> */}
         </Routes>
 
         <Footer />
