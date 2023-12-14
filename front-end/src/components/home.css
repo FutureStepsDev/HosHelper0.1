@@ -12,6 +12,5 @@
     display: flex;
     overflow-x: auto; /* Enable horizontal scrolling */
     scrollbar-width: thin; /* Optional: Customize scrollbar appearance in Firefox */
-    margin-top: 40px; /* Add top margin to create space between cards */
+    margin-top: 45px; /* Add top margin to create space between cards */
   }
-  
