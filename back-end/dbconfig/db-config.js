@@ -1,7 +1,8 @@
+require("dotenv").config()
 module.exports ={
     HOST: 'localhost',
     USER: 'root',
-    PASSWORD:'0000', 
+    PASSWORD: process.env.DB_KEY, 
     DATABASE: 'HOSHELPER0.1',
     DIALECT: 'mysql',
     pool: {
