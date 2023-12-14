@@ -1,34 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardMedia, CardContent, Typography } from '@mui/material';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-// import 'dotenv/config';
+import React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import Map from './Map'; // Import the Map component
 
 const placeholderImageUrl =
  'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
 
 const Cards = ({ hospitalName, imageUrl, address, phone, fax, emergency, websites }) => {
  const displayImageUrl = imageUrl || placeholderImageUrl;
+
  const hasData = hospitalName || address || phone || fax || emergency || websites;
-
- const [location, setLocation] = useState({ lat: 0, lng: 0 });
-
- useEffect(() => {
-    // Fetch coordinates based on the address using a geocoding service
-    const geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode({ address: 'P6MX+73 Ben Arous' }, (results, status) => {
-      if (status === 'OK' && results.length > 0) {
-        const { lat, lng } = results[0].geometry.location;
-        setLocation({ lat: lat(), lng: lng() });
-      }
-    });
- }, []); // Empty dependency array means this effect runs once after the initial render
-
- const mapContainerStyle = {
-    width: '100%',
-    height: '150px',
-    borderRadius: '8px',
-    marginTop: '8px',
- };
 
  return hasData ? (
     <Card
@@ -66,18 +49,10 @@ const Cards = ({ hospitalName, imageUrl, address, phone, fax, emergency, website
             </React.Fragment>
           )}
         </Typography>
-        <LoadScript googleMapsApiKey="AIzaSyBP2EqZSIvI6eu3uN36GN5oRVVh7RTRXnQ">
-          <GoogleMap
-            mapContainerStyle={mapContainerStyle}
-            center={location}
-            zoom={14} // Adjust the zoom level as needed
-          >
-            <Marker position={location} />
-          </GoogleMap>
-        </LoadScript>
+        <Map address={address} /> {/* Pass the address information to the Map component */}
       </CardContent>
     </Card>
  ) : null;
-}
+};
 
 export default Cards;
