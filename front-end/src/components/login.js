@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
 
-const Login = ({ setUserData }) => {
+const Login = ({}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -20,7 +20,7 @@ const Login = ({ setUserData }) => {
 
       if (response.data.message === 'Login successful') {
         console.log('Login successful', response.data.user);
-        setUserData(response.data.user);
+        response.data.user && window.location.replace("/");
        
       } else {
         setError(response.data.error || 'Invalid email or password');
@@ -76,7 +76,6 @@ const Login = ({ setUserData }) => {
       <Button
         onClick={handleLogin}
         component={Link} 
-        to="/" 
         variant="contained"
         style={{ backgroundColor: '#5A4FCF', color: 'white' }}
         fullWidth
