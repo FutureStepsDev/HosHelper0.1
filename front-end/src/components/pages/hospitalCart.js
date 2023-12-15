@@ -34,27 +34,42 @@ const Cards = ({ hospitalName, imageUrl, address, phone, fax, emergency, website
         image={displayImageUrl}
         sx={{ objectFit: imageUrl ? 'cover' : 'contain' }}
       />
-      <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '8px' }}>
+      <CardContent
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          padding: '8px',
+        }}
+      >
         <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', marginBottom: '6px', color: '#2196F3' }}>
           {hospitalName}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <strong>Address:</strong> {address}<br />
-          <strong>Phone:</strong> {phone}<br />
-          <strong>Fax:</strong> {fax}<br />
-          <strong>Emergency:</strong> {emergency}<br />
+          <strong>Address:</strong> {address}
+          <br />
+          <strong>Phone:</strong> {phone}
+          <br />
+          <strong>Fax:</strong> {fax}
+          <br />
+          <strong>Emergency:</strong> {emergency}
+          <br />
           {websites && (
             <React.Fragment>
-              <strong>Websites:</strong> <a href={websites} target="_blank" rel="noopener noreferrer" style={{ color: '#2196F3' }}>{websites}</a><br />
+              <strong>Websites:</strong>{' '}
+              <a href={websites} target="_blank" rel="noopener noreferrer" style={{ color: '#2196F3' }}>
+                {websites}
+              </a>
+              <br />
             </React.Fragment>
           )}
         </Typography>
       </CardContent>
       <CardContent>
-      {/* <Map address={address} /> */}
+        <Map address={address} />
       </CardContent>
     </Card>
- ) : null;
+  ) : null;
 };
 
 export default Cards;
