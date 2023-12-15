@@ -12,8 +12,8 @@ const Map = ({ address }) => {
  };
 
  const center = {
-    lat: 37.7749, // Replace with the actual latitude of the hospital
-    lng: -122.4194, // Replace with the actual longitude of the hospital
+    lat: 37.7749, 
+    lng: -122.4194, 
  };
 
  return hasData ? (
@@ -21,7 +21,7 @@ const Map = ({ address }) => {
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         center={center}
-        zoom={25} // Adjust the zoom level as needed
+        zoom={25} 
       >
         <Marker position={center} />
       </GoogleMap>

@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import Map from './Map'; // Import the Map component
+import Map from './Map'; 
 
 const placeholderImageUrl =
  'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
@@ -49,7 +49,9 @@ const Cards = ({ hospitalName, imageUrl, address, phone, fax, emergency, website
             </React.Fragment>
           )}
         </Typography>
-        <Map address={address} /> {/* Pass the address information to the Map component */}
+      </CardContent>
+      <CardContent>
+      {/* <Map address={address} /> */}
       </CardContent>
     </Card>
  ) : null;
