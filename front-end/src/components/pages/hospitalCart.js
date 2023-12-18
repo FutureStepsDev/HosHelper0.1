@@ -3,18 +3,17 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import Map from './Map'; 
 
 const placeholderImageUrl =
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
+ 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
 
 const Cards = ({ hospitalName, imageUrl, address, phone, fax, emergency, websites }) => {
- 
-  const displayImageUrl = imageUrl || placeholderImageUrl;
+ const displayImageUrl = imageUrl || placeholderImageUrl;
 
-  
-  const hasData = hospitalName || address || phone || fax || emergency || websites;
+ const hasData = hospitalName || address || phone || fax || emergency || websites;
 
-  return hasData ? (
+ return hasData ? (
     <Card
       sx={{
         maxWidth: 250,
@@ -35,24 +34,42 @@ const Cards = ({ hospitalName, imageUrl, address, phone, fax, emergency, website
         image={displayImageUrl}
         sx={{ objectFit: imageUrl ? 'cover' : 'contain' }}
       />
-      <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '8px' }}>
+      <CardContent
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          padding: '8px',
+        }}
+      >
         <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', marginBottom: '6px', color: '#2196F3' }}>
           {hospitalName}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <strong>Address:</strong> {address}<br />
-          <strong>Phone:</strong> {phone}<br />
-          <strong>Fax:</strong> {fax}<br />
-          <strong>Emergency:</strong> {emergency}<br />
+          <strong>Address:</strong> {address}
+          <br />
+          <strong>Phone:</strong> {phone}
+          <br />
+          <strong>Fax:</strong> {fax}
+          <br />
+          <strong>Emergency:</strong> {emergency}
+          <br />
           {websites && (
             <React.Fragment>
-              <strong>Websites:</strong> <a href={websites} target="_blank" rel="noopener noreferrer" style={{ color: '#2196F3' }}>{websites}</a><br />
+              <strong>Websites:</strong>{' '}
+              <a href={websites} target="_blank" rel="noopener noreferrer" style={{ color: '#2196F3' }}>
+                {websites}
+              </a>
+              <br />
             </React.Fragment>
           )}
         </Typography>
       </CardContent>
+      <CardContent>
+        <Map address={address} />
+      </CardContent>
     </Card>
   ) : null;
-}
+};
 
 export default Cards;

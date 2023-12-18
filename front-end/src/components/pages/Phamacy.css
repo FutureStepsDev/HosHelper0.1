@@ -1,0 +1,24 @@
+/* Pharmacy.css */
+
+.Pharmacy-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the cards horizontally */
+  align-items: center; /* Center the cards vertically */
+}
+
+.card {
+  width: calc(30% - 20px);
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+/* Add media query for responsiveness if necessary */
+@media (max-width: 768px) {
+  .card {
+    width: calc(50% - 20px);
+  }
+}

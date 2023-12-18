@@ -137,8 +137,9 @@ const NavBar = () => {
             </div>
           </Drawer>
 
-          <Typography variant="h6" className={classes.title}>
-            HosHelper
+          <Typography variant="h6" className={classes.title} >
+          
+          <Button color="inherit"href="/">HosHelper</Button>
           </Typography>
 
           <div className={classes.search}>
@@ -155,8 +156,8 @@ const NavBar = () => {
             />
           </div>
           <div>
-            <Button color="inherit">Hospital</Button>
-            <Button color="inherit">pharmacy</Button>
+            <Button color="inherit" href="/hospital">Hospital </Button>
+            <Button color="inherit" href="/pharmacy">pharmacy</Button>
             <Button color="inherit">Sign In</Button>
             <Button color="inherit">Sign Up</Button>
           </div>
