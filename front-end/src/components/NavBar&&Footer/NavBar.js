@@ -16,6 +16,7 @@ import Menu from "@material-ui/core/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Drawer from "@material-ui/core/Drawer";
 import Sidebar from "./SideBar";
+import { setPharmacy } from "../Features/pharmacyData";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -109,6 +110,9 @@ const NavBar = () => {
 
     setDrawerOpen(open);
   };
+
+  // recherche dans les pages : Home et hopital
+
   const hospitals = useSelector((state) => state.hospitals.hospitals);
   const handleSearch = (e) => {
     setSearchItem(e.target.value);
@@ -125,6 +129,22 @@ const NavBar = () => {
 
     return () => clearTimeout(searchTimeout);
   }, [searchItem, dispatch, hospitals]);
+
+  // recherche dans la page pharmacy
+
+  const pharmacies = useSelector((state) => state.pharmacy.pharmacy);
+  useEffect(() => {
+    const searchTimeout = setTimeout(() => {
+      const searchTerm = searchItem.toLowerCase();
+      const filteredPharmacies = pharmacies.filter((pharmacy) =>
+        pharmacy.name.toLowerCase().includes(searchTerm)
+      );
+      dispatch(setPharmacy(filteredPharmacies));
+    }, 300);
+
+    return () => clearTimeout(searchTimeout);
+  }, [searchItem, dispatch, pharmacies]);
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -154,7 +174,9 @@ const NavBar = () => {
           </Drawer>
 
           <Typography variant="h6" className={classes.title}>
-            HosHelper
+            <Button color="inherit" href="/">
+              HosHelper
+            </Button>
           </Typography>
 
           <div className={classes.search}>
@@ -172,8 +194,12 @@ const NavBar = () => {
             />
           </div>
           <div>
-            <Button color="inherit">Hospital</Button>
-            <Button color="inherit">pharmacy</Button>
+            <Button color="inherit" href="/hospital">
+              Hospital{" "}
+            </Button>
+            <Button color="inherit" href="/pharmacy">
+              pharmacy
+            </Button>
             <Button color="inherit">Sign In</Button>
             <Button color="inherit">Sign Up</Button>
           </div>

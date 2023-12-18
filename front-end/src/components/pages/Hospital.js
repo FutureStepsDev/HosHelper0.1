@@ -1,9 +1,34 @@
-import React from 'react'
+import React from "react";
+import Cards from "../pages/hospitalCart";
+import hospitalData from "../datas/HospitalDatas";
+import "./Hospital.css";
+import { setHospitals } from "../Features/AllData";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+const Hospital = () => {
+  const dispatch = useDispatch();
 
-function Hospital() {
+  useEffect(() => {
+    dispatch(setHospitals(hospitalData));
+  }, [dispatch]);
+  const hospitals = useSelector((state) => state.hospitals.hospitals);
+
   return (
-    <div>Hospital</div>
-  )
-}
+    <div className="hospital-list">
+      {hospitals.map((hospital, index) => (
+        <Cards
+          key={index}
+          hospitalName={hospital.hospitalName}
+          imageUrl={hospital.imageUrl}
+          address={hospital.address}
+          phone={hospital.phone}
+          fax={hospital.fax}
+          emergency={hospital.emergency}
+          websites={hospital.websites}
+        />
+      ))}
+    </div>
+  );
+};
 
-export default Hospital
+export default Hospital;
