@@ -1,11 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import data from "../datas/HospitalDatas";
-export const dataSlice = createSlice({
-  name: "HosData",
-  initialState: { value: data },
+
+const hospitalSlice = createSlice({
+  name: "hospitals",
+  initialState: {
+    hospitals: [],
+  },
   reducers: {
-    search: (state, action) => {
-      state.value = action.payload;
+    setHospitals: (state, action) => {
+      state.hospitals = action.payload;
     },
   },
 });
+
+export const { setHospitals } = hospitalSlice.actions;
+export default hospitalSlice.reducer;

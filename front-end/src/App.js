@@ -4,12 +4,12 @@ import "./App.css";
 import Footer from "./components/NavBar&&Footer/Footer";
 import NavBar from "./components/NavBar&&Footer/NavBar";
 import Home from "./components/home";
-import Profile from "./components/Profile";
+import Profile from "./components/profile";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
+    <div className="App">
+      <Router>
         <NavBar />
 
         <Routes>
@@ -18,8 +18,8 @@ function App() {
         </Routes>
 
         <Footer />
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }
 

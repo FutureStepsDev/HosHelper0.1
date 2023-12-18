@@ -1,4 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-export const Store = configureStore({
-  reducer: {},
+import hospitalReducer from "./Features/AllData";
+const store = configureStore({
+  reducer: {
+    hospitals: hospitalReducer,
+  },
 });
+
+export default store;
