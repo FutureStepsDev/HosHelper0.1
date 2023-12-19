@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 45vh; /* Set a height to center vertically in the viewport */
+  height: 65vh; /* Set a height to center vertically in the viewport */
   margin-right: 20px;
 }
 
