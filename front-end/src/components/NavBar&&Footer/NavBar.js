@@ -1,5 +1,7 @@
 import React from "react";
-
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setHospitals } from "../Features/AllData";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -14,7 +16,7 @@ import Menu from "@material-ui/core/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Drawer from "@material-ui/core/Drawer";
 import Sidebar from "./SideBar";
-
+import { setPharmacy } from "../Features/pharmacyData";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -80,12 +82,12 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = () => {
   const classes = useStyles();
-
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const dispatch = useDispatch();
+  const [auth, setAuth] = useState(true);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
-
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searchItem, setSearchItem] = useState("");
   const handleChange = (event) => {
     setAuth(event.target.checked);
   };
@@ -108,6 +110,40 @@ const NavBar = () => {
 
     setDrawerOpen(open);
   };
+
+  // recherche dans les pages : Home et hopital
+
+  const hospitals = useSelector((state) => state.hospitals.hospitals);
+  const handleSearch = (e) => {
+    setSearchItem(e.target.value);
+  };
+
+  useEffect(() => {
+    const searchTimeout = setTimeout(() => {
+      const searchTerm = searchItem.toLowerCase();
+      const filteredHospitals = hospitals.filter((hospital) =>
+        hospital.hospitalName.toLowerCase().includes(searchTerm)
+      );
+      dispatch(setHospitals(filteredHospitals));
+    }, 300);
+
+    return () => clearTimeout(searchTimeout);
+  }, [searchItem, dispatch, hospitals]);
+
+  // recherche dans la page pharmacy
+
+  const pharmacies = useSelector((state) => state.pharmacy.pharmacy);
+  useEffect(() => {
+    const searchTimeout = setTimeout(() => {
+      const searchTerm = searchItem.toLowerCase();
+      const filteredPharmacies = pharmacies.filter((pharmacy) =>
+        pharmacy.name.toLowerCase().includes(searchTerm)
+      );
+      dispatch(setPharmacy(filteredPharmacies));
+    }, 300);
+
+    return () => clearTimeout(searchTimeout);
+  }, [searchItem, dispatch, pharmacies]);
 
   return (
     <div className={classes.root}>
@@ -137,9 +173,10 @@ const NavBar = () => {
             </div>
           </Drawer>
 
-          <Typography variant="h6" className={classes.title} >
-          
-          <Button color="inherit"href="/">HosHelper</Button>
+          <Typography variant="h6" className={classes.title}>
+            <Button color="inherit" href="/">
+              HosHelper
+            </Button>
           </Typography>
 
           <div className={classes.search}>
@@ -153,11 +190,16 @@ const NavBar = () => {
                 input: classes.inputInput,
               }}
               inputProps={{ "aria-label": "search" }}
+              onChange={handleSearch}
             />
           </div>
           <div>
-            <Button color="inherit" href="/hospital">Hospital </Button>
-            <Button color="inherit" href="/pharmacy">pharmacy</Button>
+            <Button color="inherit" href="/hospital">
+              Hospital{" "}
+            </Button>
+            <Button color="inherit" href="/pharmacy">
+              pharmacy
+            </Button>
             <Button color="inherit">Sign In</Button>
             <Button color="inherit">Sign Up</Button>
           </div>

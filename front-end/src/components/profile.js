@@ -1,13 +1,12 @@
-import React from 'react';
-import { Avatar, Typography, Paper, makeStyles } from '@material-ui/core';
-
+import React from "react";
+import { Avatar, Typography, Paper, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     width: theme.spacing(10),
@@ -50,4 +49,4 @@ const UserProfile = () => {
   return <Profile {...user} />;
 };
 
-export default UserProfile;
+export default Profile;
