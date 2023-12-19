@@ -1,12 +1,11 @@
-// models/Hospital.js
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  const Hospital = sequelize.define('Hospital', {
+  const Hospital = sequelize.define("Hospital", {
     hospitalName: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true, 
+      unique: true,
     },
     address: {
       type: DataTypes.STRING,
@@ -34,16 +33,14 @@ module.exports = (sequelize) => {
     },
   });
 
-
   Hospital.bulkInsertData = async (data) => {
     try {
       await Hospital.bulkCreate(data, {
-        ignoreDuplicates: true, 
-        
+        ignoreDuplicates: true,
       });
-      console.log('Data inserted successfully.');
+      console.log("Data inserted successfully.");
     } catch (error) {
-      console.error('Error inserting data:', error);
+      console.error("Error inserting data:", error);
     }
   };
 

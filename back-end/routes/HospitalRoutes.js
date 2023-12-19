@@ -1,16 +1,11 @@
-// routes/hospitalRoutes.js
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const hospitalController = require('../controllers/HospitalControllers');
+const hospitalController = require("../controllers/HospitalControllers");
 
+router.post("/hospitals", hospitalController.createHospital);
 
-// Create a new hospital
-router.post('/hospitals', hospitalController.createHospital);
+router.get("/gethospitals", hospitalController.getAllHospitals);
 
-// Get all hospitals
-router.get('/gethospitals', hospitalController.getAllHospitals);
-
-// Get one hospital by ID
-router.get('/hospitals/:id', hospitalController.getHospitalById);
+router.get("/hospitals/:id", hospitalController.getHospitalById);
 
 module.exports = router;
