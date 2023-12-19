@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/NavBar&&Footer/Footer";
 import NavBar from "./components/NavBar&&Footer/NavBar";
@@ -13,10 +13,10 @@ import Pharmacy from './components/pages/Pharmacy';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
+    <div className="App">
+      <Router>
         <NavBar />
-        
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
@@ -28,8 +28,8 @@ function App() {
         </Routes>
 
         <Footer />
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }
 
