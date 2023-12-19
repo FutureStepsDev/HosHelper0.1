@@ -202,8 +202,8 @@ const NavBar = () => {
             <Button color="inherit" href="/pharmacy">
               pharmacy
             </Button>
-            <Button color="inherit">Sign In</Button>
-            <Button color="inherit">Sign Up</Button>
+            <Button color="inherit" href="/login">Sign In</Button>
+            <Button color="inherit" href="/signup">Sign Up</Button>
           </div>
 
           {auth && (

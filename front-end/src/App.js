@@ -10,6 +10,7 @@ import SignUp from "./components/SignUp";
 // import Map from './components/pages/Map';
 import Hospital from './components/pages/Hospital';
 import Pharmacy from './components/pages/Pharmacy';
+import AboutUs from "./components/pages/aboutUs";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
           <Route path="/pharmacy" element={<Pharmacy />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+
+          <Route path="/aboutus" element={<AboutUs />} />
         </Routes>
 
         <Footer />
