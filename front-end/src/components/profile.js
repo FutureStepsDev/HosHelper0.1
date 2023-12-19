@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Profile = ({ name, imageUrl, bio }) => {
+const Profile = ({ name, imageUrl, email, bio }) => {
   const classes = useStyles();
 
   return (
@@ -27,6 +27,9 @@ const Profile = ({ name, imageUrl, bio }) => {
       <Avatar alt="Profile Image" src={imageUrl} className={classes.avatar} />
       <Typography variant="h6" className={classes.name}>
         {name}
+      </Typography>
+      <Typography variant="h6" className={classes.name}>
+        {email}
       </Typography>
       <Typography variant="body2" color="textSecondary">
         {bio}
@@ -40,6 +43,7 @@ const UserProfile = () => {
   const user = {
     name: 'John Doe',
     imageUrl: 'https://placekitten.com/200/200', 
+    email:'jhon@gmail.com',
     bio: 'Web Developer | React Enthusiast',
   };
 
