@@ -8,7 +8,7 @@ const Hospital = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/gethospitals');
+        const response = await fetch('http://localhost:7000/api/gethospitals');
         if (!response.ok) {
           throw new Error(`Error fetching data: ${response.status} ${response.statusText}`);
         }

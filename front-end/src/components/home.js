@@ -1,35 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import Cards from './pages/hospitalCart';
 import './home.css';
-
+import axios from "axios"
 const Home = () => {
   const [hospitals, setHospitals] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
   const hospitalsPerPage = 3;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/api/gethospitals');
-        if (!response.ok) {
-          throw new Error(`Error fetching data: ${response.status} ${response.statusText}`);
-        }
-        const data = await response.json();
-        setHospitals(data);
-      } catch (error) {
-        console.error('Error fetching data:', error.message);
-      }
-    };
+ axios.get('http://localhost:7000/api/gethospitals').then((response)=>setHospitals(response.data)).catch((error=>console.log(error)))
 
-    fetchData();
 
-    const interval = setInterval(() => {
-      setStartIndex((prevIndex) => (prevIndex + hospitalsPerPage) % hospitals.length);
-    }, 20000);
+    // const interval = setInterval(() => {
+    //   setStartIndex((prevIndex) => (prevIndex + hospitalsPerPage) % hospitals.length);
+    // }, 20000);
 
-    return () => clearInterval(interval);
-  }, [hospitals]);
-
+    // return () => clearInterval(interval);
+  }, []);
+console.log(hospitals)
   const displayedHospitals = hospitals.slice(startIndex, startIndex + hospitalsPerPage);
 
   return (

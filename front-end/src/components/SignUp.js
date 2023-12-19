@@ -39,7 +39,7 @@ const handleAddUser = async (e) => {
   e.preventDefault()
 
   try {
-    const res = await axios.post("http://localhost:7000/auth/signup", {
+    const res = await axios.post("http://localhost:7000/User/signup", {
       UserName,
       email,
       password,
@@ -123,7 +123,6 @@ console.log(role)
         onChange={(e) => setRole(e.target.value)}
         style={{ width: '100%', padding: '8px', backgroundColor: 'white', color: '#0C2340' }}
       >
-        <option value="default"></option>
         <option value="Patient">Patient</option>
         <option value="Pharmacy">Pharmacy</option>
         <option value="Doctor">Doctor</option>

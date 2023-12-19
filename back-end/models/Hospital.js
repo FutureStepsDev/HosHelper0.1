@@ -33,16 +33,7 @@ module.exports = (sequelize) => {
     },
   });
 
-  Hospital.bulkInsertData = async (data) => {
-    try {
-      await Hospital.bulkCreate(data, {
-        ignoreDuplicates: true,
-      });
-      console.log("Data inserted successfully.");
-    } catch (error) {
-      console.error("Error inserting data:", error);
-    }
-  };
+
 
   return Hospital;
 };
