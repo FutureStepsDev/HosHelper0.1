@@ -47,6 +47,7 @@ const handleAddUser = async (e) => {
       image
     })
   res.data && window.location.replace("/login")
+  console.log(role)
   } catch (error) {
     setError(true)
   }}
@@ -74,7 +75,7 @@ const handleAddUser = async (e) => {
     }
     return true;
   };
-console.log(role)
+ 
   return (
     <Container component="main" maxWidth="xs" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', padding: '10px', borderRadius: '10px', marginTop: '50px', color: 'white' }}>
       <Typography variant="h4" gutterBottom>
@@ -123,12 +124,14 @@ console.log(role)
         onChange={(e) => setRole(e.target.value)}
         style={{ width: '100%', padding: '8px', backgroundColor: 'white', color: '#0C2340' }}
       >
+         <option value=""></option>
         <option value="Patient">Patient</option>
         <option value="Pharmacy">Pharmacy</option>
         <option value="Doctor">Doctor</option>
       </select>
-
+   
       <TextField
+      
         fullWidth
         margin="normal"
         label="Image URL"
@@ -152,7 +155,9 @@ console.log(role)
         fullWidth
       >
         Submit
+        
       </Button>
+     
     </Container>
   );
 };

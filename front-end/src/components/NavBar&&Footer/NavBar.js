@@ -199,7 +199,6 @@ const NavBar = () => {
 
             <Button color="inherit"href="/hospital">Hospital</Button>
             <Button color="inherit"href="/pharmacy">pharmacy</Button>
-          
             <Button color="inherit" href="/login">Sign In</Button>
             <Button color="inherit" href="/signup">Sign Up</Button>
 
