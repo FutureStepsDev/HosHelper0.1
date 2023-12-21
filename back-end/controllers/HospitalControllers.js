@@ -3,7 +3,6 @@ const Hospital = db.Hospital;
 const createHospital = async (req, res) => {
   try {
     const { hospitalName, address, phone, fax, emergency, websites, imageUrl } = req.body;
-
     const newHospital = await Hospital.create({
       hospitalName,
       address,
@@ -13,7 +12,6 @@ const createHospital = async (req, res) => {
       websites,
       imageUrl,
     });
-
     res.status(201).json({
       success: true,
       hospital: newHospital,

@@ -3,8 +3,6 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const db = require("./models/index");
 const hospitalRoutes = require("./routes/HospitalRoutes");
-const hospitalData = require("./Data/HospitalDatas");
-const Hospital = require("./models/Hospital");
 
 const app = express();
 const PORT = process.env.PORT || 7000;

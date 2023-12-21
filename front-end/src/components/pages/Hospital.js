@@ -1,26 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import Cards from '../pages/hospitalCart';
-import './Hospital.css';
-
+import React from "react";
+import Cards from "../pages/hospitalCart";
+import hospitalData from "../datas/HospitalDatas";
+import "./Hospital.css";
+import { setHospitals } from "../Features/AllData";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 const Hospital = () => {
-  const [hospitals, setHospitals] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:7000/api/gethospitals');
-        if (!response.ok) {
-          throw new Error(`Error fetching data: ${response.status} ${response.statusText}`);
-        }
-        const data = await response.json();
-        setHospitals(data);
-      } catch (error) {
-        console.error('Error fetching data:', error.message);
-      }
-    };
-
-    fetchData();
-  }, []);
+    dispatch(setHospitals(hospitalData));
+  }, [dispatch]);
+  const hospitals = useSelector((state) => state.hospitals.hospitals);
 
   return (
     <div className="hospital-list">
