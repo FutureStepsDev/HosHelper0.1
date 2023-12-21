@@ -1,9 +1,9 @@
+const { DataTypes } = require("sequelize");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { Sequelize, DataTypes } = require('sequelize');
-const db = require('./model'); 
 
-module.exports = (sequelize,DataTypes) => {
+
+module.exports = (sequelize) => {
     const User = sequelize.define('User', {
       UserName: {
         type: DataTypes.STRING,
@@ -36,7 +36,7 @@ module.exports = (sequelize,DataTypes) => {
       },
       image: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         
     },
     },
@@ -59,11 +59,11 @@ module.exports = (sequelize,DataTypes) => {
         expiresIn: 3600,
       });
     };
-    User.associate = (models) => {
-      User.hasMany(models.Product, {
-        foreignKey: 'userId',
-        as: 'products',
-      });
-    };
+    // User.associate = (models) => {
+    //   User.hasMany(models.Product, {
+    //     foreignKey: 'userId',
+    //     as: 'products',
+    //   });
+    // };
     return User;
 };
