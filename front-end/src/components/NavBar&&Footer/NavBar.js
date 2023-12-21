@@ -16,6 +16,8 @@ import Menu from "@material-ui/core/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Drawer from "@material-ui/core/Drawer";
 import Sidebar from "./SideBar";
+import { Link } from "react-router-dom";
+
 import { setPharmacy } from "../Features/pharmacyData";
 const drawerWidth = 240;
 
@@ -184,6 +186,7 @@ const NavBar = () => {
             />
           </div>
           <div>
+
             <Button
               variant="contained"
               color="#3498db"
@@ -232,6 +235,7 @@ const NavBar = () => {
             >
               Sign Up
             </Button>
+
           </div>
 
           <div>
