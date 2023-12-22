@@ -1,34 +1,24 @@
-import React, { useState, useEffect } from "react";
-import Cards from "./pages/hospitalCart";
-import hospitalData from "./datas/HospitalDatas";
-import "./home.css";
-import { useDispatch, useSelector } from "react-redux";
-import { setHospitals } from "./Features/AllData";
+import React, { useState, useEffect } from 'react';
+import Cards from './pages/hospitalCart';
+import './home.css';
+import axios from "axios"
 const Home = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(setHospitals(hospitalData));
-  }, [dispatch]);
-  const hospitals = useSelector((state) => state.hospitals.hospitals);
-
+  const [hospitals, setHospitals] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
   const hospitalsPerPage = 3;
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setStartIndex(
-        (prevIndex) => (prevIndex + hospitalsPerPage) % hospitals.length
-      );
-    }, 20000);
+ axios.get('http://localhost:7000/api/gethospitals').then((response)=>setHospitals(response.data)).catch((error=>console.log(error)))
 
-    return () => clearInterval(interval);
-  }, [hospitals.length]);
 
-  const displayedHospitals = hospitals.slice(
-    startIndex,
-    startIndex + hospitalsPerPage
-  );
+    // const interval = setInterval(() => {
+    //   setStartIndex((prevIndex) => (prevIndex + hospitalsPerPage) % hospitals.length);
+    // }, 20000);
+
+    // return () => clearInterval(interval);
+  }, []);
+console.log(hospitals)
+  const displayedHospitals = hospitals.slice(startIndex, startIndex + hospitalsPerPage);
 
   return (
     <div className="cards">

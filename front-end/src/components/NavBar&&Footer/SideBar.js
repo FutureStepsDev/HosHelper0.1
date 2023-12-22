@@ -1,10 +1,14 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import "./SideBar.css";
+import { useNavigate } from "react-router-dom";
 const Sidebar = () => {
+  const navigate = useNavigate();
   return (
     <div className="container">
-      <Button color="inherit" href ="/" >Home </Button>
+      <Button color="inherit" onClick={() => navigate("/")}>
+        Home
+      </Button>
       <br />
       <hr />
       <Button color="inherit" href ="signup" >Sign Up</Button>
