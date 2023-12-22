@@ -2,14 +2,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const db = require("./models/index");
-const hospitalRoutes = require("./routes/HospitalRoutes");
+const hospitalRoutes = require("./routes/Routes");
 
 const app = express();
 const PORT = process.env.PORT || 7000;
 app.use(bodyParser.json());
 app.use(cors());
 app.use("/api", hospitalRoutes);
-app.use("/User",hospitalRoutes)
+
 db.sequelize
   .authenticate()
   .then(() => {
