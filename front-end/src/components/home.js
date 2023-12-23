@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Cards from "./pages/hospitalCart";
-import hospitalData from "./datas/HospitalDatas";
 import "./home.css";
-
+import axios from "axios";
 const Home = () => {
+  const [hospitals, setHospitals] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
   const hospitalsPerPage = 3;
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setStartIndex(
-        (prevIndex) => (prevIndex + hospitalsPerPage) % hospitalData.length
-      );
-    }, 20000);
+    axios
+      .get("http://localhost:7000/api/gethospitals")
+      .then((response) => setHospitals(response.data))
+      .catch((error) => console.log(error));
 
-    return () => clearInterval(interval);
+    // const interval = setInterval(() => {
+    //   setStartIndex((prevIndex) => (prevIndex + hospitalsPerPage) % hospitals.length);
+    // }, 20000);
+
+    // return () => clearInterval(interval);
   }, []);
-
-  const displayedHospitals = hospitalData.slice(
+  console.log(hospitals);
+  const displayedHospitals = hospitals.slice(
     startIndex,
     startIndex + hospitalsPerPage
   );

@@ -7,27 +7,30 @@ import Home from "./components/home";
 
 
 import Profile from "./components/profile";
-// import Map from './components/pages/Map';
-import Hospital from './components/pages/Hospital';
-import Pharmacy from './components/pages/Pharmacy';
-
+import Login from "./components/login";
+import SignUp from "./components/SignUp";
+import Hospital from "./components/pages/Hospital";
+import Pharmacy from "./components/pages/Pharmacy";
 function App() {
   return (
-    <Router>
-      <div className="App">
+    <div className="App">
+      <Router>
         <NavBar />
 
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
-          {/* <Route path='/map'></Route> */}
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+
           <Route path="/hospital" element={<Hospital />} />
           <Route path="/pharmacy" element={<Pharmacy />} />
         </Routes>
 
         <Footer />
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }
 
