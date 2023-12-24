@@ -4,7 +4,7 @@ import pharmacyReducer from "./Features/pharmacyData";
 const store = configureStore({
   reducer: {
     hospitals: hospitalReducer,
-    pharmacy: pharmacyReducer,
+    pharmacies: pharmacyReducer,
   },
 });
 

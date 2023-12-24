@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setHospitals } from "../Features/AllData";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -16,9 +15,10 @@ import Menu from "@material-ui/core/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Drawer from "@material-ui/core/Drawer";
 import Sidebar from "./SideBar";
-import { Link } from "react-router-dom";
-
-import { setPharmacy } from "../Features/pharmacyData";
+import { setHospitals } from "../Features/AllData";
+import { setPharmacies } from "../Features/pharmacyData";
+import { fetchPhamacies } from "../Features/pharmacyData";
+import { fetchHospitals } from "../Features/AllData";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -113,8 +113,16 @@ const NavBar = () => {
     setDrawerOpen(open);
   };
 
-  const hospitals = useSelector((state) => state.hospitals.hospitals);
-  const pharmacies = useSelector((state) => state.pharmacy.pharmacy);
+  useEffect(() => {
+    dispatch(fetchPhamacies());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchHospitals());
+  }, [dispatch]);
+
+  const hospitals = useSelector((state) => state.hospitals.data);
+  const pharmacies = useSelector((state) => state.pharmacies.data);
 
   const filterHandler = (e) => {
     const searchTerm = e.trim().toLowerCase();
@@ -125,7 +133,7 @@ const NavBar = () => {
       item.name.toLowerCase().includes(searchTerm)
     );
     dispatch(setHospitals(filteredHos));
-    dispatch(setPharmacy(filteredPharmacy));
+    dispatch(setPharmacies(filteredPharmacy));
   };
 
   return (
@@ -186,7 +194,6 @@ const NavBar = () => {
             />
           </div>
           <div>
-
             <Button
               variant="contained"
               color="#3498db"
@@ -235,7 +242,6 @@ const NavBar = () => {
             >
               Sign Up
             </Button>
-
           </div>
 
           <div>

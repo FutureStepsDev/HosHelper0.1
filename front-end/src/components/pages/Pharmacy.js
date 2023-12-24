@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from "react";
 import Cards from "./PharmacyCard";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPhamacies } from "../Features/pharmacyData";
 import "./Phamacy.css";
-import axios from "axios"
+
 const Pharmacy = () => {
-  const [Phamarcy, setPharmacy] = useState([]);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    axios.get('http://localhost:7000/api/getPharmacy').then((response)=>setPharmacy(response.data)).catch((error=>console.log(error)))
-   
-  }, []);
-  const displayPharmacy =Phamarcy
+    dispatch(fetchPhamacies());
+  }, [dispatch]);
+  const pharmacies = useSelector((state) => state.pharmacies.data);
+
   return (
     <div className="Pharmacy-list">
-      {displayPharmacy.map((Pharmacy, index) => (
+      {pharmacies.map((Pharmacy, index) => (
         <div className="card" key={index}>
           <Cards
             name={Pharmacy.name}
