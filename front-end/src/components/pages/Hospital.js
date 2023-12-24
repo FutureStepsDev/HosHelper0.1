@@ -6,10 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 const Hospital = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchHospitals());
   }, [dispatch]);
+
   const hospitals = useSelector((state) => state.hospitals.data);
 
   return (

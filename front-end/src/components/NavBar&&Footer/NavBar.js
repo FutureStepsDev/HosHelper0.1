@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { setHospitals } from "../Features/AllData";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -15,7 +16,7 @@ import Menu from "@material-ui/core/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Drawer from "@material-ui/core/Drawer";
 import Sidebar from "./SideBar";
-import { setHospitals } from "../Features/AllData";
+
 import { setPharmacies } from "../Features/pharmacyData";
 import { fetchPhamacies } from "../Features/pharmacyData";
 import { fetchHospitals } from "../Features/AllData";

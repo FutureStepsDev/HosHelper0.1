@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import Cards from "./PharmacyCard";
+import "./Phamacy.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPhamacies } from "../Features/pharmacyData";
-import "./Phamacy.css";
-
 const Pharmacy = () => {
   const dispatch = useDispatch();
 

@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const Profile = ({ name, imageUrl, email, bio }) => {
   const classes = useStyles();
 
@@ -40,10 +39,10 @@ const Profile = ({ name, imageUrl, email, bio }) => {
 // Example user
 const UserProfile = () => {
   const user = {
-    name: 'John Doe',
-    imageUrl: 'https://placekitten.com/200/200', 
-    email:'jhon@gmail.com',
-    bio: 'Web Developer | React Enthusiast',
+    name: "John Doe",
+    imageUrl: "https://placekitten.com/200/200",
+    email: "jhon@gmail.com",
+    bio: "Web Developer | React Enthusiast",
   };
 
   return <Profile {...user} />;

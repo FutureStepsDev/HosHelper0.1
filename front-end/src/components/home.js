@@ -6,14 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 const Home = () => {
   const [startIndex, setStartIndex] = useState(0);
   const hospitalsPerPage = 3;
-
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchHospitals());
   }, [dispatch]);
   const hospitals = useSelector((state) => state.hospitals.data);
-
   const displayedHospitals = hospitals.slice(
     startIndex,
     startIndex + hospitalsPerPage

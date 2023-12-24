@@ -38,6 +38,7 @@ const hospitalSlice = createSlice({
     });
   },
 });
+
 export const { setHospitals } = hospitalSlice.actions;
 
 export default hospitalSlice.reducer;

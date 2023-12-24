@@ -38,5 +38,6 @@ const pharmacySlice = createSlice({
     });
   },
 });
+
 export const { setPharmacies } = pharmacySlice.actions;
 export default pharmacySlice.reducer;
