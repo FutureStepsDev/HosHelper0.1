@@ -85,14 +85,14 @@ const useStyles = makeStyles((theme) => ({
 const NavBar = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [auth, setAuth] = useState(true);
+  // const [auth, setAuth] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [searchItem, setSearchItem] = useState("");
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+
+  // const handleChange = (event) => {
+  //   setAuth(event.target.checked);
+  // };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -113,43 +113,24 @@ const NavBar = () => {
     setDrawerOpen(open);
   };
 
-  // recherche dans les pages : Home et hopital
-
   const hospitals = useSelector((state) => state.hospitals.hospitals);
-  const handleSearch = (e) => {
-    setSearchItem(e.target.value);
-  };
-
-  useEffect(() => {
-    const searchTimeout = setTimeout(() => {
-      const searchTerm = searchItem.toLowerCase();
-      const filteredHospitals = hospitals.filter((hospital) =>
-        hospital.hospitalName.toLowerCase().includes(searchTerm)
-      );
-      dispatch(setHospitals(filteredHospitals));
-    }, 300);
-
-    return () => clearTimeout(searchTimeout);
-  }, [searchItem, dispatch, hospitals]);
-
-  // recherche dans la page pharmacy
-
   const pharmacies = useSelector((state) => state.pharmacy.pharmacy);
-  useEffect(() => {
-    const searchTimeout = setTimeout(() => {
-      const searchTerm = searchItem.toLowerCase();
-      const filteredPharmacies = pharmacies.filter((pharmacy) =>
-        pharmacy.name.toLowerCase().includes(searchTerm)
-      );
-      dispatch(setPharmacy(filteredPharmacies));
-    }, 300);
 
-    return () => clearTimeout(searchTimeout);
-  }, [searchItem, dispatch, pharmacies]);
+  const filterHandler = (e) => {
+    const searchTerm = e.trim().toLowerCase();
+    const filteredHos = hospitals.filter((item) =>
+      item.hospitalName.toLowerCase().includes(searchTerm)
+    );
+    const filteredPharmacy = pharmacies.filter((item) =>
+      item.name.toLowerCase().includes(searchTerm)
+    );
+    dispatch(setHospitals(filteredHos));
+    dispatch(setPharmacy(filteredPharmacy));
+  };
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ backgroundColor: "#3498db" }}>
         <Toolbar style={{ justifyContent: "space-between" }}>
           <IconButton
             edge="start"
@@ -176,7 +157,16 @@ const NavBar = () => {
           </Drawer>
 
           <Typography variant="h6" className={classes.title}>
-            <Button color="inherit" href="/">
+            <Button
+              variant="contained"
+              color="#3498db"
+              style={{
+                marginLeft: "10px",
+                fontWeight: "bold",
+                color: "#3498db",
+              }}
+              href="/"
+            >
               HosHelper
             </Button>
           </Typography>
@@ -192,49 +182,91 @@ const NavBar = () => {
                 input: classes.inputInput,
               }}
               inputProps={{ "aria-label": "search" }}
-              onChange={handleSearch}
+              onChange={(x) => filterHandler(x.target.value)}
             />
           </div>
           <div>
 
-            <Button color="inherit"href="/hospital">Hospital</Button>
-            <Button color="inherit"href="/pharmacy">pharmacy</Button>
-            <Button color="inherit" href="/login">Sign In</Button>
-            <Button color="inherit" href="/signup">Sign Up</Button>
+            <Button
+              variant="contained"
+              color="#3498db"
+              href="/hospital"
+              style={{
+                marginLeft: "10px",
+                fontWeight: "bold",
+                color: "#3498db",
+              }}
+            >
+              Hospital{" "}
+            </Button>
+            <Button
+              variant="contained"
+              color="#3498db"
+              href="/pharmacy"
+              style={{
+                marginLeft: "10px",
+                fontWeight: "bold",
+                color: "#3498db",
+              }}
+            >
+              pharmacy
+            </Button>
+            <Button
+              variant="contained"
+              color="#3498db"
+              href="/"
+              style={{
+                marginLeft: "10px",
+                fontWeight: "bold",
+                color: "#3498db",
+              }}
+            >
+              Sign In
+            </Button>
+            <Button
+              variant="contained"
+              color="#3498db"
+              href="/"
+              style={{
+                marginLeft: "10px",
+                fontWeight: "bold",
+                color: "#3498db",
+              }}
+            >
+              Sign Up
+            </Button>
 
           </div>
 
-          {auth && (
-            <div>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
-            </div>
-          )}
+          <div>
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={open}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>My account</MenuItem>
+            </Menu>
+          </div>
         </Toolbar>
       </AppBar>
     </div>

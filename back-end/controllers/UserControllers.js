@@ -1,4 +1,4 @@
-const db = require("..//models/index");
+const db = require("../models/index");
 const User = db.User;
 
 const sendErrorResponse = (res, statusCode, message) => {

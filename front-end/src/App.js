@@ -7,10 +7,15 @@ import Home from "./components/home";
 
 
 import Profile from "./components/profile";
+
+// import Map from './components/pages/Map';
+
+
 import Login from "./components/login";
 import SignUp from "./components/SignUp";
 import Hospital from "./components/pages/Hospital";
 import Pharmacy from "./components/pages/Pharmacy";
+
 function App() {
   return (
     <div className="App">
