@@ -214,7 +214,7 @@ const NavBar = () => {
             <Button
               variant="contained"
               color="#3498db"
-              href="/"
+              href="/login"
               style={{
                 marginLeft: "10px",
                 fontWeight: "bold",
@@ -226,7 +226,7 @@ const NavBar = () => {
             <Button
               variant="contained"
               color="#3498db"
-              href="/"
+              href="/signup"
               style={{
                 marginLeft: "10px",
                 fontWeight: "bold",

@@ -1,52 +1,28 @@
 import React from "react";
-import { Avatar, Typography, Paper, makeStyles } from "@material-ui/core";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: theme.spacing(2),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    width: theme.spacing(10),
-    height: theme.spacing(10),
-  },
-  name: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
-
-const Profile = ({ name, imageUrl, email, bio }) => {
-  const classes = useStyles();
-
+const Profile = ({ user }) => {
   return (
-    <Paper className={classes.paper} elevation={3}>
-      <Avatar alt="Profile Image" src={imageUrl} className={classes.avatar} />
-      <Typography variant="h6" className={classes.name}>
-        {name}
-      </Typography>
-      <Typography variant="h6" className={classes.name}>
-        {email}
-      </Typography>
-      <Typography variant="body2" color="textSecondary">
-        {bio}
-      </Typography>
-    </Paper>
+    <div>
+      {user ? (
+        <div>
+          <Typography variant="h4" gutterBottom>
+            Welcome, {user.UserName}!
+          </Typography>
+          <Button variant="contained">Logout</Button>
+        </div>
+      ) : (
+        <div>
+          <Typography variant="h4" gutterBottom>
+            Profile Page
+          </Typography>
+          <Typography variant="body1">
+            Please login to view your profile.
+          </Typography>
+        </div>
+      )}
+    </div>
   );
 };
-
-// Example user
-const UserProfile = () => {
-  const user = {
-    name: 'John Doe',
-    imageUrl: 'https://placekitten.com/200/200', 
-    email:'jhon@gmail.com',
-    bio: 'Web Developer | React Enthusiast',
-  };
-
-  return <Profile {...user} />;
-};
-
 export default Profile;

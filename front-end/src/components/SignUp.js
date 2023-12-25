@@ -39,14 +39,14 @@ const handleAddUser = async (e) => {
   e.preventDefault()
 
   try {
-    const res = await axios.post("http://localhost:7000/User/signup", {
+    const res = await axios.post("http://localhost:7000/api/signup", {
       UserName,
       email,
       password,
       role,
       image
     })
-  res.data && window.location.replace("/login")
+  res.data && window.location.replace("/")
   console.log(role)
   } catch (error) {
     setError(true)
