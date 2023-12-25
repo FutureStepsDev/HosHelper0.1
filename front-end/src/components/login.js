@@ -13,7 +13,7 @@ const Login = ({}) => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:7000/User/signin", {
+      const response = await axios.post("http://localhost:7000/api/signin", {
         email,
         password,
       });
