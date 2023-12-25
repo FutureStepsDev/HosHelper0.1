@@ -1,52 +1,117 @@
 import React from "react";
-import { Avatar, Typography, Paper, makeStyles } from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: theme.spacing(2),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    width: theme.spacing(10),
-    height: theme.spacing(10),
-  },
-  name: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
-
-const Profile = ({ name, imageUrl, email, bio }) => {
-  const classes = useStyles();
-
+import {
+  Container,
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  Avatar,
+  IconButton,
+} from "@material-ui/core";
+import {
+  Email,
+  Phone,
+  Edit,
+  Facebook,
+  Twitter,
+  Instagram,
+} from "@material-ui/icons";
+import "./Profile.css";
+import { useSelector } from "react-redux";
+const PersonalProfile = () => {
+  const user = useSelector((state) => state.user.data);
+  console.log(user);
   return (
-    <Paper className={classes.paper} elevation={3}>
-      <Avatar alt="Profile Image" src={imageUrl} className={classes.avatar} />
-      <Typography variant="h6" className={classes.name}>
-        {name}
-      </Typography>
-      <Typography variant="h6" className={classes.name}>
-        {email}
-      </Typography>
-      <Typography variant="body2" color="textSecondary">
-        {bio}
-      </Typography>
-    </Paper>
+    <div className="profilContainer ">
+      <section className="vh-100" style={{ backgroundColor: "#f4f5f7" }}>
+        <Container className="py-5 h-100">
+          <Grid
+            container
+            justifyContent="center"
+            alignItems="center"
+            className="h-100"
+          >
+            <Grid item lg={6} className="mb-4 mb-lg-0">
+              <Card className="mb-3" style={{ borderRadius: ".5rem" }}>
+                <Grid container className="g-0">
+                  <Grid
+                    item
+                    md={4}
+                    className="gradient-custom text-center text-white"
+                    style={{
+                      borderTopLeftRadius: ".5rem",
+                      borderBottomLeftRadius: ".5rem",
+                    }}
+                  >
+                    <Avatar
+                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                      alt="Avatar"
+                      className="my-5"
+                      style={{ width: "80px", height: "80px" }}
+                    />
+                    <Typography variant="h5">{user.UserName}</Typography>
+                    <Typography variant="subtitle1">{user.role}</Typography>
+                    <IconButton>
+                      <Edit />
+                    </IconButton>
+                  </Grid>
+                  <Grid item md={8}>
+                    <CardContent className="p-4">
+                      <Typography variant="h6">Information</Typography>
+                      <hr className="mt-0 mb-4" />
+                      <Grid container spacing={1}>
+                        <Grid item xs={6} className="mb-3">
+                          <Typography variant="h6">Email</Typography>
+                          <Typography variant="body2" className="text-muted">
+                            info@example.com
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={6} className="mb-3">
+                          <Typography variant="h6">Phone</Typography>
+                          <Typography variant="body2" className="text-muted">
+                            123 456 789
+                          </Typography>
+                        </Grid>
+                      </Grid>
+
+                      <Typography variant="h6">Information</Typography>
+                      <hr className="mt-0 mb-4" />
+                      <Grid container spacing={1}>
+                        <Grid item xs={6} className="mb-3">
+                          <Typography variant="h6">Email</Typography>
+                          <Typography variant="body2" className="text-muted">
+                            info@example.com
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={6} className="mb-3">
+                          <Typography variant="h6">Phone</Typography>
+                          <Typography variant="body2" className="text-muted">
+                            123 456 789
+                          </Typography>
+                        </Grid>
+                      </Grid>
+
+                      <div className="d-flex justify-content-start">
+                        <IconButton href="#!">
+                          <Facebook fontSize="large" />
+                        </IconButton>
+                        <IconButton href="#!">
+                          <Twitter fontSize="large" />
+                        </IconButton>
+                        <IconButton href="#!">
+                          <Instagram fontSize="large" />
+                        </IconButton>
+                      </div>
+                    </CardContent>
+                  </Grid>
+                </Grid>
+              </Card>
+            </Grid>
+          </Grid>
+        </Container>
+      </section>
+    </div>
   );
 };
 
-// Example user
-const UserProfile = () => {
-  const user = {
-    name: 'John Doe',
-    imageUrl: 'https://placekitten.com/200/200', 
-    email:'jhon@gmail.com',
-    bio: 'Web Developer | React Enthusiast',
-  };
-
-  return <Profile {...user} />;
-};
-
-export default Profile;
+export default PersonalProfile;
