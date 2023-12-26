@@ -8,11 +8,12 @@ import Map from './Map';
 const placeholderImageUrl =
  'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
 
-const Cards = ({ hospitalName, imageUrl, address, phone, fax, emergency, websites }) => {
+const Cards = ({ hospitalName, imageUrl, address, phone, fax, emergency, websites, location }) => {
  const displayImageUrl = imageUrl || placeholderImageUrl;
 
- const hasData = hospitalName || address || phone || fax || emergency || websites;
-
+ const hasData = hospitalName || address || phone || fax || emergency || websites || location ;
+// console.log(address)
+console.log(location)
  return hasData ? (
     <Card
       sx={{
@@ -66,7 +67,7 @@ const Cards = ({ hospitalName, imageUrl, address, phone, fax, emergency, website
         </Typography>
       </CardContent>
       <CardContent>
-        <Map address={address} />
+        <Map lat={location.lat} lng={location.lng} />
       </CardContent>
     </Card>
   ) : null;

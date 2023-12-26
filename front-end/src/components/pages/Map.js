@@ -10,10 +10,10 @@ import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import Geocoder from 'ol-geocoder';
 
-const Map = ({ address }) => {
- const mapRef = useRef(null);
+const Map = ({ lat, lng }) => {
+  const mapRef = useRef(null);
 
- useEffect(() => {
+  useEffect(() => {
     // Initialize the map
     const map = new OlMap({
       layers: [
@@ -22,8 +22,8 @@ const Map = ({ address }) => {
         }),
       ],
       view: new View({
-        center: [0, 0], // Initial center
-        zoom: 2, // Initial zoom level
+        center: [lat, lng],
+        zoom: 2,
       }),
     });
 
@@ -47,8 +47,9 @@ const Map = ({ address }) => {
     map.addControl(geocoder);
 
     // Add an event listener to the geocoder control to update the map view when a user selects a location
-    geocoder.on('select', (e) => {
-      map.getView().setCenter(e.coordinate);
+    geocoder.on('select', (event) => {
+      const selectedCoordinate = event.feature.getGeometry().getCoordinates();
+      map.getView().setCenter(selectedCoordinate);
       map.getView().setZoom(12);
     });
 
@@ -56,9 +57,14 @@ const Map = ({ address }) => {
     return () => {
       map.setTarget(undefined);
     };
- }, [address]);
+  }, [lat, lng]);
 
- return <div ref={mapRef} style={{ width: '100%', height: '150px', borderRadius: '8px', marginTop: '8px' }} />;
+  return (
+    <div
+      ref={mapRef}
+      style={{ width: '100%', height: '400px', borderRadius: '8px', marginTop: '8px' }}
+    />
+  );
 };
 
 export default Map;
