@@ -21,8 +21,8 @@ const Login = () => {
         email,
         password,
       });
-
-      if (response.data.message === "Login successful") {
+console.log(response.status)
+      if (response.status === 200) {
         console.log("Login successful", response.data.user);
 
         dispatch(setUser(response.data.user));
