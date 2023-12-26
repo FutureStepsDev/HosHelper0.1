@@ -4,13 +4,17 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Link, useNavigate } from "react-router-dom";
-
-const Login = ({ setUser }) => {
+import { Link } from "react-router-dom";
+import { setUser } from "./Features/User";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleLogin = async () => {
     try {
       const response = await axios.post("http://localhost:7000/api/signin", {
@@ -20,15 +24,15 @@ const Login = ({ setUser }) => {
 
       if (response.data.message === "Login successful") {
         console.log("Login successful", response.data.user);
-        setUser(response.data.user);
 
-        Navigate("/profile"); 
+        dispatch(setUser(response.data.user));
+        navigate("/profile");
       } else {
         setError(response.data.error || "Invalid email or password");
       }
     } catch (err) {
-      console.error(err);
-      setError("Your email or password is incorrect. Please try again.");
+      console.log(err);
+      setError("Your email or password are not correcr.Please try again. ");
     }
   };
 
@@ -50,18 +54,24 @@ const Login = ({ setUser }) => {
       <TextField
         fullWidth
         margin="normal"
-        label="Email"
+        label={email.trim() === "" ? "Email" : ""}
         type="text"
         variant="outlined"
         onChange={(e) => setEmail(e.target.value)}
+        InputProps={{
+          style: { backgroundColor: "white", color: "#0C2340" },
+        }}
       />
       <TextField
         fullWidth
         margin="normal"
-        label="Password"
+        label={password.trim() === "" ? "Password" : ""}
         type="password"
         variant="outlined"
         onChange={(e) => setPassword(e.target.value)}
+        InputProps={{
+          style: { backgroundColor: "white", color: "#0C2340" },
+        }}
       />
       {error && (
         <Typography
@@ -73,12 +83,15 @@ const Login = ({ setUser }) => {
       )}
       <Button
         onClick={handleLogin}
+        component={Link}
         variant="contained"
         style={{ backgroundColor: "#5A4FCF", color: "white" }}
         fullWidth
       >
         Login
       </Button>
+      <br />
+      <br />
       <Typography
         variant="body2"
         style={{ color: "white", marginBottom: "10px" }}
