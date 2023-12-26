@@ -1,34 +1,35 @@
-// HospitalDetails.js
-
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { Card, CardContent, CardMedia, Typography, Grid } from '@mui/material';
-import Map from './Map'; // Import your Map component
-
+import React from "react";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Card, CardContent, CardMedia, Typography, Grid } from "@mui/material";
+import Map from "./Map"; // Import your Map component
 const HospitalDetails = () => {
   const { hospitalName } = useParams();
   const hospitals = useSelector((state) => state.hospitals.data);
-  const selectedHospital = hospitals.find((hospital) => hospital.hospitalName === hospitalName);
-
+  const selectedHospital = hospitals.find(
+    (hospital) => hospital.hospitalName === hospitalName
+  );
   return (
     <div>
       {selectedHospital && (
         <Grid container spacing={2}>
-          {/* First Card: Displaying hospital data horizontally */}
           <Grid item xs={12}>
             <Card
               sx={{
-                color: '#000', // Change text color to black
-                borderRadius: '12px',
-                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-                display: 'flex',
-                flexDirection: 'row',
-                height: '100%', // Ensure the card takes the full height
+                color: "#000",
+                borderRadius: "12px",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                display: "flex",
+                flexDirection: "row",
+                height: "100%",
               }}
             >
               <CardContent sx={{ flex: 1 }}>
-                <Typography variant="h5" component="div" sx={{ fontWeight: 'bold', marginBottom: '10px' }}>
+                <Typography
+                  variant="h5"
+                  component="div"
+                  sx={{ fontWeight: "bold", marginBottom: "10px" }}
+                >
                   {selectedHospital.hospitalName}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -41,14 +42,12 @@ const HospitalDetails = () => {
               </CardContent>
             </Card>
           </Grid>
-
-          {/* Second Card: Displaying hospital photo and Third Card: Displaying the Map */}
           <Grid item xs={12} md={6}>
             <Card
               sx={{
-                borderRadius: '12px',
-                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-                height: '100%', // Ensure the card takes the full height
+                borderRadius: "12px",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                height: "100%",
               }}
             >
               <CardMedia
@@ -56,17 +55,16 @@ const HospitalDetails = () => {
                 alt={selectedHospital.hospitalName}
                 height="400"
                 image={selectedHospital.imageUrl}
-                sx={{ width: '100%', objectFit: 'cover' }}
+                sx={{ width: "100%", objectFit: "cover" }}
               />
             </Card>
           </Grid>
-
           <Grid item xs={12} md={6}>
             <Card
               sx={{
-                borderRadius: '12px',
-                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-                height: '100%', // Ensure the card takes the full height
+                borderRadius: "12px",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                height: "100%",
               }}
             >
               <CardContent>
@@ -79,5 +77,4 @@ const HospitalDetails = () => {
     </div>
   );
 };
-
 export default HospitalDetails;
