@@ -5,6 +5,7 @@ import Footer from "./components/NavBar&&Footer/Footer";
 import NavBar from "./components/NavBar&&Footer/NavBar";
 import Home from "./components/home";
 import Profile from "./components/profile";
+import 'leaflet/dist/leaflet.css'
 
 // import Map from './components/pages/Map';
 

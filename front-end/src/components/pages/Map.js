@@ -1,70 +1,99 @@
 import React, { useEffect, useRef } from 'react';
-import 'ol/ol.css';
-import 'ol-geocoder/dist/ol-geocoder.min.css';
-import { Map as OlMap, View } from 'ol';
-import TileLayer from 'ol/layer/Tile';
-import OSM from 'ol/source/OSM';
-import Feature from 'ol/Feature';
-import Point from 'ol/geom/Point';
-import VectorLayer from 'ol/layer/Vector';
-import VectorSource from 'ol/source/Vector';
-import Geocoder from 'ol-geocoder';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
+import L from 'leaflet';
 
-const Map = ({ lat, lng }) => {
-  const mapRef = useRef(null);
 
-  useEffect(() => {
-    // Initialize the map
-    const map = new OlMap({
-      layers: [
-        new TileLayer({
-          source: new OSM(),
-        }),
-      ],
-      view: new View({
-        center: [lat, lng],
-        zoom: 2,
-      }),
-    });
+const provider = new OpenStreetMapProvider();
 
-    // Set the map target to the div element
-    map.setTarget(mapRef.current);
+const SearchBar = () => {
+ const map = useMap();
 
-    // Initialize the vector source and layer
-    const vectorSource = new VectorSource();
-    const vectorLayer = new VectorLayer({
-      source: vectorSource,
-    });
-    map.addLayer(vectorLayer);
+ const search = async (e) => {
+    const searchInput = document.getElementById('search-input');
+    const results = await provider.search({ query: searchInput.value });
+    const { x: lat, y: lng } = results[0].bounds[0];
+    map.setView([lat, lng], 12);
+ };
 
-    // Add a geocoder control to the map
-    const geocoder = new Geocoder('nominatim', {
-      targetType: 'glass-button',
-      lang: 'en-US',
-      placeholder: 'Search for ...',
-      limit: 5,
-    });
-    map.addControl(geocoder);
+ return (
+    <div className="search-bar">
+      <input id="search-input" type="text" placeholder="Search for ..." />
+      <button onClick={search}>Search</button>
+    </div>
+ );
+};
 
-    // Add an event listener to the geocoder control to update the map view when a user selects a location
-    geocoder.on('select', (event) => {
-      const selectedCoordinate = event.feature.getGeometry().getCoordinates();
-      map.getView().setCenter(selectedCoordinate);
-      map.getView().setZoom(12);
-    });
 
-    // Clean up the map instance when the component is unmounted
-    return () => {
-      map.setTarget(undefined);
-    };
-  }, [lat, lng]);
+const CustomMap = ({ lat, lng }) => {
+  const position = [lat, lng];
+
+  // Adjust the size of the marker icon
+  const defaultIcon = L.icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/1001/1001022.png',
+    iconSize: [30, 30], // Adjust the size as needed
+    iconAnchor: [15, 30],
+    popupAnchor: [0, -30],
+  });
 
   return (
-    <div
-      ref={mapRef}
-      style={{ width: '100%', height: '400px', borderRadius: '8px', marginTop: '8px' }}
-    />
+    <MapContainer center={position} zoom={10} style={{ height: '400px', width: '100%', borderRadius: '8px', marginTop: '8px' }}>
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <SearchBar />
+      <Marker position={position} icon={defaultIcon}>
+        <Popup>
+          A pretty CSS3 popup. <br /> Easily customizable.
+        </Popup>
+      </Marker>
+    </MapContainer>
   );
 };
 
-export default Map;
+export default CustomMap;
+
+// import React, { useEffect, useRef } from 'react';
+// import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+// import { OpenStreetMapProvider } from 'leaflet-geosearch';
+// import l from 'leaflet';
+
+// const provider = new OpenStreetMapProvider();
+
+// const SearchBar = () => {
+//  const map = useMap();
+
+//  const search = async (e) => {
+//     const searchInput = document.getElementById('search-input');
+//     const results = await provider.search({ query: searchInput.value });
+//     const { x: lat, y: lng } = results[0].bounds[0];
+//     map.setView([lat, lng], 12);
+//  };
+
+//  return (
+//     <div className="search-bar">
+//       <input id="search-input" type="text" placeholder="Search for ..." />
+//       <button onClick={search}>Search</button>
+//     </div>
+//  );
+// };
+
+// const Map = ({ lat, lng }) => {
+//  return (
+//     <MapContainer center={[lat, lng]} zoom={4} style={{ height: '400px', width: '100%', borderRadius: '8px', marginTop: '8px' }}>
+//       <TileLayer
+//         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+//         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+//       />
+//       <SearchBar />
+//       <Marker position={[lat, lng]}>
+//         <Popup>
+//           <p>Hello from here!</p>
+//         </Popup>
+//       </Marker>
+//     </MapContainer>
+//  );
+// };
+
+// export default Map;
