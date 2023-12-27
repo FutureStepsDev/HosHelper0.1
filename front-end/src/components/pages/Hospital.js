@@ -1,18 +1,16 @@
-import React from "react";
-import Cards from "../pages/hospitalCart";
-import "./Hospital.css";
-import { fetchHospitals } from "../Features/AllData";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { fetchHospitals } from "../Features/AllData";
+import { Link } from "react-router-dom";
+import Cards from "./hospitalCart";
+import "./Hospital.css";
 const Hospital = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchHospitals());
   }, [dispatch]);
-
   const hospitals = useSelector((state) => state.hospitals.data);
-  
-console.log(hospitals[0],"Hospitals")
+
   return (
     <div className="hospital-list">
       {hospitals.map((hospital, index) => (
@@ -27,9 +25,9 @@ console.log(hospitals[0],"Hospitals")
           websites={hospital.websites}
           location={hospital.location}
         />
+
       ))}
     </div>
   );
 };
-
 export default Hospital;
