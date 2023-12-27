@@ -17,7 +17,7 @@ import Pharmacy from "./components/pages/Pharmacy";
 import AboutUs from "./components/pages/aboutUs";
 import HospitalDetails from "./components/pages/HospitalDetails";
 
-import HospitalDetails from "./components/pages/HospitalDetails";
+
 function App() {
   return (
     <div className="App">
