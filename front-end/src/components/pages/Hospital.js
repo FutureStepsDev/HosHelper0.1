@@ -10,21 +10,21 @@ const Hospital = () => {
     dispatch(fetchHospitals());
   }, [dispatch]);
   const hospitals = useSelector((state) => state.hospitals.data);
-
   return (
     <div className="hospital-list">
       {hospitals.map((hospital, index) => (
-        <Cards
-          key={index}
-          hospitalName={hospital.hospitalName}
-          imageUrl={hospital.imageUrl}
-          address={hospital.address}
-          phone={hospital.phone}
-          fax={hospital.fax}
-          emergency={hospital.emergency}
-          websites={hospital.websites}
-          location={hospital.location}
-        />
+        <Link key={index} to={`/hospital/${hospital.hospitalName}`}>
+          <Cards
+            hospitalName={hospital.hospitalName}
+            imageUrl={hospital.imageUrl}
+            address={hospital.address}
+            phone={hospital.phone}
+            fax={hospital.fax}
+            emergency={hospital.emergency}
+            websites={hospital.websites}
+            location={hospital.location}
+          />
+        </Link>
 
       ))}
     </div>
