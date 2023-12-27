@@ -25,6 +25,7 @@ const Hospital = () => {
             location={hospital.location}
           />
         </Link>
+
       ))}
     </div>
   );
