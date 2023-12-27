@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  const Hospital = sequelize.define("Hospital", {
+ const Hospital = sequelize.define("Hospital", {
     hospitalName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -31,9 +31,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-  });
+    location: {
+      type: DataTypes.JSON,
+      allowNull: true,
+    },
+ });
 
-
-
-  return Hospital;
+ return Hospital;
 };

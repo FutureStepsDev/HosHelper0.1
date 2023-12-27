@@ -29,6 +29,7 @@ const Home = () => {
             fax={hospital.fax}
             emergency={hospital.emergency}
             websites={hospital.websites}
+            location={hospital.location}
           />
         ))}
       </div>
