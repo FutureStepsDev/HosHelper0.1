@@ -4,6 +4,7 @@ const hospitalController = require("../controllers/HospitalControllers");
 const { signup, signin, logout, userProfile } = require('../controllers/UserControllers');
 const PharmacyControllers = require('../controllers/PharmacyControllers');
 const { isAuthenticated } = require('../middleware/Auth');
+const { createDoctor, getAllDoctors, getdoctorById } = require("../controllers/DoctorControllers");
 router.post("/Pharmacy", PharmacyControllers.createPharmacy);
 router.get("/getPharmacy", PharmacyControllers.getAllPharmacy);
 router.get("/Pharmacy/:id", PharmacyControllers.getPharmacyById);
@@ -14,4 +15,7 @@ router.post('/signup', signup);
 router.post('/signin', signin);
 router.get('/logout', logout);
 router.get('/me', isAuthenticated, userProfile);
+router.post('/createDoctor',createDoctor);
+router.get('/doctors',getAllDoctors);
+router.get('/doctor/:id',getdoctorById)
 module.exports = router;

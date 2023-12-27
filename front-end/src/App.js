@@ -14,12 +14,12 @@ import Hospital from "./components/pages/Hospital";
 import Pharmacy from "./components/pages/Pharmacy";
 import AboutUs from "./components/pages/aboutUs";
 
+import HospitalDetails from "./components/pages/HospitalDetails";
 function App() {
   return (
     <div className="App">
       <Router>
         <NavBar />
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
@@ -27,13 +27,12 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/hospital" element={<Hospital />} />
+          <Route path="/hospital/:hospitalName" element={<HospitalDetails />} />
           <Route path="/pharmacy" element={<Pharmacy />} />
         </Routes>
-
         <Footer />
       </Router>
     </div>
   );
 }
-
 export default App;
