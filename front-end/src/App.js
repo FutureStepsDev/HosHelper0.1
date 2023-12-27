@@ -7,8 +7,6 @@ import Home from "./components/home";
 import Profile from "./components/profile";
 import 'leaflet/dist/leaflet.css'
 
-// import Map from './components/pages/Map';
-
 
 import Login from "./components/login";
 import SignUp from "./components/SignUp";
