@@ -16,10 +16,11 @@ import Menu from "@material-ui/core/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Drawer from "@material-ui/core/Drawer";
 import Sidebar from "./SideBar";
-
+import { setUser } from "../Features/User";
 import { setPharmacies } from "../Features/pharmacyData";
 import { fetchPhamacies } from "../Features/pharmacyData";
 import { fetchHospitals } from "../Features/AllData";
+import { Link, useNavigate } from "react-router-dom";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -94,7 +95,9 @@ const NavBar = () => {
   // const handleChange = (event) => {
   //   setAuth(event.target.checked);
   // };
-
+  const log = useSelector((state) => state.user.log);
+  console.log(log);
+  const navigate = useNavigate();
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -219,61 +222,78 @@ const NavBar = () => {
             >
               pharmacy
             </Button>
-            <Button
-              variant="contained"
-              color="#3498db"
-              href="/login"
-              style={{
-                marginLeft: "10px",
-                fontWeight: "bold",
-                color: "#3498db",
-              }}
-            >
-              Sign In
-            </Button>
-            <Button
-              variant="contained"
-              color="#3498db"
-              href="/signUp"
-              style={{
-                marginLeft: "10px",
-                fontWeight: "bold",
-                color: "#3498db",
-              }}
-            >
-              Sign Up
-            </Button>
+            {!log && (
+              <Button
+                variant="contained"
+                color="#3498db"
+                href="/login"
+                style={{
+                  marginLeft: "10px",
+                  fontWeight: "bold",
+                  color: "#3498db",
+                }}
+              >
+                Sign In
+              </Button>
+            )}
+            {!log && (
+              <Button
+                variant="contained"
+                color="#3498db"
+                href="/signUp"
+                style={{
+                  marginLeft: "10px",
+                  fontWeight: "bold",
+                  color: "#3498db",
+                }}
+              >
+                Sign Up
+              </Button>
+            )}
           </div>
 
-          <div>
-            <IconButton
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={open}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
-            </Menu>
-          </div>
+          {log && (
+            <div>
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem component={Link} to="/profile" onClick={handleClose}>
+                  Profile
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    handleClose();
+                    dispatch(setUser(false));
+
+                    navigate("/");
+                  }}
+                >
+                  Log out
+                </MenuItem>
+              </Menu>
+            </div>
+          )}
         </Toolbar>
       </AppBar>
     </div>

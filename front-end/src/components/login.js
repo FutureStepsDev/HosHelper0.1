@@ -25,8 +25,9 @@ const Login = () => {
       if (response.data.message === "Login successful") {
         console.log("Login successful", response.data.user);
 
-        dispatch(setUser(response.data.user));
-        navigate("/profile");
+        dispatch(setUser({ data: response.data.user, log: true }));
+
+        navigate("/");
       } else {
         setError(response.data.error || "Invalid email or password");
       }
