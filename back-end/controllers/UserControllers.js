@@ -99,3 +99,26 @@ exports.userProfile = async (req, res, next) => {
     sendErrorResponse(res, 500, "Internal Server Error");
   }
 };
+exports.updateProfile = (req, res) => {
+  User.update(
+    {
+      UserName: req.body.UserName,
+      email: req.body.email,
+      image: req.body.image,
+      password: req.body.password,
+      role: req.body.role,
+    },
+    { where: { id: req.params.id } }
+  )
+    .then((response) => res.status(201).json(response))
+    .catch((err) => res.status(400).json(err));
+};
+exports.getAllUser = async (req, res) => {
+  try {
+    const users = await User.findAll();
+    res.json(users);
+  } catch (error) {
+    console.error("Error getting user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
