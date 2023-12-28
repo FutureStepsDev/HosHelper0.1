@@ -11,22 +11,22 @@ const Sidebar = () => {
       </Button>
       <br />
       <hr />
-      <Button color="inherit">Sign Up</Button>
+      <Button color="inherit" href ="signup" >Sign Up</Button>
       <br />
       <hr />
-      <Button color="inherit">Sign In</Button>
+      <Button color="inherit" href ="/login">Sign In</Button>
       <br />
       <hr />
-      <Button color="inherit">About Us </Button>
+      <Button color="inherit" href ="/aboutus" > About Us </Button>
       <br />
       <hr />
       <Button color="inherit">Contact</Button>
       <br />
       <hr />
-      <Button color="inherit">Hospital</Button>
+      <Button color="inherit" href ="/hospital">Hospital</Button>
       <br />
       <hr />
-      <Button color="inherit">Pharmacy</Button>
+      <Button color="inherit" href ="/pharmacy">Pharmacy</Button>
       <br />
       <hr />
       <Button color="inherit">Doctors</Button>

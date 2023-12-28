@@ -22,8 +22,10 @@ const Hospital = () => {
             fax={hospital.fax}
             emergency={hospital.emergency}
             websites={hospital.websites}
+            location={hospital.location}
           />
         </Link>
+
       ))}
     </div>
   );

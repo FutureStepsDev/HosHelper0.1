@@ -3,7 +3,7 @@ module.exports ={
     HOST: 'localhost',
     USER: 'root',
     PASSWORD: process.env.DB_KEY, 
-    DATABASE: 'HOSHELPER0.1',
+    DATABASE: 'hoshelper0.1',
     DIALECT: 'mysql',
     pool: {
         min: 0,
