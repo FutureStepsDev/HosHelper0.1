@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <div className="cards">
-      <div className="card-container">
+      {/* <div className="card-container">
         {displayedHospitals.map((hospital, index) => (
           <Cards
             key={index}
@@ -32,7 +32,7 @@ const Home = () => {
             location={hospital.location}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

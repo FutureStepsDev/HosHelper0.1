@@ -6,6 +6,7 @@ import Map from "./Map"; // Import your Map component
 const HospitalDetails = () => {
   const { hospitalName } = useParams();
   const hospitals = useSelector((state) => state.hospitals.data);
+console.log(hospitals)
   const selectedHospital = hospitals.find(
     (hospital) => hospital.hospitalName === hospitalName
   );
@@ -68,7 +69,7 @@ const HospitalDetails = () => {
               }}
             >
               <CardContent>
-                <Map address={selectedHospital.address} />
+                <Map lat={selectedHospital.location.lat} lng={selectedHospital.location.lng} />
               </CardContent>
             </Card>
           </Grid>

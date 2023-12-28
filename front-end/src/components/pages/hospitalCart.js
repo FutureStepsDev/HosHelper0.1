@@ -66,9 +66,9 @@ console.log(location)
           )}
         </Typography>
       </CardContent>
-      <CardContent>
+      {/* <CardContent>
         <Map lat={location.lat} lng={location.lng} />
-      </CardContent>
+      </CardContent> */}
     </Card>
   ) : null;
 };

@@ -35,7 +35,7 @@ const Cards = ({ name, address, tel, }) => {
   </Typography>
 </CardContent>
 <CardContent>
-        <Map address={address} />
+        {/* <Map address={address} /> */}
       </CardContent>
 
     </Card>
