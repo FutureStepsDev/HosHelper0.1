@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const hospitalController = require("../controllers/HospitalControllers");
+
 const {
   signup,
   signin,
@@ -9,8 +10,12 @@ const {
   getAllUser,
   updateProfile,
 } = require("../controllers/UserControllers");
-const PharmacyControllers = require("../controllers/PharmacyControllers");
-const { isAuthenticated } = require("../middleware/Auth");
+
+
+
+const PharmacyControllers = require('../controllers/PharmacyControllers');
+const { isAuthenticated } = require('../middleware/Auth');
+const { createDoctor, getAllDoctors, getdoctorById } = require("../controllers/DoctorControllers");
 router.post("/Pharmacy", PharmacyControllers.createPharmacy);
 router.get("/getPharmacy", PharmacyControllers.getAllPharmacy);
 router.get("/Pharmacy/:id", PharmacyControllers.getPharmacyById);
@@ -23,4 +28,8 @@ router.get("/logout", logout);
 router.get("/me", isAuthenticated, userProfile);
 router.get("/getAllUsers", getAllUser);
 router.put("/updateProfile/:id", updateProfile);
+router.post('/createDoctor',createDoctor);
+router.get('/doctors',getAllDoctors);
+router.get('/doctor/:id',getdoctorById)
+
 module.exports = router;
