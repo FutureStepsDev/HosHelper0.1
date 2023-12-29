@@ -1,19 +1,19 @@
-/* Hospital.css */
 
 .hospital-list {
-    list-style: none;
-    padding: 0;
-    margin: 20px; /* Adjust margin as needed */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .card {
-    width: calc(33.33% - 10px); /* Adjust the width and margin as needed */
-    margin-bottom: 20px; /* Adjust margin as needed */
-    box-sizing: border-box;
-  }
+  list-style: none;
+  padding: 0;
+  margin: 50px; 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  width: calc(100% / 3 - 20px); 
+  margin-bottom: 60px; 
+  box-sizing: border-box;
+}
+
   
   /* Add media query for responsiveness if necessary */
   @media (max-width: 768px) {

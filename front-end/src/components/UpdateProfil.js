@@ -1,46 +1,25 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setUser } from "./Features/User";
 import { CloudinaryContext, Image } from "cloudinary-react";
-import { Button, Container, TextField, Typography } from "@mui/material";
-
-const SignUp = () => {
+const UpdateProfil = () => {
   const [UserName, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
   const [image, setImage] = useState("");
+  const [role, setRole] = useState("");
   const [error, setError] = useState("");
-
-  const cloudinaryUploadUrl = `https://api.cloudinary.com/v1_1/dmefds9ta/image/upload`;
-  const uploadPreset = "samisa";
   const inputFileRef = useRef();
-
-  const handleAddUser = async (e) => {
-    setError(false);
-    e.preventDefault();
-
-    try {
-      const cloudinaryResponse = await axios.post(cloudinaryUploadUrl, {
-        file: image,
-        upload_preset: uploadPreset,
-      });
-
-      const imageUrl = cloudinaryResponse.data.secure_url;
-
-      const res = await axios.post("http://localhost:7000/api/signup", {
-        UserName,
-        email,
-        password,
-        role,
-        image: imageUrl,
-      });
-
-      res.data && window.location.replace("/login");
-    } catch (error) {
-      setError(true);
-    }
-  };
-
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user.data.data);
+  console.log(user.id);
+  const dispatch = useDispatch();
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -51,29 +30,29 @@ const SignUp = () => {
       reader.readAsDataURL(file);
     }
   };
-
-  const validatePassword = () => {
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters");
-      return false;
+  const handleUpdate = () => {
+    const profil = {};
+    if (UserName !== "") {
+      profil.UserName = UserName;
     }
-    return true;
-  };
-
-  const validateRole = () => {
-    if (!role) {
-      setError("Role is required");
-      return false;
+    if (image !== "") {
+      profil.image = image;
     }
-    return true;
-  };
-
-  const validateEmail = () => {
-    if (email.trim() === "") {
-      setError("Email is required");
-      return false;
+    if (role !== "") {
+      profil.role = role;
     }
-    return true;
+    if (password !== "") {
+      profil.password = password;
+    }
+    if (email !== "") {
+      profil.email = email;
+    }
+    axios
+      .put(`http://localhost:7000/api/updateProfile/${user.id}`, profil)
+      .then((response) => console.log("done"))
+      .catch((err) => console.log(err));
+    dispatch(setUser({ data: { ...user, ...profil }, log: true }));
+    navigate("/profile");
   };
 
   return (
@@ -89,7 +68,7 @@ const SignUp = () => {
       }}
     >
       <Typography variant="h4" gutterBottom>
-        SignUp
+        Update your profil
       </Typography>
       {error && (
         <Typography
@@ -102,9 +81,9 @@ const SignUp = () => {
       <TextField
         fullWidth
         margin="normal"
-        label={UserName.trim() === "" ? " UserName" : ""}
         type="text"
         variant="outlined"
+        label={UserName.trim() === "" ? " UserName" : ""}
         onChange={(e) => setName(e.target.value)}
         InputProps={{
           style: { backgroundColor: "white", color: "#0C2340" },
@@ -114,45 +93,26 @@ const SignUp = () => {
       <TextField
         fullWidth
         margin="normal"
-        label={email.trim() === "" ? "Email" : ""}
         type="email"
         variant="outlined"
+        label={email.trim() === "" ? "Email" : ""}
         onChange={(e) => setEmail(e.target.value)}
         InputProps={{
           style: { backgroundColor: "white", color: "#0C2340" },
         }}
       />
+
       <TextField
         fullWidth
         margin="normal"
-        label={password.trim() === "" ? "Password" : ""}
         type="password"
         variant="outlined"
+        label={password.trim() === "" ? "Password" : ""}
         onChange={(e) => setPassword(e.target.value)}
         InputProps={{
           style: { backgroundColor: "white", color: "#0C2340" },
         }}
       />
-
-      <label htmlFor="role" style={{ color: "white", marginBottom: "10px" }}>
-        Role:
-      </label>
-      <select
-        id="role"
-        value={role}
-        onChange={(e) => setRole(e.target.value)}
-        style={{
-          width: "100%",
-          padding: "8px",
-          backgroundColor: "white",
-          color: "#0C2340",
-        }}
-      >
-        <option value=""></option>
-        <option value="Patient">Patient</option>
-        <option value="Pharmacy">Pharmacy</option>
-        <option value="Doctor">Doctor</option>
-      </select>
 
       <input
         type="file"
@@ -175,20 +135,12 @@ const SignUp = () => {
       </Button>
 
       <Button
-        onClick={(e) => {
-          setError("");
-
-          if (validateEmail() && validatePassword() && validateRole()) {
-            handleAddUser(e);
-          }
-        }}
-        variant="contained"
         style={{
           backgroundColor: "#5A4FCF",
           color: "white",
           marginTop: "10px",
         }}
-        fullWidth
+        onClick={handleUpdate}
       >
         Submit
       </Button>
@@ -200,4 +152,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default UpdateProfil;
