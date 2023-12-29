@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const hospitalController = require("../controllers/HospitalControllers");
-
+const { createDoctor, getAllDoctors, getdoctorById } = require("../controllers/DoctorControllers");
 const {
   signup,
   signin,
@@ -11,15 +11,11 @@ const {
   getAllUser,
   updateProfile,
 } = require("../controllers/UserControllers");
-
-
-
 const PharmacyControllers = require('../controllers/PharmacyControllers');
 const auth = require('../middleware/Auth');
 
 
-router.get('/profile', auth.isAuthenticated,userProfile);
-const { createDoctor, getAllDoctors, getdoctorById } = require("../controllers/DoctorControllers");
+router.get('/profile', auth.isAuthenticated, userProfile);
 router.post("/Pharmacy", PharmacyControllers.createPharmacy);
 router.get("/getPharmacy", PharmacyControllers.getAllPharmacy);
 router.get("/Pharmacy/:id", PharmacyControllers.getPharmacyById);
@@ -29,11 +25,10 @@ router.get("/hospitals/:id", hospitalController.getHospitalById);
 router.post("/signup", signup);
 router.post("/signin", signin);
 router.get("/logout", logout);
-router.get("/me", isAuthenticated, userProfile);
 router.get("/getAllUsers", getAllUser);
 router.put("/updateProfile/:id", updateProfile);
-router.post('/createDoctor',createDoctor);
-router.get('/doctors',getAllDoctors);
-router.get('/doctor/:id',getdoctorById)
+router.post('/createDoctor', createDoctor);
+router.get('/doctors', getAllDoctors);
+router.get('/doctor/:id', getdoctorById)
 
 module.exports = router;

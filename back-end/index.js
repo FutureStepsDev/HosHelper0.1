@@ -4,13 +4,6 @@ const cors = require("cors");
 const db = require("./models/index");
 const hospitalRoutes = require("./routes/Routes");
 const cookieParser = require('cookie-parser');
-
-
-
-const userRoutes = require("./routes/Routes");
-
-const cookieParser = require('cookie-parser');
-
 const app = express();
 const PORT = process.env.PORT || 7000;
 app.use(bodyParser.json());

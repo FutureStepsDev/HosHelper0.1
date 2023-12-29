@@ -11,8 +11,8 @@ const SignUp = () => {
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
 
-  const cloudinaryUploadUrl = `https://api.cloudinary.com/v1_1/dmefds9ta/image/upload`;
-  const uploadPreset = "samisa";
+  const cloudinaryUploadUrl = `https://api.cloudinary.com/v1_1/de2epugkp/image/upload`;
+  const uploadPreset = "oussama";
   const inputFileRef = useRef();
 
   const handleAddUser = async (e) => {
@@ -32,7 +32,7 @@ const SignUp = () => {
         email,
         password,
         role,
-        image: imageUrl,
+        image
       });
 
       res.data && window.location.replace("/login");
@@ -193,7 +193,7 @@ const SignUp = () => {
         Submit
       </Button>
 
-      <CloudinaryContext cloudName="dmefds9ta">
+      <CloudinaryContext cloudName="de2epugkp">
         {image && <Image publicId={image} />}
       </CloudinaryContext>
     </Container>
