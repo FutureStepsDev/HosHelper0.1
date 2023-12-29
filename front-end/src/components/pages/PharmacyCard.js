@@ -2,6 +2,7 @@ import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import Map from './Map';
 
 const Cards = ({ name, address, tel, }) => {
  
@@ -33,6 +34,9 @@ const Cards = ({ name, address, tel, }) => {
     <strong>tel:</strong> {tel}<br />
   </Typography>
 </CardContent>
+<CardContent>
+        {/* <Map address={address} /> */}
+      </CardContent>
 
     </Card>
   ) : null;

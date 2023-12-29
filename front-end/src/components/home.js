@@ -1,25 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Cards from "./pages/hospitalCart";
 import "./home.css";
-import axios from "axios";
+import { fetchHospitals } from "./Features/AllData";
+import { useDispatch, useSelector } from "react-redux";
 const Home = () => {
-  const [hospitals, setHospitals] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
   const hospitalsPerPage = 3;
-
+  const dispatch = useDispatch();
   useEffect(() => {
-    axios
-      .get("http://localhost:7000/api/gethospitals")
-      .then((response) => setHospitals(response.data))
-      .catch((error) => console.log(error));
-
-    // const interval = setInterval(() => {
-    //   setStartIndex((prevIndex) => (prevIndex + hospitalsPerPage) % hospitals.length);
-    // }, 20000);
-
-    // return () => clearInterval(interval);
-  }, []);
-  console.log(hospitals);
+    dispatch(fetchHospitals());
+  }, [dispatch]);
+  const hospitals = useSelector((state) => state.hospitals.data);
   const displayedHospitals = hospitals.slice(
     startIndex,
     startIndex + hospitalsPerPage
@@ -27,7 +18,7 @@ const Home = () => {
 
   return (
     <div className="cards">
-      <div className="card-container">
+      {/* <div className="card-container">
         {displayedHospitals.map((hospital, index) => (
           <Cards
             key={index}
@@ -38,9 +29,10 @@ const Home = () => {
             fax={hospital.fax}
             emergency={hospital.emergency}
             websites={hospital.websites}
+            location={hospital.location}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };
