@@ -58,7 +58,7 @@ const PersonalProfile = () => {
                     }}
                   >
                     <Avatar
-                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                      src={profil.image}
                       alt="Avatar"
                       className="my-5"
                       style={{
