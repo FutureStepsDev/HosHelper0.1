@@ -20,22 +20,30 @@ const Login = () => {
       const response = await axios.post("http://localhost:7000/api/signin", {
         email,
         password,
-      });
-console.log(response.status)
+      }, { withCredentials: true });
+  
       if (response.status === 200) {
         console.log("Login successful", response.data.user);
-
+        localStorage.setItem('user', JSON.stringify(response.data.user));
         dispatch(setUser(response.data.user));
         navigate("/profile");
+  
+        try {
+          const profileResponse = await axios.get("http://localhost:7000/api/profile", { withCredentials: true });
+          console.log(profileResponse.data);
+        } catch (profileError) {
+          console.error("Error fetching profile:", profileError);
+          setError("Error fetching user profile. Please try again later.");
+        }
       } else {
         setError(response.data.error || "Invalid email or password");
       }
     } catch (err) {
-      console.log(err);
-      setError("Your email or password are not correcr.Please try again. ");
+      console.error("Login error:", err);
+      setError("Your email or password are not correct. Please try again.");
     }
   };
-
+  
   return (
     <Container
       component="main"

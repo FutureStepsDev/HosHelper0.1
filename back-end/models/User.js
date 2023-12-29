@@ -60,11 +60,5 @@ module.exports = (sequelize) => {
         expiresIn: 3600,
       });
     };
-    // User.associate = (models) => {
-    //   User.hasMany(models.Product, {
-    //     foreignKey: 'userId',
-    //     as: 'products',
-    //   });
-    // };
     return User;
 };

@@ -1,22 +1,17 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
 
-exports.isAuthenticated = async (req, res, next) => {
-    const { token } = req.cookies;
-    console.log(token)
-    if (!token) {
-        return next(new ErrorResponse('You must Log In...', 401));
-    }
-
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = await User.findById(decoded.id);
-        next();
-
-    } catch (error) {
-        return next(new ErrorResponse('You must Log In', 401));
-    }
-};
+exports.isAuthenticated = (req, res, next) => {
+    const token =  req.cookies.token;
+      console.log("tocken:",token)
+    if (!token) return next(new ErrorResponse(401, 'Unauthorized'));
+  
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) return next(new ErrorResponse(403, 'Forbidden'));
+  
+      req.user = decoded;
+      next();
+    });
+  };
 
 class ErrorResponse extends Error {
     constructor(message, codeStatus) {
@@ -25,4 +20,3 @@ class ErrorResponse extends Error {
     }
 }
 
-module.exports = ErrorResponse;

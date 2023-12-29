@@ -19,8 +19,7 @@ import {
 import "./Profile.css";
 import { useSelector } from "react-redux";
 const PersonalProfile = () => {
-  const user = useSelector((state) => state.user.data);
-  console.log(user);
+  const user = useSelector((state) => state.user);
   return (
     <div className="profilContainer ">
       <section className="vh-100" style={{ backgroundColor: "#f4f5f7" }}>
