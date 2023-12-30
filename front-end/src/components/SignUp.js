@@ -20,7 +20,7 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      let imageData = {}; // Initialize an empty object for the image data
+      let imageData = {};
 
       if (image) {
         const cloudinaryResponse = await axios.post(cloudinaryUploadUrl, {
@@ -29,7 +29,7 @@ const SignUp = () => {
         });
 
         const imageUrl = cloudinaryResponse.data.secure_url;
-        imageData = { image: imageUrl }; // Include image data if available
+        imageData = { image: imageUrl };
       }
 
       const res = await axios.post("http://localhost:7000/api/signup", {
@@ -37,7 +37,7 @@ const SignUp = () => {
         email,
         password,
         role,
-        ...imageData, // Spread the image data into the object if available
+        ...imageData,
       });
 
       res.data && window.location.replace("/login");
