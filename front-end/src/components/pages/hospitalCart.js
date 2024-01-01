@@ -11,13 +11,11 @@ const placeholderImageUrl =
 const Cards = ({ hospitalName, imageUrl, address, phone, fax, emergency, websites, location }) => {
  const displayImageUrl = imageUrl || placeholderImageUrl;
 
- const hasData = hospitalName || address || phone || fax || emergency || websites || location ;
-// console.log(address)
-console.log(location)
- return hasData ? (
-    <Card
+ return (
+   <Card
       sx={{
-        maxWidth: 250,
+        width: 250, // Set a fixed width
+        height: '100%', // Set a fixed height, adjust as needed
         borderRadius: '12px',
         overflow: 'hidden',
         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
@@ -44,16 +42,16 @@ console.log(location)
         }}
       >
         <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', marginBottom: '6px', color: '#2196F3' }}>
-          {hospitalName}
+          {hospitalName || 'No Name Available'}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <strong>Address:</strong> {address}
+          <strong>Address:</strong> {address || 'Not available'}
           <br />
-          <strong>Phone:</strong> {phone}
+          <strong>Phone:</strong> {phone || 'Not available'}
           <br />
-          <strong>Fax:</strong> {fax}
+          <strong>Fax:</strong> {fax || 'Not available'}
           <br />
-          <strong>Emergency:</strong> {emergency}
+          <strong>Emergency:</strong> {emergency || 'Not available'}
           <br />
           {websites && (
             <React.Fragment>
@@ -66,11 +64,14 @@ console.log(location)
           )}
         </Typography>
       </CardContent>
-      {/* <CardContent>
-        <Map lat={location.lat} lng={location.lng} />
-      </CardContent> */}
+      {/* Display the map if location data is present */}
+      {/* {location && (
+        <CardContent>
+          <Map lat={location.lat} lng={location.lng} />
+        </CardContent> */}
+      {/* )} */}
     </Card>
-  ) : null;
+ );
 };
 
 export default Cards;

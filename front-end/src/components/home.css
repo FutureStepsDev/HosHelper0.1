@@ -1,3 +1,4 @@
+
 .cards {
   display: flex;
   justify-content: center;
@@ -12,4 +13,42 @@
   overflow-x: auto; /* Enable horizontal scrolling */
   scrollbar-width: thin; /* Optional: Customize scrollbar appearance in Firefox */
   margin-top: 100px; /* Add top margin to create space between cards */
+}
+.screen {
+ font-family: Arial, sans-serif;
+ text-align: center;
+ padding: 20px;
+}
+
+.header {
+ background-color: #4CAF50;
+ color: white;
+ padding: 20px;
+}
+
+.body {
+ margin-top: 20px;
+}
+
+.body h2 {
+ margin-bottom: 10px;
+}
+
+.body ul {
+ list-style-type: none;
+ padding: 0;
+}
+
+.body li {
+ margin-bottom: 5px;
+}
+
+
+.banner {
+  background-image: url("C:\Users\fahda\Desktop\final project\HosHelper0.1\front-end\src\components\datas\Group of doctors standing at hospital building.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 1000px;
+min-width:normal;
+  @apply bg-cover bg-no-repeat bg-center;
 }

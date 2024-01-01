@@ -1,38 +1,53 @@
-import React, { useState, useEffect } from "react";
-import Cards from "./pages/hospitalCart";
+// Home.jsx
+import React from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import "./home.css";
-import { fetchHospitals } from "./Features/AllData";
-import { useDispatch, useSelector } from "react-redux";
-const Home = () => {
-  const [startIndex, setStartIndex] = useState(0);
-  const hospitalsPerPage = 3;
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchHospitals());
-  }, [dispatch]);
-  const hospitals = useSelector((state) => state.hospitals.data);
-  const displayedHospitals = hospitals.slice(
-    startIndex,
-    startIndex + hospitalsPerPage
-  );
 
+const Home = () => {
   return (
-    <div className="cards">
-      {/* <div className="card-container">
-        {displayedHospitals.map((hospital, index) => (
-          <Cards
-            key={index}
-            hospitalName={hospital.hospitalName}
-            imageUrl={hospital.imageUrl}
-            address={hospital.address}
-            phone={hospital.phone}
-            fax={hospital.fax}
-            emergency={hospital.emergency}
-            websites={hospital.websites}
-            location={hospital.location}
-          />
-        ))}
-      </div> */}
+    <div className="banner">
+      <Box
+        sx={{
+          display: "grid",
+          bgcolor: (theme) =>
+            theme.palette.mode === "dark" ? "#101010" : "grey.100",
+          color: (theme) =>
+            theme.palette.mode === "dark" ? "grey.300" : "grey.800",
+          border: "1px solid",
+          borderColor: (theme) =>
+            theme.palette.mode === "dark" ? "grey.800" : "grey.300",
+          p: 1,
+          borderRadius: 2,
+          fontSize: "2rem",
+          fontWeight: "700",
+        }}
+      >
+        {"We give you  solution to your pain"}
+      </Box>
+
+      <div>
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          className="mt-5"
+          onClick={() => {
+            // Handle appointment button click logic
+            console.log("Appointment button clicked");
+          }}
+          sx={{ margin: '10rem', marginLeft: '70rem', display: 'block' }}
+        >
+          Take an Appointment
+        </Button>
+
+        <Typography variant="h4" sx={{ marginY: '40rem', textAlign: 'left', color: '#555' }}>
+          You can check every Hospitals and Pharmacy and make an appointment in two clicks.
+          Doctors with many Speciality are here to listen to your request and give you the best treatment.
+        </Typography>
+        
+      </div>
     </div>
   );
 };
