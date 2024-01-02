@@ -7,12 +7,8 @@ import Home from "./components/home";
 import Profile from "./components/profile";
 
 import { useSelector } from "react-redux";
-// import Map from './components/pages/Map';
 
-
-import 'leaflet/dist/leaflet.css'
-
-
+import "leaflet/dist/leaflet.css";
 
 import Login from "./components/login";
 import SignUp from "./components/SignUp";
@@ -23,7 +19,8 @@ import UpdateProfil from "./components/UpdateProfil";
 
 import AboutUs from "./components/pages/aboutUs";
 import HospitalDetails from "./components/pages/HospitalDetails";
-
+import PharmacyStore from "./components/PharmacyStore";
+import AddMedication from "./components/AddMedication";
 
 function App() {
   const log = useSelector((state) => state.user.log);
@@ -32,18 +29,23 @@ function App() {
       <Router>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route exact path="/" element={<Home />} />
 
-          {log && <Route path="/profile" element={<Profile />} />}
+          {log && <Route exact path="/profile" element={<Profile />} />}
 
-
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/aboutus" element={<AboutUs />} />
-          <Route path="/hospital" element={<Hospital />} />
-          <Route path="/hospital/:hospitalName" element={<HospitalDetails />} />
-          <Route path="/pharmacy" element={<Pharmacy />} />
-          <Route path="/UpdateProfil" element={<UpdateProfil />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/signup" element={<SignUp />} />
+          <Route exact path="/aboutus" element={<AboutUs />} />
+          <Route exact path="/hospital" element={<Hospital />} />
+          <Route
+            exact
+            path="/hospital/:hospitalName"
+            element={<HospitalDetails />}
+          />
+          <Route exact path="/pharmacy" element={<Pharmacy />} />
+          <Route exact path="/UpdateProfil" element={<UpdateProfil />} />
+          <Route exact path="/pharmacystore" element={<PharmacyStore />} />
+          <Route exact path="/addmedication" element={<AddMedication />} />
         </Routes>
         <Footer />
       </Router>

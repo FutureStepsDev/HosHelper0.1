@@ -11,22 +11,33 @@ const Sidebar = () => {
       </Button>
       <br />
       <hr />
-      <Button color="inherit" href ="signup" >Sign Up</Button>
+      <Button color="inherit" onClick={() => navigate("/SignUp")}>
+        Sign Up
+      </Button>
       <br />
       <hr />
-      <Button color="inherit" href ="/login">Sign In</Button>
+      <Button color="inherit" onClick={() => navigate("/login")}>
+        Sign In
+      </Button>
       <br />
       <hr />
-      <Button color="inherit" href ="/aboutus" > About Us </Button>
+      <Button color="inherit" onClick={() => navigate("/aboutus")}>
+        {" "}
+        About Us{" "}
+      </Button>
       <br />
       <hr />
       <Button color="inherit">Contact</Button>
       <br />
       <hr />
-      <Button color="inherit" href ="/hospital">Hospital</Button>
+      <Button color="inherit" onClick={() => navigate("/hospital")}>
+        Hospital
+      </Button>
       <br />
       <hr />
-      <Button color="inherit" href ="/pharmacy">Pharmacy</Button>
+      <Button color="inherit" onClick={() => navigate("/pharmacy")}>
+        Pharmacy
+      </Button>
       <br />
       <hr />
       <Button color="inherit">Doctors</Button>

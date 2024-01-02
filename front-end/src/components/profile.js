@@ -81,6 +81,15 @@ const PersonalProfile = () => {
                         <Edit />
                       </button>
                     </IconButton>
+                    {profil.role === "Pharmacy" && (
+                      <IconButton style={{ marginTop: "70px" }}>
+                        <button
+                          onClickCapture={() => navigate("/pharmacystore")}
+                        >
+                          STORE
+                        </button>
+                      </IconButton>
+                    )}
                   </div>
                 </Grid>
               </Card>
@@ -109,7 +118,7 @@ const PersonalProfile = () => {
                     <div style={{ marginTop: "1rem" }}>
                       <Typography variant="body2" style={{ lineHeight: "1.8" }}>
                         <strong style={{ color: "#1da1f2" }}>Adresse:</strong>{" "}
-                        {profil.email}
+                        {profil.adress}
                       </Typography>
                     </div>
                   )}
