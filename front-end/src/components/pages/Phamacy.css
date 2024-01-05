@@ -2,17 +2,16 @@
 
 .Pharmacy-list {
   list-style: none;
-  padding: 0;
-  margin: 20px;
+  padding: 10px; /* Add padding to the top */
+  margin: 0; /* Reset margin */
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Center the cards horizontally */
-  align-items: center; /* Center the cards vertically */
+  justify-content: space-around; /* Adjust as needed */
 }
 
 .card {
   width: calc(30% - 20px);
-  margin-bottom: 10px;
+  margin: 0 0 20px 0; /* Add margin to the bottom of each card */
   box-sizing: border-box;
 }
 
