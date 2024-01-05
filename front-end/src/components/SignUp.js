@@ -39,6 +39,15 @@ const SignUp = () => {
         role,
         ...imageData,
       });
+      if (role === "Pharmacy") {
+        await axios.post("http://localhost:7000/api/signupPhar", {
+          UserName,
+          email,
+          password,
+          role,
+          ...imageData,
+        });
+      }
 
       res.data && window.location.replace("/login");
     } catch (error) {

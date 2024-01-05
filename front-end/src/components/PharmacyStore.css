@@ -1,0 +1,8 @@
+.cardGrid {
+  margin-top: 200px;
+  margin-left: 30px;
+  margin-bottom: 180px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}

@@ -13,6 +13,7 @@ const UpdateProfil = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [image, setImage] = useState("");
+  const [adress, setAdress] = useState("");
   const [role, setRole] = useState("");
   const [error, setError] = useState("");
   const inputFileRef = useRef();
@@ -46,6 +47,9 @@ const UpdateProfil = () => {
     }
     if (email !== "") {
       profil.email = email;
+    }
+    if (adress !== "") {
+      profil.adress = adress;
     }
     axios
       .put(`http://localhost:7000/api/updateProfile/${user.id}`, profil)
@@ -102,6 +106,19 @@ const UpdateProfil = () => {
         }}
       />
 
+      {user.role === "Pharmacy" && (
+        <TextField
+          fullWidth
+          margin="normal"
+          type="adress"
+          variant="outlined"
+          label={adress.trim() === "" ? "Adress" : ""}
+          onChange={(e) => setAdress(e.target.value)}
+          InputProps={{
+            style: { backgroundColor: "white", color: "#0C2340" },
+          }}
+        />
+      )}
       <TextField
         fullWidth
         margin="normal"
