@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -7,17 +7,30 @@ import Typography from "@mui/material/Typography";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "./Features/User";
+import { CloudinaryContext, Image } from "cloudinary-react";
 const UpdateProfil = () => {
   const [UserName, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [image, setImage] = useState("");
+  const [adress, setAdress] = useState("");
   const [role, setRole] = useState("");
   const [error, setError] = useState("");
+  const inputFileRef = useRef();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.data.data);
   console.log(user.id);
   const dispatch = useDispatch();
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   const handleUpdate = () => {
     const profil = {};
     if (UserName !== "") {
@@ -34,6 +47,9 @@ const UpdateProfil = () => {
     }
     if (email !== "") {
       profil.email = email;
+    }
+    if (adress !== "") {
+      profil.adress = adress;
     }
     axios
       .put(`http://localhost:7000/api/updateProfile/${user.id}`, profil)
@@ -56,7 +72,7 @@ const UpdateProfil = () => {
       }}
     >
       <Typography variant="h4" gutterBottom>
-        SignUp
+        Update your profil
       </Typography>
       {error && (
         <Typography
@@ -71,6 +87,7 @@ const UpdateProfil = () => {
         margin="normal"
         type="text"
         variant="outlined"
+        label={UserName.trim() === "" ? " UserName" : ""}
         onChange={(e) => setName(e.target.value)}
         InputProps={{
           style: { backgroundColor: "white", color: "#0C2340" },
@@ -82,46 +99,57 @@ const UpdateProfil = () => {
         margin="normal"
         type="email"
         variant="outlined"
+        label={email.trim() === "" ? "Email" : ""}
         onChange={(e) => setEmail(e.target.value)}
         InputProps={{
           style: { backgroundColor: "white", color: "#0C2340" },
         }}
       />
-      <TextField
-        fullWidth
-        margin="normal"
-        type="email"
-        variant="outlined"
-        onChange={(e) => setRole(e.target.value)}
-        InputProps={{
-          style: { backgroundColor: "white", color: "#0C2340" },
-        }}
-      />
+
+      {user.role === "Pharmacy" && (
+        <TextField
+          fullWidth
+          margin="normal"
+          type="adress"
+          variant="outlined"
+          label={adress.trim() === "" ? "Adress" : ""}
+          onChange={(e) => setAdress(e.target.value)}
+          InputProps={{
+            style: { backgroundColor: "white", color: "#0C2340" },
+          }}
+        />
+      )}
       <TextField
         fullWidth
         margin="normal"
         type="password"
         variant="outlined"
+        label={password.trim() === "" ? "Password" : ""}
         onChange={(e) => setPassword(e.target.value)}
         InputProps={{
           style: { backgroundColor: "white", color: "#0C2340" },
         }}
       />
 
-      <label htmlFor="role" style={{ color: "white", marginBottom: "10px" }}>
-        Role:
-      </label>
-
-      <TextField
-        fullWidth
-        margin="normal"
-        label="Image URL"
-        type="text"
-        onChange={(e) => setImage(e.target.value)}
-        InputProps={{
-          style: { backgroundColor: "white", color: "#0C2340" },
-        }}
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => handleImageChange(e)}
+        style={{ display: "none" }}
+        ref={inputFileRef}
       />
+      <Button
+        onClick={() => inputFileRef.current.click()}
+        variant="contained"
+        style={{
+          backgroundColor: "#5A4FCF",
+          color: "white",
+          marginTop: "10px",
+        }}
+        fullWidth
+      >
+        Upload Image
+      </Button>
 
       <Button
         style={{
@@ -133,6 +161,10 @@ const UpdateProfil = () => {
       >
         Submit
       </Button>
+
+      <CloudinaryContext cloudName="dmefds9ta">
+        {image && <Image publicId={image} />}
+      </CloudinaryContext>
     </Container>
   );
 };

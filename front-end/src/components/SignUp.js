@@ -182,7 +182,6 @@ const SignUp = () => {
           backgroundColor: "#5A4FCF",
           color: "white",
           marginTop: "10px",
-          
         }}
         fullWidth
       >
