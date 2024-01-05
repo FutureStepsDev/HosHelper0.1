@@ -53,12 +53,10 @@ module.exports = (sequelize) => {
     }
   );
   Pharmacien.associate = (models) => {
-    Pharmacien.hasOne(models.Pharmacy, { onDelete: "cascade" });
+    Pharmacien.hasOne(models.Pharmacy, {
+      onDelete: "cascade",
+    });
   };
-  // Pharmacien.associate = (models) => {
-  //   Pharmacien.hasMany(models.Medication, {
-  //     onDelete: "cascade",
-  //   });
-  // };
+
   return Pharmacien;
 };
