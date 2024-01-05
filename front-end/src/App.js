@@ -22,6 +22,10 @@ import HospitalDetails from "./components/pages/HospitalDetails";
 import PharmacyStore from "./components/PharmacyStore";
 import AddMedication from "./components/AddMedication";
 
+import AddPharmacy from "./components/AddPharmacy";
+import MyPharmacy from "./components/MyPharmacy";
+import ProductInOnePharmacy from "./components/ProductInOnePharmacy";
+
 function App() {
   const log = useSelector((state) => state.user.log);
   return (
@@ -46,6 +50,13 @@ function App() {
           <Route exact path="/UpdateProfil" element={<UpdateProfil />} />
           <Route exact path="/pharmacystore" element={<PharmacyStore />} />
           <Route exact path="/addmedication" element={<AddMedication />} />
+          <Route exact path="/addpharmacy" element={<AddPharmacy />} />
+          <Route exact path="/mypharmacy" element={<MyPharmacy />} />
+          <Route
+            exact
+            path="/productInOnePharmacy"
+            element={<ProductInOnePharmacy />}
+          />
         </Routes>
         <Footer />
       </Router>

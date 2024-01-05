@@ -53,7 +53,7 @@ const AddMedication = () => {
       medication.price = price;
     }
     if (userId) {
-      medication.PharmacienId = userId;
+      medication.PharmacyId = userId;
     }
 
     axios

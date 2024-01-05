@@ -6,7 +6,7 @@ exports.createProduct = (req, res) => {
     description: req.body.description,
     image: req.body.image,
     price: req.body.price,
-    PharmacienId: req.body.PharmacienId,
+    PharmacyId: req.body.PharmacyId,
   })
     .then((response) => res.status(201).json(response))
     .catch((err) => res.status(400).json(err));
@@ -39,8 +39,8 @@ exports.deleteProduct = (req, res) => {
 };
 
 exports.getAllProductForOne = (req, res) => {
-  const PharmacienId = req.params.id;
-  db.Pharmacien.findByPk(PharmacienId, {
+  const PharmacyId = req.params.id;
+  db.Pharmacy.findByPk(PharmacyId, {
     include: [{ model: Product }],
   })
     .then((response) => res.status(201).json(response.Medications))

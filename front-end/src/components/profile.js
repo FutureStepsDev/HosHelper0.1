@@ -8,25 +8,19 @@ import {
   Avatar,
   IconButton,
 } from "@material-ui/core";
-import {
-  Email,
-  Phone,
-  Edit,
-  Facebook,
-  Twitter,
-  Instagram,
-} from "@material-ui/icons";
+import { Edit, Facebook, Twitter, Instagram } from "@material-ui/icons";
 import "./Profile.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const PersonalProfile = () => {
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user.data.data);
   const [profil, setProfil] = useState({});
+
   useEffect(() => {
     setProfil(user);
   }, [user]);
-  console.log(profil.UserName);
-  const navigate = useNavigate();
+
   return (
     <div className="profilContainer ">
       <section className="vh-100">
@@ -43,7 +37,7 @@ const PersonalProfile = () => {
                 className="mb-3"
                 style={{
                   width: "300px",
-                  height: "700px",
+                  height: "800px",
                   borderRadius: ".5rem",
                   borderTopLeftRadius: ".5rem",
                   borderBottomLeftRadius: ".5rem",
@@ -84,11 +78,31 @@ const PersonalProfile = () => {
                     {profil.role === "Pharmacy" && (
                       <IconButton style={{ marginTop: "70px" }}>
                         <button
-                          onClickCapture={() => navigate("/pharmacystore")}
+                          onClick={() => {
+                            navigate("/mypharmacy");
+                          }}
                         >
-                          STORE
+                          my pharmacy
                         </button>
                       </IconButton>
+                    )}
+                    {profil.role === "Pharmacy" && (
+                      <div>
+                        <IconButton style={{ marginTop: "50px" }}>
+                          <button
+                            onClickCapture={() => navigate("/addmedication")}
+                          >
+                            ADD PRODUCT
+                          </button>
+                        </IconButton>
+                        <IconButton style={{ marginTop: "50px" }}>
+                          <button
+                            onClickCapture={() => navigate("/addpharmacy")}
+                          >
+                            add pharmacy
+                          </button>
+                        </IconButton>
+                      </div>
                     )}
                   </div>
                 </Grid>

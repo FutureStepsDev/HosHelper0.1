@@ -27,8 +27,13 @@ module.exports = (sequelize) => {
     }
   );
 
+  // Medication.associate = (models) => {
+  //   Medication.belongsTo(models.Pharmacien, {
+  //     onDelete: "cascade",
+  //   });
+  // };
   Medication.associate = (models) => {
-    Medication.belongsTo(models.Pharmacien, {
+    Medication.belongsTo(models.Pharmacy, {
       onDelete: "cascade",
     });
   };

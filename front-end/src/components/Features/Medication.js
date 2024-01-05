@@ -5,7 +5,7 @@ export const fetchMedication = createAsyncThunk(
   "Medication/fetchMedication",
   () => {
     return axios
-      .get("http://localhost:7000/api/getAllProducts")
+      .get("http://localhost:7000/api/getAllProducts/:id")
       .then((response) => response.data);
   }
 );

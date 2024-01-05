@@ -33,6 +33,10 @@ const {
 router.post("/Pharmacy", PharmacyControllers.createPharmacy);
 router.get("/getPharmacy", PharmacyControllers.getAllPharmacy);
 router.get("/Pharmacy/:id", PharmacyControllers.getPharmacyById);
+router.get(
+  "/getAllPharmacyForOne/:id",
+  PharmacyControllers.getAllFarmacyForOne
+);
 router.post("/hospitals", hospitalController.createHospital);
 router.get("/gethospitals", hospitalController.getAllHospitals);
 router.get("/hospitals/:id", hospitalController.getHospitalById);
