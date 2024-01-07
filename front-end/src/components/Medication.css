@@ -1,0 +1,77 @@
+.cardContainer {
+  width: 284.12px;
+  height: 434.58px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 3.6519203186035156px 2.921536445617676px rgba(0, 0, 0, 0.25);
+  border-radius: 7.3px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+}
+
+.cardImage {
+  width: 246.14px;
+  height: 277.55px;
+  border-radius: 7.3px;
+  margin-top: 10px;
+}
+
+.categoryText {
+  margin-top: 10px;
+  color: white;
+  font-size: 14.61px;
+  font-family: "Poppins";
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+.titleText {
+  margin-left: 20px;
+  color: white;
+  font-size: 14.61px;
+  font-family: "Poppins";
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.priceText {
+  margin-right: 20px;
+  color: white;
+  font-size: 14.61px;
+  font-family: "Poppins";
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.buyButton {
+  margin-top: 30px;
+  width: 212.54px;
+  height: 36.52px;
+  padding-left: 14.61px;
+  padding-right: 14.61px;
+  padding-top: 7.3px;
+  padding-bottom: 7.3px;
+  background: linear-gradient(214deg, #b75cff 0%, #671ae4 100%);
+  border-radius: 7.3px;
+  justify-content: center;
+  align-items: center;
+  gap: 7.3px;
+  display: inline-flex;
+}
+
+.buyButtonText {
+  width: 64.27px;
+  height: 21.91px;
+  color: white;
+  font-size: 14.61px;
+  font-family: "Poppins";
+  font-weight: 600;
+  word-wrap: break-word;
+}
+.titlePrice {
+  display: flex;
+  justify-content: space-between;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+}

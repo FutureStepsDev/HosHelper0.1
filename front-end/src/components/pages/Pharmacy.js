@@ -16,6 +16,7 @@ const Pharmacy = () => {
       {pharmacies.map((Pharmacy, index) => (
         <div className="card" key={index}>
           <Cards
+            id={Pharmacy.id}
             name={Pharmacy.name}
             address={Pharmacy.address}
             tel={Pharmacy.tel}

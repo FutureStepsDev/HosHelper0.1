@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
+import { CloudinaryContext, Image } from "cloudinary-react";
+import { Button, Container, TextField, Typography } from "@mui/material";
 
 const SignUp = () => {
   const [UserName, setName] = useState("");
@@ -13,43 +11,58 @@ const SignUp = () => {
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
 
-  //   const handleAddUser = async () => {
-  //     try {
-  //      const res= await axios.post('http://localhost:7000/auth/signup', {
+  const cloudinaryUploadUrl = `https://api.cloudinary.com/v1_1/dmefds9ta/image/upload`;
+  const uploadPreset = "samisa";
+  const inputFileRef = useRef();
 
-  //   UserName,
-  //   email,
-  //   password,
-  //   role,
-  //   image
-  // });
-  // res.data && window.location.replace("/signin");
-  //     } catch (err) {
-  //       console.error('Error adding user:', err);
-
-  //       if (err.response?.data?.error) {
-  //         setError(err.response.data.error);
-  //       } else {
-  //         setError('An error occurred. Please try again.');
-  //       }
-  //     }
-  //   };
   const handleAddUser = async (e) => {
     setError(false);
     e.preventDefault();
 
     try {
+      let imageData = {};
+
+      if (image) {
+        const cloudinaryResponse = await axios.post(cloudinaryUploadUrl, {
+          file: image,
+          upload_preset: uploadPreset,
+        });
+
+        const imageUrl = cloudinaryResponse.data.secure_url;
+        imageData = { image: imageUrl };
+      }
+
       const res = await axios.post("http://localhost:7000/api/signup", {
         UserName,
         email,
         password,
         role,
-        image,
+        ...imageData,
       });
+      if (role === "Pharmacy") {
+        await axios.post("http://localhost:7000/api/signupPhar", {
+          UserName,
+          email,
+          password,
+          role,
+          ...imageData,
+        });
+      }
+
       res.data && window.location.replace("/login");
-      console.log(role);
     } catch (error) {
       setError(true);
+    }
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -155,16 +168,25 @@ const SignUp = () => {
         <option value="Doctor">Doctor</option>
       </select>
 
-      <TextField
-        fullWidth
-        margin="normal"
-        label="Image URL"
-        type="text"
-        onChange={(e) => setImage(e.target.value)}
-        InputProps={{
-          style: { backgroundColor: "white", color: "#0C2340" },
-        }}
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => handleImageChange(e)}
+        style={{ display: "none" }}
+        ref={inputFileRef}
       />
+      <Button
+        onClick={() => inputFileRef.current.click()}
+        variant="contained"
+        style={{
+          backgroundColor: "#5A4FCF",
+          color: "white",
+          marginTop: "10px",
+        }}
+        fullWidth
+      >
+        Upload Image
+      </Button>
 
       <Button
         onClick={(e) => {
@@ -184,6 +206,10 @@ const SignUp = () => {
       >
         Submit
       </Button>
+
+      <CloudinaryContext cloudName="dmefds9ta">
+        {image && <Image publicId={image} />}
+      </CloudinaryContext>
     </Container>
   );
 };

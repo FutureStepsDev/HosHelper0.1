@@ -7,7 +7,7 @@ const sendErrorResponse = (res, statusCode, message) => {
 
 exports.signup = async (req, res, next) => {
   try {
-    const { email, UserName, password, role, image } = req.body;
+    const { email, UserName, password, role, image,Gender,Weight,Height } = req.body;
 
     const userExist = await User.findOne({ where: { email } });
 
@@ -21,6 +21,9 @@ exports.signup = async (req, res, next) => {
       password,
       role,
       image,
+      Gender,
+      Weight,
+      Height,
     });
 
     res.status(201).json({
