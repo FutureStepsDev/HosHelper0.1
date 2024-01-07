@@ -17,8 +17,8 @@ module.exports = (sequelize) => {
   });
 
   
-  Appointment.belongsTo(db.Doctor, { foreignKey: 'doctorId', allowNull: true });
-  Appointment.belongsTo(db.Patient, { foreignKey: 'patientId', allowNull: true });
+  // Appointment.belongsTo(db.Doctor, { foreignKey: 'doctorId', allowNull: true });
+  // Appointment.belongsTo(db.Patient, { foreignKey: 'patientId', allowNull: true });
 
   return Appointment;
 };

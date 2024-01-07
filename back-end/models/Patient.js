@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
     },
   });
 
-  Patient.hasMany(sequelize.models.Appointment, { foreignKey: 'patientId', as: 'appointments' });
+  // Patient.hasMany(sequelize.models.Appointment, { foreignKey: 'patientId', as: 'appointments' });
 
   return Patient;
 };
