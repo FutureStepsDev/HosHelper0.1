@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const hospitalController = require("../controllers/HospitalControllers");
+const AppointmentControllers = require('../controllers/AppointmentControllers');
 
 const {
   signup,
@@ -58,4 +59,10 @@ router.get("/getAllProductForOne/:id", getAllProductForOne);
 
 router.post("/signupPhar", signupPhar);
 router.put("./updateProfilePhar/:id", updateProfilePhar);
+
+router.post('/appointments', AppointmentControllers.createAppointment);
+router.get('/appointments', AppointmentControllers.getAllAppointments);
+
+
+
 module.exports = router;
