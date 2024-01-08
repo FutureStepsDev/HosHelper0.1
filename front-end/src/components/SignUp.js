@@ -95,7 +95,10 @@ const SignUp = () => {
       component="main"
       maxWidth="xs"
       style={{
-        backgroundColor: "rgba(255, 255, 255, 0.1)",
+        backgroundImage: `url('https://img.freepik.com/free-photo/workplace-with-blue-office-supplies_23-2147843328.jpg?size=626&ext=jpg&ga=GA1.1.1412446893.1704585600&semt=ais')`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover", // Adjust the background size as needed
+        height: "100vh",
         padding: "10px",
         borderRadius: "10px",
         marginTop: "50px",
@@ -162,7 +165,7 @@ const SignUp = () => {
           color: "#0C2340",
         }}
       >
-        <option value=""></option>
+        <option value="">Choose your role</option>
         <option value="Patient">Patient</option>
         <option value="Pharmacy">Pharmacy</option>
         <option value="Doctor">Doctor</option>
