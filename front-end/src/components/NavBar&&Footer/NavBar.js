@@ -5,7 +5,6 @@ import { setHospitals } from "../Features/AllData";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
@@ -21,6 +20,7 @@ import { setPharmacies } from "../Features/pharmacyData";
 import { fetchPhamacies } from "../Features/pharmacyData";
 import { fetchHospitals } from "../Features/AllData";
 import { Link, useNavigate } from "react-router-dom";
+import "./Navbar.css";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -142,12 +142,12 @@ const NavBar = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{ backgroundColor: "#3498db" }}>
+      <AppBar position="static" style={{ backgroundColor: "white" }}>
         <Toolbar style={{ justifyContent: "space-between" }}>
           <IconButton
             edge="start"
             className={classes.menuButton}
-            color="inherit"
+            color="black"
             aria-label="menu"
             onClick={toggleDrawer(true)}
           >
@@ -169,23 +169,14 @@ const NavBar = () => {
           </Drawer>
 
           <Typography variant="h6" className={classes.title}>
-            <Button
-              variant="contained"
-              color="#3498db"
-              style={{
-                marginLeft: "10px",
-                fontWeight: "bold",
-                color: "#3498db",
-              }}
-              href="/"
-            >
-              HosHelper
-            </Button>
+            <button class="btnHos" onClick={() => navigate("/")}>
+              HOSHELPER
+            </button>
           </Typography>
 
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              <SearchIcon />
+              <SearchIcon style={{ color: "black" }} />
             </div>
             <InputBase
               placeholder="Search…"
@@ -193,62 +184,32 @@ const NavBar = () => {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
+              style={{ color: "black" }}
               inputProps={{ "aria-label": "search" }}
               onChange={(x) => filterHandler(x.target.value)}
             />
           </div>
           <div>
-            <Button
-              variant="contained"
-              color="#3498db"
-              href="/hospital"
-              style={{
-                marginLeft: "10px",
-                fontWeight: "bold",
-                color: "#3498db",
-              }}
-            >
-              Hospital{" "}
-            </Button>
-            <Button
-              variant="contained"
-              color="#3498db"
-              href="/pharmacy"
-              style={{
-                marginLeft: "10px",
-                fontWeight: "bold",
-                color: "#3498db",
-              }}
-            >
-              pharmacy
-            </Button>
+            <button class="cta" onClick={() => navigate("/hospital")}>
+              <span>HOSPITALS</span>
+              <svg width="15px" height="10px" viewBox="0 0 13 10"></svg>
+            </button>
+
+            <button class="cta" onClick={() => navigate("/pharmacy")}>
+              <span>PHARMACY</span>
+              <svg width="15px" height="10px" viewBox="0 0 13 10"></svg>
+            </button>
             {!log && (
-              <Button
-                variant="contained"
-                color="#3498db"
-                href="/login"
-                style={{
-                  marginLeft: "10px",
-                  fontWeight: "bold",
-                  color: "#3498db",
-                }}
-              >
-                Sign In
-              </Button>
+              <button class="cta" onClick={() => navigate("/login")}>
+                <span>SIGN IN</span>
+                <svg width="15px" height="10px" viewBox="0 0 13 10"></svg>
+              </button>
             )}
             {!log && (
-              <Button
-                variant="contained"
-                color="#3498db"
-                href="/signUp"
-                style={{
-                  marginLeft: "10px",
-                  fontWeight: "bold",
-                  color: "#3498db",
-                }}
-              >
-                Sign Up
-              </Button>
+              <button class="cta" onClick={() => navigate("/signup")}>
+                <span>SIGN UP</span>
+                <svg width="15px" height="10px" viewBox="0 0 13 10"></svg>
+              </button>
             )}
           </div>
 
@@ -259,7 +220,7 @@ const NavBar = () => {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
-                color="inherit"
+                color="black"
               >
                 <AccountCircle />
               </IconButton>
