@@ -97,7 +97,7 @@ const SignUp = () => {
       style={{
         backgroundImage: `url('https://img.freepik.com/free-photo/workplace-with-blue-office-supplies_23-2147843328.jpg?size=626&ext=jpg&ga=GA1.1.1412446893.1704585600&semt=ais')`,
         backgroundRepeat: "no-repeat",
-        backgroundSize: "cover", // Adjust the background size as needed
+        backgroundSize: "cover",
         height: "100vh",
         padding: "10px",
         borderRadius: "10px",
