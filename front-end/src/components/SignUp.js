@@ -91,129 +91,139 @@ const SignUp = () => {
   };
 
   return (
-    <Container
-      component="main"
-      maxWidth="xs"
+    <div
       style={{
         backgroundImage: `url('https://img.freepik.com/free-photo/workplace-with-blue-office-supplies_23-2147843328.jpg?size=626&ext=jpg&ga=GA1.1.1412446893.1704585600&semt=ais')`,
         backgroundRepeat: "no-repeat",
-        backgroundSize: "cover", // Adjust the background size as needed
-        height: "100vh",
-        padding: "10px",
-        borderRadius: "10px",
-        marginTop: "50px",
-        color: "white",
+        backgroundSize: "cover",
+        height: "100%vh",
       }}
     >
-      <Typography variant="h4" gutterBottom>
-        SignUp
-      </Typography>
-      {error && (
+      <Container
+        component="main"
+        maxWidth="xs"
+        style={{
+          marginLeft: "800px",
+          padding: "10px",
+          borderRadius: "10px",
+          marginTop: "50px",
+          color: "white",
+        }}
+      >
         <Typography
-          variant="body2"
-          style={{ color: "red", marginBottom: "10px" }}
+          variant="h4"
+          gutterBottom
+          style={{ color: "rgb(90, 79, 207)" }}
         >
-          {error}
+          Create your account
         </Typography>
-      )}
-      <TextField
-        fullWidth
-        margin="normal"
-        label={UserName.trim() === "" ? " UserName" : ""}
-        type="text"
-        variant="outlined"
-        onChange={(e) => setName(e.target.value)}
-        InputProps={{
-          style: { backgroundColor: "white", color: "#0C2340" },
-        }}
-      />
+        {error && (
+          <Typography
+            variant="body2"
+            style={{ color: "red", marginBottom: "10px" }}
+          >
+            {error}
+          </Typography>
+        )}
+        <TextField
+          fullWidth
+          margin="normal"
+          label={UserName.trim() === "" ? " UserName" : ""}
+          type="text"
+          variant="outlined"
+          onChange={(e) => setName(e.target.value)}
+          InputProps={{
+            style: { backgroundColor: "white", color: "#0C2340" },
+          }}
+        />
 
-      <TextField
-        fullWidth
-        margin="normal"
-        label={email.trim() === "" ? "Email" : ""}
-        type="email"
-        variant="outlined"
-        onChange={(e) => setEmail(e.target.value)}
-        InputProps={{
-          style: { backgroundColor: "white", color: "#0C2340" },
-        }}
-      />
-      <TextField
-        fullWidth
-        margin="normal"
-        label={password.trim() === "" ? "Password" : ""}
-        type="password"
-        variant="outlined"
-        onChange={(e) => setPassword(e.target.value)}
-        InputProps={{
-          style: { backgroundColor: "white", color: "#0C2340" },
-        }}
-      />
+        <TextField
+          fullWidth
+          margin="normal"
+          label={email.trim() === "" ? "Email" : ""}
+          type="email"
+          variant="outlined"
+          onChange={(e) => setEmail(e.target.value)}
+          InputProps={{
+            style: { backgroundColor: "white", color: "#0C2340" },
+          }}
+        />
+        <TextField
+          fullWidth
+          margin="normal"
+          label={password.trim() === "" ? "Password" : ""}
+          type="password"
+          variant="outlined"
+          onChange={(e) => setPassword(e.target.value)}
+          InputProps={{
+            style: { backgroundColor: "white", color: "#0C2340" },
+          }}
+        />
 
-      <label htmlFor="role" style={{ color: "white", marginBottom: "10px" }}>
-        Role:
-      </label>
-      <select
-        id="role"
-        value={role}
-        onChange={(e) => setRole(e.target.value)}
-        style={{
-          width: "100%",
-          padding: "8px",
-          backgroundColor: "white",
-          color: "#0C2340",
-        }}
-      >
-        <option value="">Choose your role</option>
-        <option value="Patient">Patient</option>
-        <option value="Pharmacy">Pharmacy</option>
-        <option value="Doctor">Doctor</option>
-      </select>
+        <label htmlFor="role" style={{ color: "white", marginBottom: "10px" }}>
+          Role:
+        </label>
+        <select
+          id="role"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+          style={{
+            width: "100%",
+            padding: "8px",
+            backgroundColor: "white",
+            color: "#0C2340",
+          }}
+        >
+          <option value="">Choose your role</option>
+          <option value="Patient">Patient</option>
+          <option value="Pharmacy">Pharmacy</option>
+          <option value="Doctor">Doctor</option>
+        </select>
 
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => handleImageChange(e)}
-        style={{ display: "none" }}
-        ref={inputFileRef}
-      />
-      <Button
-        onClick={() => inputFileRef.current.click()}
-        variant="contained"
-        style={{
-          backgroundColor: "#5A4FCF",
-          color: "white",
-          marginTop: "10px",
-        }}
-        fullWidth
-      >
-        Upload Image
-      </Button>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => handleImageChange(e)}
+          style={{ display: "none" }}
+          ref={inputFileRef}
+        />
+        <Button
+          onClick={() => inputFileRef.current.click()}
+          variant="contained"
+          style={{
+            backgroundColor: "#5A4FCF",
+            color: "white",
+            marginTop: "10px",
+          }}
+          fullWidth
+        >
+          Upload Image
+        </Button>
 
-      <Button
-        onClick={(e) => {
-          setError("");
+        <Button
+          onClick={(e) => {
+            setError("");
 
-          if (validateEmail() && validatePassword() && validateRole()) {
-            handleAddUser(e);
-          }
-        }}
-        variant="contained"
-        style={{
-          backgroundColor: "#5A4FCF",
-          color: "white",
-          marginTop: "10px",
-        }}
-        fullWidth
-      >
-        Submit
-      </Button>
+            if (validateEmail() && validatePassword() && validateRole()) {
+              handleAddUser(e);
+            }
+          }}
+          variant="contained"
+          style={{
+            backgroundColor: "#5A4FCF",
+            color: "white",
+            marginTop: "10px",
+          }}
+          fullWidth
+        >
+          Submit
+        </Button>
 
-      <CloudinaryContext cloudName="dmefds9ta">
-        {image && <Image publicId={image} />}
-      </CloudinaryContext>
-    </Container>
+        <CloudinaryContext cloudName="dmefds9ta">
+          {image && <Image publicId={image} />}
+        </CloudinaryContext>
+      </Container>
+    </div>
   );
 };
 
