@@ -54,16 +54,7 @@ const Home = () => {
           Doctors with many Speciality are here to listen to your request and give you the best treatment.
         </Typography>
       </div>
-      <div className="cards">
-      <div className="imgs">
-        <img src=" https://www.educol.net/image-docteur-dl29789.jpg" alt='img'width={"70"}></img>
-      </div>
-      <div className="infos">
-        <span>Dr.H</span>
-        <p>Geneco</p>
-      </div>
-      <a href="#">Button</a>
-      </div>
+      
       </div>
     </div>
    
