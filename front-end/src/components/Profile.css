@@ -16,6 +16,24 @@
 .profilContainer {
   margin-top: 100px;
 }
-Typography {
-  color: blue;
+
+.create {
+  border: 2px solid #24b4fb;
+  background-color: #24b4fb;
+  border-radius: 0.9em;
+  padding: 0.5em 0.8em 0.5em 0.8em;
+  transition: all ease-in-out 0.2s;
+  font-size: 16px;
+}
+
+.create span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 600;
+}
+
+.create:hover {
+  background-color: #0071e2;
 }

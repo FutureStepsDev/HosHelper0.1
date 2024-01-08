@@ -57,49 +57,53 @@ const PersonalProfile = () => {
                       className="my-5"
                       style={{
                         width: "200px",
-                        height: "200px",
+                        height: "180px",
                         marginLeft: "50px",
                       }}
                     />
-                    <Typography variant="h5" style={{ marginTop: "70px" }}>
-                      {profil.UserName}
+                    <Typography variant="h5" style={{ marginTop: "50px" }}>
+                      Name : {profil.UserName}
                     </Typography>
-                    <Typography
-                      variant="subtitle1"
-                      style={{ marginTop: "70px" }}
-                    >
-                      {profil.role}
+                    <Typography variant="h5" style={{ marginTop: "50px" }}>
+                      Role : {profil.role}
                     </Typography>
-                    <IconButton style={{ marginTop: "70px" }}>
+                    <IconButton style={{ marginTop: "50px" }}>
                       <button onClick={() => navigate("/UpdateProfil")}>
                         <Edit />
                       </button>
                     </IconButton>
                     {profil.role === "Pharmacy" && (
-                      <IconButton style={{ marginTop: "70px" }}>
+                      <IconButton style={{ marginTop: "30px" }}>
                         <button
-                          onClick={() => {
-                            navigate("/mypharmacy");
-                          }}
+                          className="create"
+                          onClick={() => navigate("/mypharmacy")}
                         >
-                          my pharmacy
+                          <span>my pharmacy</span>
                         </button>
                       </IconButton>
                     )}
                     {profil.role === "Pharmacy" && (
                       <div>
-                        <IconButton style={{ marginTop: "50px" }}>
+                        <IconButton style={{ marginTop: "30px" }}>
                           <button
-                            onClickCapture={() => navigate("/addmedication")}
+                            className="create"
+                            onClick={() => navigate("/addpharmacy")}
                           >
-                            ADD PRODUCT
-                          </button>
-                        </IconButton>
-                        <IconButton style={{ marginTop: "50px" }}>
-                          <button
-                            onClickCapture={() => navigate("/addpharmacy")}
-                          >
-                            add pharmacy
+                            <span>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                              >
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path
+                                  fill="currentColor"
+                                  d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"
+                                ></path>
+                              </svg>
+                              add your pharmacy
+                            </span>
                           </button>
                         </IconButton>
                       </div>
@@ -111,7 +115,7 @@ const PersonalProfile = () => {
 
             {/* Partie Droite */}
             <Grid item md={8}>
-              <Card style={{ borderRadius: ".5rem" }}>
+              <Card style={{ borderRadius: "5rem" }}>
                 <CardContent>
                   <Typography
                     variant="h6"

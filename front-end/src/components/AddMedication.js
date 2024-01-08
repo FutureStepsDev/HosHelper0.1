@@ -132,8 +132,12 @@ const AddMedication = () => {
             }}
           />
         </form>
-        <button onClick={handleSubmit}>add medication</button>
-        <button onClick={handleUpdate}>update</button>
+        <button className="button" onClick={handleSubmit}>
+          add medication
+        </button>
+        <button className="button" onClick={handleUpdate}>
+          update
+        </button>
       </div>
     </div>
   );
