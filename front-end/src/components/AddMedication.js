@@ -17,7 +17,7 @@ const AddMedication = () => {
   const [name, setName] = useState("");
   const [descr, setDescr] = useState("");
   const [price, setPrice] = useState(0);
-  const user = useSelector((state) => state.user.data.data);
+  const user = useSelector((state) => state.pharmacyUser.data);
   console.log(user);
   const userId = user.id;
   console.log("userId", userId);
@@ -82,7 +82,7 @@ const AddMedication = () => {
       medication.price = price;
     }
     if (userId) {
-      medication.PharmacienId = userId;
+      medication.PharmacyId = userId;
     }
 
     axios

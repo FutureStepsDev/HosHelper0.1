@@ -8,7 +8,7 @@ import {
   Avatar,
   IconButton,
 } from "@material-ui/core";
-import { Edit, Facebook, Twitter, Instagram } from "@material-ui/icons";
+import { Facebook, Twitter, Instagram } from "@material-ui/icons";
 import "./Profile.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -37,7 +37,7 @@ const PersonalProfile = () => {
                 className="mb-3"
                 style={{
                   width: "300px",
-                  height: "800px",
+                  height: "670px",
                   borderRadius: ".5rem",
                   borderTopLeftRadius: ".5rem",
                   borderBottomLeftRadius: ".5rem",
@@ -68,8 +68,11 @@ const PersonalProfile = () => {
                       Role : {profil.role}
                     </Typography>
                     <IconButton style={{ marginTop: "50px" }}>
-                      <button onClick={() => navigate("/UpdateProfil")}>
-                        <Edit />
+                      <button
+                        className="create"
+                        onClick={() => navigate("/UpdateProfil")}
+                      >
+                        <span>Update profil</span>
                       </button>
                     </IconButton>
                     {profil.role === "Pharmacy" && (
@@ -116,7 +119,7 @@ const PersonalProfile = () => {
             {/* Partie Droite */}
             <Grid item md={8}>
               <Card style={{ borderRadius: "5rem" }}>
-                <CardContent>
+                <CardContent style={{ background: "whitesmoke" }}>
                   <Typography
                     variant="h6"
                     style={{ fontSize: "1.5rem", marginBottom: "1rem" }}

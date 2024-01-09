@@ -18,15 +18,10 @@ const Cards = ({ id, name, address, tel }) => {
   return hasData ? (
     <Card
       sx={{
-        maxWidth: 250,
-        borderRadius: "12px",
-        overflow: "hidden",
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-        transition: "transform 0.3s",
-        "&:hover": { transform: "scale(1.05)" },
         cursor: "pointer",
         marginBottom: "20px",
         marginRight: "20px",
+        backgroundColor: "transparent",
       }}
       onClick={goToPharmacyStore}
     >
@@ -35,7 +30,6 @@ const Cards = ({ id, name, address, tel }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          padding: "16px",
         }}
       >
         <Typography
