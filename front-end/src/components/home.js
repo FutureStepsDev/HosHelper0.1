@@ -51,6 +51,7 @@ const Home = () => {
       <div className="description">
         <Typography variant="h4" sx={{ marginY: '40rem', textAlign: 'left', color: '#555' }}>
           You can check every Hospitals and Pharmacy and make an appointment in two clicks.
+          <br></br>
           Doctors with many Speciality are here to listen to your request and give you the best treatment.
         </Typography>
       </div>
