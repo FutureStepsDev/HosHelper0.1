@@ -19,25 +19,42 @@ const Medication = (props) => {
     navigate("/profile");
   };
   return (
-    <div className="cardContainer">
-      <img className="cardImage" src={props.e.image} alt="" />
-      <div className="categoryText" style={{ marginTop: "15px" }}>
-        {props.e.name}
+    // <div className="cardContainer">
+    //   <img className="cardImage" src={props.e.image} alt="" />
+    //   <div className="categoryText" style={{ marginTop: "15px" }}>
+    //     {props.e.name}
+    //   </div>
+    //   <div className="titlePrice" style={{ marginTop: "15px" }}>
+    //     <div className="titleText">{props.e.description}</div>
+    //     <div className="priceText">{props.e.price} DT</div>
+    //   </div>
+    //   <div className="buttonContainer">
+    //     <button className="buyButton">
+    //       <div className="buyButtonText" onClick={handleUpdate}>
+    //         update
+    //       </div>
+    //     </button>
+    //     <button className="buyButton" style={{ marginLeft: "5px" }}>
+    //       <div className="buyButtonText" onClick={handleDelete}>
+    //         delete
+    //       </div>
+    //     </button>
+    //   </div>
+    // </div>
+    <div className="containerMed">
+      <div className="wrapper">
+        <img className="banner-image" src={props.e.image} alt="" />
+
+        <h1> {props.e.name}</h1>
+        <h3> {props.e.price}</h3>
+        <p>{props.e.description}</p>
       </div>
-      <div className="titlePrice" style={{ marginTop: "15px" }}>
-        <div className="titleText">{props.e.description}</div>
-        <div className="priceText">{props.e.price} DT</div>
-      </div>
-      <div className="buttonContainer">
-        <button className="buyButton">
-          <div className="buyButtonText" onClick={handleUpdate}>
-            update
-          </div>
+      <div className="button-wrapper">
+        <button className="btn outline" onClick={handleUpdate}>
+          update
         </button>
-        <button className="buyButton" style={{ marginLeft: "5px" }}>
-          <div className="buyButtonText" onClick={handleDelete}>
-            delete
-          </div>
+        <button className="btn fill" onClick={handleDelete}>
+          delete
         </button>
       </div>
     </div>

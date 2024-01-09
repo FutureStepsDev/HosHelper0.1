@@ -42,6 +42,12 @@ const MyPharmacy = () => {
           />
         </div>
       ))}
+      <div className="btn-mypharmacy">
+        <button className="btn-update">update pharmacy</button>
+        <button onClick={() => navigate("/addmedication")}>
+          addmedication
+        </button>
+      </div>
     </div>
   );
 };
