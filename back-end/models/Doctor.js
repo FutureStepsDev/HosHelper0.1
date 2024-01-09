@@ -1,4 +1,5 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Sequelize } = require("sequelize");
+const db = require("./index");
 
 module.exports = (sequelize) => {
   const Doctor = sequelize.define('Doctor', {
@@ -18,16 +19,21 @@ module.exports = (sequelize) => {
         isEmail: { msg: 'Please add a valid email' },
       },
     },
-    // specification: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // },
-    // hospitalsRelations: {
-    //   type: DataTypes.STRING,
-    // }
+    specification: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    hospitalsRelations: {
+      type: DataTypes.STRING,
+    }
   });
 
-  // Doctor.hasMany(sequelize.models.Appointment, { foreignKey: 'doctorId', as: 'appointments' });
+  Doctor.associate = (models) => {
+    Doctor.hasMany(models.Appointment, {
+      foreignKey: 'doctorId', 
+      as: 'appointments'
+    });
+  };
 
   return Doctor;
 };

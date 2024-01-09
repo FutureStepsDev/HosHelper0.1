@@ -25,6 +25,7 @@ module.exports = (sequelize) => {
     Weight: {
       type: DataTypes.STRING,
       allowNull: true,
+
     },
     Height: {
       type: DataTypes.STRING,
@@ -33,6 +34,12 @@ module.exports = (sequelize) => {
   });
 
   // Patient.hasMany(sequelize.models.Appointment, { foreignKey: 'patientId', as: 'appointments' });
+  Patient.associate = (models) => {
+    Patient.hasMany(models.Appointment, {
+      foreignKey: 'patientId', 
+      as: 'appointments'
+    });
+  };
 
   return Patient;
 };
