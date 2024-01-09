@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
         },
       },
       role: {
-        type: DataTypes.ENUM('Pharmacy', 'Patient', 'Doctor'), 
+        type: DataTypes.STRING, 
         defaultValue: 'Patient',
       },
       image: {

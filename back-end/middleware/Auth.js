@@ -1,17 +1,22 @@
-const jwt = require('jsonwebtoken');
 
-exports.isAuthenticated = (req, res, next) => {
-    const token =  req.cookies.token;
-      console.log("tocken:",token)
+const jwt = require('jsonwebtoken');
+const { sequelize } = require("../models/index");
+const User = require("../models/User")(sequelize);
+
+exports.isAuthenticated = async (req, res, next) => {
+    const token =  req.cookies;
     if (!token) return next(new ErrorResponse(401, 'Unauthorized'));
   
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-      if (err) return next(new ErrorResponse(403, 'Forbidden'));
-  
-      req.user = decoded;
+    
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      req.user = await User.findById(decoded.id);
       next();
-    });
-  };
+
+  } catch (error) {
+      return next(new ErrorResponse('You must Log In', 401));
+  }
+}
 
 class ErrorResponse extends Error {
     constructor(message, codeStatus) {
@@ -19,4 +24,3 @@ class ErrorResponse extends Error {
         this.codeStatus = codeStatus;
     }
 }
-

@@ -1,7 +1,6 @@
-const db = require("..//models/index");
-const User = db.User;
-const jwt = require('jsonwebtoken');
+const { sequelize } = require("../models/index");
 
+const User = require("../models/User")(sequelize);
 
 const sendErrorResponse = (res, statusCode, message) => {
   res.status(statusCode).json({ success: false, error: message });
@@ -14,7 +13,7 @@ exports.signup = async (req, res, next) => {
     const userExist = await User.findOne({ where: { email } });
 
     if (userExist) {
-      return sendErrorResponse(res, 400, "E-mail already registered");
+      return next(sendErrorResponse(res, 400, "E-mail already registered"));
     }
 
     const user = await User.create({
@@ -25,9 +24,12 @@ exports.signup = async (req, res, next) => {
       image,
     });
 
-
+    res.status(201).json({
+      success: true,
+      user
+    });
   } catch (error) {
-    console.error("Error in signup:", error);
+    console.error("Sequelize Validation Errors:", error.errors);
     sendErrorResponse(res, 500, "Internal Server Error");
   }
 };
@@ -40,18 +42,13 @@ exports.signin = async (req, res, next) => {
     if (!user) {
       return sendErrorResponse(res, 401, "Invalid email or password");
     }
+
     const isMatched = await user.comparePassword(password);
 
     if (!isMatched) {
       return sendErrorResponse(res, 401, "Invalid email or password");
     }
-    const token =  jwt.sign({id:user.id},process.env.JWT_SECRET);
-
-    res
-    .cookie("token", token, { httpOnly: true, path:"/" })
-    .status(200)
-    .json({user});
-    console.log(res.getHeaders()); 
+    sendTokenResponse(user, 200, res);
 
   } catch (error) {
     console.error("Error in signin:", error);
@@ -59,7 +56,20 @@ exports.signin = async (req, res, next) => {
   }
 };
 
-
+const sendTokenResponse = async (user, codeStatus, res) => {
+  const token = await user.getJwtToken();
+  const options = { maxAge: 60 * 60 * 1000, httpOnly: true };
+  options.secure = true;
+  
+  res
+      .status(codeStatus)
+      .cookie('token', token, options)
+      .json({
+          success: true,
+          id: user.id,
+          role: user.role
+      })
+}
 
 exports.logout = (req, res, next) => {
   res.clearCookie("token");
@@ -68,23 +78,16 @@ exports.logout = (req, res, next) => {
     message: "Logged out",
   });
 };
+
 exports.userProfile = async (req, res, next) => {
-  try {
+  
     const user = await User.findByPk(req.user.id, {
       attributes: { exclude: ["password"] },
     });
-
-    if (!user) {
-      return sendErrorResponse(res, 404, "User not found");
-    }
-
     res.status(200).json({
       success: true,
-      user,
-    });
-  } catch (error) {
-    sendErrorResponse(res, 500, "Internal Server Error");
-  }
+      user
+  })
 };
 exports.updateProfile = (req, res) => {
   User.update(
