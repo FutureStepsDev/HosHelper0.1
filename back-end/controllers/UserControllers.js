@@ -1,5 +1,7 @@
 const db = require("..//models/index");
 const User = db.User;
+const Patient = db.Patient;
+const Doctor = db.Doctor
 
 const sendErrorResponse = (res, statusCode, message) => {
   res.status(statusCode).json({ success: false, error: message });
@@ -7,7 +9,7 @@ const sendErrorResponse = (res, statusCode, message) => {
 
 exports.signup = async (req, res, next) => {
   try {
-    const { email, UserName, password, role, image } = req.body;
+    const { email, UserName, password, role, image, Gender, Weight, Height, specification, hospitalsRelations } = req.body;
 
     const userExist = await User.findOne({ where: { email } });
 
@@ -21,7 +23,27 @@ exports.signup = async (req, res, next) => {
       password,
       role,
       image,
+      Gender,
+      Weight,
+      Height,
     });
+
+    if (role === 'Patient') {
+      await Patient.create({
+        UserName,
+        email,
+        Gender,
+        Weight,
+        Height,
+      });
+    } else if (role === 'Doctor') {
+      await Doctor.create({
+        UserName,
+        email,
+        specification,  
+        hospitalsRelations,  
+      });
+    }
 
     res.status(201).json({
       success: true,
@@ -32,6 +54,7 @@ exports.signup = async (req, res, next) => {
     sendErrorResponse(res, 500, "Internal Server Error");
   }
 };
+
 
 exports.signin = async (req, res, next) => {
   try {

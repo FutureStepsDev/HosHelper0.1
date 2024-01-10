@@ -39,6 +39,21 @@ module.exports = (sequelize) => {
         allowNull: true,
         
     },
+    Gender:{
+      type:DataTypes.STRING,
+      allowNull:true,
+
+    },
+    Weight:{
+      type:DataTypes.STRING,
+      allowNull:true,
+    
+    },
+    Height:{
+      type:DataTypes.STRING,
+      allowNull:true,
+    
+    },
     },
     {
       timestamps: true,

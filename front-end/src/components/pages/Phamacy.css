@@ -1,12 +1,18 @@
 .Pharmacy-list {
   list-style: none;
+
   padding: 0;
   margin-top: 50px;
+
   display: flex;
   flex-wrap: wrap;
+
   justify-content: center;
   align-items: center;
+
 }
+
+
 
 @media (max-width: 768px) {
   .card {
