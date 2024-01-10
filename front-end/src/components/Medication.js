@@ -9,7 +9,8 @@ const Medication = (props) => {
   const dispatch = useDispatch();
   const handleUpdate = () => {
     dispatch(setProduct(props.e));
-    navigate("/addmedication");
+
+    navigate("/addmedications");
   };
   const handleDelete = () => {
     axios

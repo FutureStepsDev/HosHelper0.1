@@ -1,6 +1,6 @@
 import React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
+// import Card from "@mui/material/Card";
+// import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { useDispatch } from "react-redux";
 import { setPharmacyUser } from "../Features/PharmacyUser";
@@ -16,7 +16,7 @@ const Cards = ({ id, name, address, tel }) => {
   const hasData = name || address || tel;
 
   return hasData ? (
-    <Card
+    <div
       sx={{
         cursor: "pointer",
         marginBottom: "20px",
@@ -25,7 +25,7 @@ const Cards = ({ id, name, address, tel }) => {
       }}
       onClick={goToPharmacyStore}
     >
-      <CardContent
+      <div
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -33,7 +33,6 @@ const Cards = ({ id, name, address, tel }) => {
         }}
       >
         <Typography
-          variant="h8"
           component="div"
           sx={{
             display: "flex",
@@ -45,15 +44,14 @@ const Cards = ({ id, name, address, tel }) => {
         >
           {name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography color="text.secondary">
           <strong>Address:</strong> {address}
           <br />
           <strong>tel:</strong> {tel}
           <br />
         </Typography>
-      </CardContent>
-      <CardContent>{/* <Map address={address} /> */}</CardContent>
-    </Card>
+      </div>
+    </div>
   ) : null;
 };
 

@@ -59,12 +59,13 @@ const PersonalProfile = () => {
                         width: "200px",
                         height: "180px",
                         marginLeft: "50px",
+                        marginTop: "20px",
                       }}
                     />
-                    <Typography variant="h5" style={{ marginTop: "50px" }}>
+                    <Typography variant="h6" style={{ marginTop: "50px" }}>
                       Name : {profil.UserName}
                     </Typography>
-                    <Typography variant="h5" style={{ marginTop: "50px" }}>
+                    <Typography variant="h6" style={{ marginTop: "50px" }}>
                       Role : {profil.role}
                     </Typography>
                     <IconButton style={{ marginTop: "50px" }}>

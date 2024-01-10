@@ -10,8 +10,8 @@
 }
 
 .create {
-  border: 2px solid #24b4fb;
-  background-color: #24b4fb;
+  border: 2px solid #dae2e9;
+  background-color: #dae2e9;
   border-radius: 0.9em;
   padding: 0.5em 0.8em 0.5em 0.8em;
   transition: all ease-in-out 0.2s;
@@ -22,10 +22,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: #918888;
   font-weight: 600;
-}
-
-.create:hover {
-  background-color: #0071e2;
 }
