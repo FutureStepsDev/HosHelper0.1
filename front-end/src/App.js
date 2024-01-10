@@ -27,6 +27,7 @@ import MyPharmacy from "./components/MyPharmacy";
 import ProductInOnePharmacy from "./components/ProductInOnePharmacy";
 import DoctorList from "./components/pages/Doctor"
 import Appointment from "./components/pages/Appointment";
+import AppointmentsList from "./components/pages/AppointmentsList";
 
 function App() {
   const log = useSelector((state) => state.user.log);
@@ -53,6 +54,7 @@ function App() {
           <Route exact path="/productInOnePharmacy" element={<ProductInOnePharmacy />} />
           <Route exact path="/doctors" element={<DoctorList />} />
           <Route exact path="/appointments" element={<Appointment />} />
+          <Route exact path="/appointmentsList" element={<AppointmentsList />} />
 
         </Routes>
         <Footer />

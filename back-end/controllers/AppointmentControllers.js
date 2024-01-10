@@ -5,9 +5,11 @@ const Doctor = db.Doctor;
 
 const createAppointment = async (req, res) => {
   try {
-    const { appointmentDate, patientId, doctorId ,description } = req.body;
+    const { doctorName, patientName, appointmentDate, patientId, doctorId ,description } = req.body;
 
     const newAppointment = await Appointment.create({
+      doctorName, 
+      patientName,
       appointmentDate,
       patientId,
       doctorId,

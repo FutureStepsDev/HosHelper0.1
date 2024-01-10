@@ -17,6 +17,7 @@ const PersonalProfile = () => {
   const user = useSelector((state) => state.user.data.data);
   const [profil, setProfil] = useState({});
 
+  console.log(user)
   useEffect(() => {
     setProfil(user);
   }, [user]);
@@ -73,6 +74,14 @@ const PersonalProfile = () => {
                         onClick={() => navigate("/UpdateProfil")}
                       >
                         <span>Update profil</span>
+                      </button>
+                    </IconButton>
+                    <IconButton style={{ marginTop: "50px" }}>
+                      <button
+                        className="create"
+                        onClick={() => navigate("/appointmentsList")}
+                      >
+                        <span>My Appointlents</span>
                       </button>
                     </IconButton>
                     {profil.role === "Pharmacy" && (

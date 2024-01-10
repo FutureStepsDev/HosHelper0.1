@@ -17,6 +17,8 @@ const Appointment = () => {
 
     try {
       const response = await axios.post("http://localhost:7000/api/appointments", {
+        doctorName:doc.UserName, 
+        patientName:user.UserName,
         appointmentDate: date,
         patientId: user.id,
         doctorId: doc.id,
@@ -27,11 +29,13 @@ const Appointment = () => {
       setDate('');
       setDescription('');
       setSuccessMsg('Appointment created successfully!'); 
+      
     } catch (error) {
       console.error('Error creating appointment:', error);
     }
  };
 
+ console.log(user)
  return (
     <div className="containerApp">
       <div className="card">

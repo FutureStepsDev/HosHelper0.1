@@ -7,6 +7,14 @@ module.exports = (sequelize) => {
       type: DataTypes.DATE,
       allowNull: false,
     },
+    doctorName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }, 
+    patientName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     description: {
       type: DataTypes.STRING,
       allowNull: false,
