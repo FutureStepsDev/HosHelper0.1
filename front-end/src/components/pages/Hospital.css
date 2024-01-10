@@ -1,24 +1,21 @@
-
 .hospital-list {
   list-style: none;
   padding: 0;
-  margin: 50px; 
+  margin: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .card {
-  width: calc(100% / 3 - 20px); 
-  margin-bottom: 60px; 
+  width: calc(100% / 3 - 20px);
+  margin-bottom: 60px;
   box-sizing: border-box;
 }
 
-  
-  /* Add media query for responsiveness if necessary */
-  @media (max-width: 768px) {
-    .card {
-      width: calc(50% - 10px);
-    }
+/* Add media query for responsiveness if necessary */
+@media (max-width: 768px) {
+  .card {
+    width: calc(50% - 10px);
   }
-  
+}

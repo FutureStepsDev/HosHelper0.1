@@ -14,7 +14,11 @@ const Pharmacy = () => {
   return (
     <div className="Pharmacy-list">
       {pharmacies.map((Pharmacy, index) => (
-        <div className="card" key={index}>
+        <div
+          className="card"
+          key={index}
+          style={{ marginLeft: "70px", marginTop: "30px" }}
+        >
           <Cards
             id={Pharmacy.id}
             name={Pharmacy.name}

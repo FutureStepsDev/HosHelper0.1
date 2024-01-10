@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Cards from "./pages/PharmacyCard";
 import "./pages/Phamacy.css";
+import "./MyPharmacy.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 import { useDispatch } from "react-redux";
 import { setPharmacyUser } from "./Features/PharmacyUser";
 const MyPharmacy = () => {
@@ -23,29 +25,41 @@ const MyPharmacy = () => {
       .catch((err) => console.log(err));
   }, [profil.id]);
 
+  const addMedication = () => {
+    dispatch(setPharmacyUser(data[0]));
+    navigate("/addmedications");
+  };
+
   const addProduct = () => {
     if (data.length > 0) {
-      console.log("Data to set:", data[0]);
       dispatch(setPharmacyUser(data[0]));
       navigate("/pharmacystore");
     }
   };
 
   return (
-    <div className="Pharmacy-list" onClick={addProduct}>
-      {data.map((Pharmacy, index) => (
-        <div className="card" key={index}>
-          <Cards
-            name={Pharmacy.name}
-            address={Pharmacy.address}
-            tel={Pharmacy.tel}
-          />
-        </div>
-      ))}
-      <div className="btn-mypharmacy">
-        <button className="btn-update">update pharmacy</button>
-        <button onClick={() => navigate("/addmedication")}>
-          addmedication
+    <div
+      style={{
+        backgroundImage: `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbDVxr5-0aZ8Jtj36uYriBCv0UVxZiOc1gdA&usqp=CAU')`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        height: "100vh",
+      }}
+    >
+      <div className="Pharmacy-list" onClick={addProduct}>
+        {data.map((Pharmacy, index) => (
+          <div className="card" key={index}>
+            <Cards
+              name={Pharmacy.name}
+              address={Pharmacy.address}
+              tel={Pharmacy.tel}
+            />
+          </div>
+        ))}
+      </div>
+      <div style={{ marginLeft: "-100px", marginTop: "-30px" }}>
+        <button className="btn-update" onClick={addMedication}>
+          add medication
         </button>
       </div>
     </div>

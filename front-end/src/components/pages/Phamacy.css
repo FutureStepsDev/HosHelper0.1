@@ -1,20 +1,12 @@
-/* Pharmacy.css */
-
 .Pharmacy-list {
   list-style: none;
   padding: 0;
-  margin: 20px;
+  margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
-
-/* .card {
-  width: calc(30% - 20px);
-  margin-bottom: 10px;
-  box-sizing: border-box;
-} */
 
 @media (max-width: 768px) {
   .card {
@@ -32,6 +24,9 @@
   transition: all 0.2s;
   box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
   margin-right: 40px;
+  padding: 20px 10px;
+  margin-top: 60px;
+  margin-left: -80px;
 }
 
 .card:hover {
@@ -39,9 +34,9 @@
 }
 .btn-mypharmacy {
   position: absolute;
-  bottom: 10px; /* Adjust the distance from the bottom as needed */
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 10px; /* Adjust the spacing between buttons as needed */
+  gap: 10px;
 }
