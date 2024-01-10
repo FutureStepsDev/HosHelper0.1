@@ -40,7 +40,9 @@ const Sidebar = () => {
       </Button>
       <br />
       <hr />
-      <Button color="inherit">Doctors</Button>
+      <Button color="inherit" onClick={() => navigate("/doctors")}>
+        Doctors
+        </Button>
     </div>
   );
 };

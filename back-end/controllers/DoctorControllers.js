@@ -21,14 +21,14 @@ const createDoctor=async(req,res)=>{
       }
     };
     const getAllDoctors=async (req, res) => {
-        try {
-          const Doctors = await Doctor.findAll();
-          res.json(Doctors);
-        } catch (error) {
-          console.error('Error getting Doctors:', error);
-          res.status(500).json({ error: 'Internal Server Error' });
-        }
-      };
+      try {
+        const Doctors = await Doctor.findAll();
+        res.json(Doctors);
+      } catch (error) {
+        console.error('Error getting Doctors:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+    };
       const getdoctorById = async (req, res) => {
         try {
           const doctorId = req.params.id;

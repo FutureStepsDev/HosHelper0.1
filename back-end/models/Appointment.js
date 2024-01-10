@@ -6,9 +6,6 @@ module.exports = (sequelize) => {
     appointmentDate: {
       type: DataTypes.DATE,
       allowNull: false,
-      validate: {
-        notNull: { msg: 'Appointment date is required' },
-      },
     },
     description: {
       type: DataTypes.STRING,
@@ -22,7 +19,7 @@ module.exports = (sequelize) => {
  });
 
   
-  Appointment.associate = (models) => {
+ Appointment.associate = (models) => {
     Appointment.belongsTo(models.Doctor, {
       foreignKey: 'doctorId',
       allowNull: true
@@ -31,7 +28,7 @@ module.exports = (sequelize) => {
       foreignKey: 'patientId',
       allowNull: true
     });
-  };
+ };
 
  return Appointment;
 };

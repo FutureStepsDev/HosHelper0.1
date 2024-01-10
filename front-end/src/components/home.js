@@ -45,7 +45,7 @@ const Home = () => {
             </svg>
           </div>
         </div>
-        <span>Make an appointment</span>
+        <span href>Make an appointment</span>
       </button>
      
       <div className="description">
