@@ -48,7 +48,7 @@ function App() {
           <Route exact path="/pharmacy" element={<Pharmacy />} />
           <Route exact path="/UpdateProfil" element={<UpdateProfil />} />
           <Route exact path="/pharmacystore" element={<PharmacyStore />} />
-          <Route exact path="/addmedication" element={<AddMedication />} />
+          <Route exact path="/addmedications" element={<AddMedication />} />
           <Route exact path="/addpharmacy" element={<AddPharmacy />} />
           <Route exact path="/mypharmacy" element={<MyPharmacy />} />
           <Route exact path="/productInOnePharmacy" element={<ProductInOnePharmacy />} />
