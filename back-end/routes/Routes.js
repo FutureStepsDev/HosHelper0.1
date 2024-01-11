@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const hospitalController = require("../controllers/HospitalControllers");
 const AppointmentControllers = require('../controllers/AppointmentControllers');
-
+const { User, Pharmacy } = require('../models/index')
 const {
   signup,
   signin,
@@ -10,6 +10,7 @@ const {
   userProfile,
   getAllUser,
   updateProfile,
+  deleteProfile
 } = require("../controllers/UserControllers");
 const {
   signupPhar,
@@ -47,6 +48,7 @@ router.get("/logout", logout);
 router.get("/me", isAuthenticated, userProfile);
 router.get("/getAllUsers", getAllUser);
 router.put("/updateProfile/:id", updateProfile);
+router.delete('/deleteProfile/:id',deleteProfile)
 router.post("/createDoctor", createDoctor);
 router.get("/doctors", getAllDoctors);
 router.get("/doctor/:id", getdoctorById);
@@ -62,7 +64,28 @@ router.put("./updateProfilePhar/:id", updateProfilePhar);
 
 router.post("/appointments", AppointmentControllers.createAppointment);
 router.get('/appointments', AppointmentControllers.getAllAppointments);
+router.get('/getUserCount', async (req, res) => {
+  try {
+    const userCount = await User.count();
+    res.json({ count: userCount });
+  } catch (error) {
+    console.error('Error getting user count:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
+// Route to get the count of pharmacies
+router.get('/getPharmacyCount', async (req, res) => {
+  try {
+    const pharmacyCount = await Pharmacy.count();
+    res.json({ count: pharmacyCount });
+  } catch (error) {
+    console.error('Error getting pharmacy count:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+module.exports = router;
 
 
 
