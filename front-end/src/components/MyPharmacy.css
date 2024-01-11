@@ -1,65 +1,26 @@
-.card {
-  background-color: #fff;
-  width: 300px;
-  height: 500px;
-  box-shadow: 0 0 0.5em rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 12px;
-  transition: 0.5s;
-  cursor: pointer;
-  transform: rotateX(-55deg) rotateY(15deg) rotateZ(60deg);
-  font-size: 2.2em;
-  font-weight: 800;
+.Pharmacy-list {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.btn-update,
+.btn-addmedication {
+  padding: 10px 15px;
+  margin-right: 10px;
+  font-size: 16px;
+  background-color: #494b4d;
   color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
-.card:active {
-  scale: 1.1;
-  rotate: 5deg;
-}
-
-@keyframes animate {
-  0% {
-    opacity: 0.03;
-  }
-
-  80% {
-    opacity: 0.03;
-  }
-
-  100% {
-    opacity: 0.03;
-  }
-}
-
-.card:hover {
-  transform: rotate(0deg);
-  opacity: 1;
-}
-
-.card,
-.card::before {
-  background: linear-gradient(
-    43deg,
-    rgb(100, 117, 206) 0%,
-    rgb(100, 117, 206) 0%,
-    rgb(100, 117, 206) 0%
-  );
-}
-
-.card::before {
-  content: "";
-  width: 120%;
-  height: 110%;
-  z-index: -1;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 15px;
-  transform: translate(-50%, -50%);
-  filter: blur(30px);
-  animation: animate 5s linear infinite;
+.btn-update:hover,
+.btn-addmedication:hover {
+  background-color: #2980b9;
 }
