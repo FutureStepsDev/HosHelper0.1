@@ -25,6 +25,7 @@ module.exports = (sequelize) => {
     },
     specification: {
       type: DataTypes.STRING,
+      defaultValue: 'general',
       allowNull: true,
     },
     hospitalsRelations: {

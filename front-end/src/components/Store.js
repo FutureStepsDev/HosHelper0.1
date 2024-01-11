@@ -6,6 +6,7 @@ import medicationReducer from "./Features/Medication";
 import updateReducer from "./Features/ProductUpdate";
 import PharmacyUserReducer from "./Features/PharmacyUser";
 import docUserReducer from './Features/docUser'
+import patientReducer from "./Features/patient";
 const store = configureStore({
   reducer: {
     user: userReducer,
@@ -15,6 +16,7 @@ const store = configureStore({
     updates: updateReducer,
     PharmacyUser: PharmacyUserReducer,
     docUser : docUserReducer,
+    patient : patientReducer
   },
 });
 

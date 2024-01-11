@@ -55,12 +55,12 @@ const useStyles = makeStyles({
        margin: 'auto',
        left: '50%',
        transform: 'translate(-50%, 50%)',
-       width: '60%',
+       width: '70%',
        borderRadius: 8,
        padding: '8px 25px',
        background: '#6b64f3',
        color: 'white',
-       fontWeight: 600,
+       fontWeight: 100,
        '&:hover': {
          background: '#534bf3',
        },
@@ -86,10 +86,10 @@ const useStyles = makeStyles({
              {doctor.UserName}
            </Typography>
            <Typography className={classes.textBody} component="p" variant="body2">
-             {doctor.hospitalsRelations}
+             {doctor.specification}
            </Typography>
          </CardContent>
-         <Button className={classes.button} onClick={(e)=>{handleAppointmentClick("/appointments")}}>Make an appointment</Button>
+         <Button className={classes.button} onClick={(e)=>{handleAppointmentClick("/appointments")}}>Appointment</Button>
        </Card>
        </div>
     );
