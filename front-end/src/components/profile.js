@@ -83,7 +83,7 @@ const PersonalProfile = () => {
                         className="create"
                         onClick={() => navigate("/appointmentsList")}
                       >
-                        <span>My Appointlents</span>
+                        <span>My Appointments</span>
                       </button>
                     </IconButton>
                     {profil.role === "Pharmacy" && (
