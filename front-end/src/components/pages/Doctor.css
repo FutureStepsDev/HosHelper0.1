@@ -1,0 +1,43 @@
+/* .doc-list {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: calc(50% - 20px);
+  }
+}
+
+.card-doc {
+  cursor: pointer;
+  width: 190px;
+  height: 254px;
+  background: rgb(245, 244, 244);
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 255, 0.2);
+  transition: all 0.2s;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
+  margin-right: 40px;
+}
+
+.card-doc:hover {
+  box-shadow: -12px 12px 2px -1px rgba(0, 0, 255, 0.2);
+} */
+
+/* DoctorList.css */
+
+.doc-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-doc {
+  flex: 0 0 calc(33.33% - 30px);
+  padding: 10px;
+}

@@ -1,9 +1,9 @@
 .banner {
-  background-image: url("https://wallpapercave.com/wp/wp2968524.jpg");
+  background-image: url("https://media.istockphoto.com/id/1371547852/fr/photo/bonjour-et-bienvenue-bo%C3%AEte-%C3%A0-lumi%C3%A8re-blanche-%C3%A9crite-assise-sur-fond-bleu.jpg?s=612x612&w=0&k=20&c=edn1W4lg_JNvhQL5DQMOwRj_Or4-Bj7LOBHHKJhHSQo=");
   background-repeat: no-repeat;
   background-size: 100%;
-  /* min-height: 100%;
-  min-width: 100%; */
+  min-height: 100%;
+  min-width: 100%;
   margin-bottom: -500px;
 }
 .container {

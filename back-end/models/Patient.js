@@ -18,6 +18,10 @@ module.exports = (sequelize) => {
         isEmail: { msg: 'Please add a valid email' },
       },
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     Gender: {
       type: DataTypes.STRING,
       allowNull: true,

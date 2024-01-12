@@ -32,8 +32,7 @@ const AddPharmacy = () => {
     }
 
     console.log(pharmacie);
-    axios
-      .post("http://localhost:7000/api/Pharmacy", pharmacie)
+    axios.post("http://localhost:7000/api/Pharmacy", pharmacie)
       .then((response) => {
         console.log("done");
         navigate("/pharmacy");

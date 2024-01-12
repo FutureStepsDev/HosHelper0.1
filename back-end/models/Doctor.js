@@ -19,8 +19,13 @@ module.exports = (sequelize) => {
         isEmail: { msg: 'Please add a valid email' },
       },
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     specification: {
       type: DataTypes.STRING,
+      defaultValue: 'general',
       allowNull: true,
     },
     hospitalsRelations: {
