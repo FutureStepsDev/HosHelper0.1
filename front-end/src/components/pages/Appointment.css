@@ -1,0 +1,42 @@
+.containerAppointment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.cardAppointment {
+  background-color: white;
+  padding: 30px;
+  width: 400px !important;
+  height: 400px !important;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cardAppointment-details {
+  margin-bottom: 20px;
+}
+
+.text-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.text-body {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.cardAppointment-button {
+  background-color: #1f4c8c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+}

@@ -14,39 +14,19 @@
   .card-red {
     background-color: #d50000;
   }
+  /* Dashbord.css */
 .main-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 220px;
-    justify-content: center; 
-    align-items: center; 
-    margin: 50px auto; 
-    max-width: 1200px;}
+    gap: 50px;
+    justify-content: center; /* Center the grid horizontally */
+    align-items: center; /* Center the grid vertically */
+    margin: 50px auto; /* Auto for left and right margins to center horizontally */
+    max-width: 1200px; /* Adjust the max-width to fit your layout */
+  }
   .main-container {
     grid-area: main;
     overflow-y: auto;
     padding: 20px 20px;
     color: rgba(255, 255, 255, 0.95);
-    text-align: center;
-  }
-  .table-buttons {
-    margin-top: 10px;
-  }
-  
-  .toggle-button {
-    background-color: #4caf50; 
-    border: none;
-    color: white;
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .toggle-button:hover {
-    background-color: #45a049; 
   }

@@ -26,8 +26,8 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    width:'100%',
-    height:'100%',
+    width: "100%",
+    height: "100%",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -89,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
 const NavBar = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+
   // const [auth, setAuth] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -146,16 +147,17 @@ const NavBar = () => {
     <div className={classes.root}>
       <AppBar position="static" style={{ backgroundColor: "white" }}>
         <Toolbar style={{ justifyContent: "space-between" }}>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="black"
-            aria-label="menu"
-            onClick={toggleDrawer(true)}
-          >
-            <MenuIcon />
-          </IconButton>
-
+          {log && (
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="black"
+              aria-label="menu"
+              onClick={toggleDrawer(true)}
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
           <Drawer
             className={classes.drawer}
             anchor="left"
@@ -175,7 +177,6 @@ const NavBar = () => {
               HOSHELPER
             </button>
           </Typography>
-
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon style={{ color: "black" }} />
@@ -214,7 +215,6 @@ const NavBar = () => {
               </button>
             )}
           </div>
-
           {log && (
             <div>
               <IconButton

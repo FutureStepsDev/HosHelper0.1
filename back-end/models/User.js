@@ -1,16 +1,17 @@
 const { DataTypes } = require("sequelize");
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 module.exports = (sequelize) => {
-    const User = sequelize.define('User', {
+  const User = sequelize.define(
+    "User",
+    {
       UserName: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notNull: { msg: 'UserName is required' },
-          len: { args: [0, 32], msg: 'Name must be at most 32 characters' },
+          notNull: { msg: "UserName is required" },
+          len: { args: [0, 32], msg: "Name must be at most 32 characters" },
         },
       },
       email: {
@@ -18,42 +19,38 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true,
         validate: {
-          notNull: { msg: 'Email is required' },
-          isEmail: { msg: 'Please add a valid email' },
+          notNull: { msg: "Email is required" },
+          isEmail: { msg: "Please add a valid email" },
         },
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notNull: { msg: 'Password is required' },
-          len: { args: [6], msg: 'Password must have at least 6 characters' },
+          notNull: { msg: "Password is required" },
+          len: { args: [6], msg: "Password must have at least 6 characters" },
         },
       },
       role: {
-        type: DataTypes.ENUM('Pharmacy', 'Patient', 'Doctor'), 
-        defaultValue: 'Patient',
+        type: DataTypes.ENUM("Pharmacy", "Patient", "Doctor", "Admin"),
+        allowNull: false,
       },
       image: {
         type: DataTypes.STRING,
         allowNull: true,
-        
-    },
-    Gender:{
-      type:DataTypes.STRING,
-      allowNull:true,
-
-    },
-    Weight:{
-      type:DataTypes.STRING,
-      allowNull:true,
-    
-    },
-    Height:{
-      type:DataTypes.STRING,
-      allowNull:true,
-    
-    },
+      },
+      Gender: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      Weight: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      tel: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     },
     {
       timestamps: true,
@@ -74,6 +71,11 @@ module.exports = (sequelize) => {
         expiresIn: 3600,
       });
     };
-   
+    // User.associate = (models) => {
+    //   User.hasMany(models.Product, {
+    //     foreignKey: 'userId',
+    //     as: 'products',
+    //   });
+    // };
     return User;
 };

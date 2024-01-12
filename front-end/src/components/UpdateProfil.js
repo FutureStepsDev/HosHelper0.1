@@ -14,6 +14,9 @@ const UpdateProfil = () => {
   const [password, setPassword] = useState("");
   const [image, setImage] = useState("");
   const [adress, setAdress] = useState("");
+  const [gender, setGender] = useState("");
+  const [weight, setWeight] = useState("");
+  const [tel, setTel] = useState("");
   const [role, setRole] = useState("");
   const [error, setError] = useState("");
   const inputFileRef = useRef();
@@ -51,6 +54,16 @@ const UpdateProfil = () => {
     if (adress !== "") {
       profil.adress = adress;
     }
+    if (gender !== "") {
+      profil.Gender = gender;
+    }
+    if (weight !== "") {
+      profil.Weight = weight;
+    }
+    if (tel !== "") {
+      profil.tel = tel;
+    }
+
     axios
       .put(`http://localhost:7000/api/updateProfile/${user.id}`, profil)
       .then((response) => console.log("done"))
@@ -105,7 +118,17 @@ const UpdateProfil = () => {
           style: { backgroundColor: "white", color: "#0C2340" },
         }}
       />
-
+      <TextField
+        fullWidth
+        margin="normal"
+        type="tel"
+        variant="outlined"
+        label={tel.trim() === "" ? "tel" : ""}
+        onChange={(e) => setTel(e.target.value)}
+        InputProps={{
+          style: { backgroundColor: "white", color: "#0C2340" },
+        }}
+      />
       {user.role === "Pharmacy" && (
         <TextField
           fullWidth
@@ -119,6 +142,33 @@ const UpdateProfil = () => {
           }}
         />
       )}
+      {user.role === "Patient" && (
+        <TextField
+          fullWidth
+          margin="normal"
+          type="Gender"
+          variant="outlined"
+          label={gender.trim() === "" ? "Gender" : ""}
+          onChange={(e) => setGender(e.target.value)}
+          InputProps={{
+            style: { backgroundColor: "white", color: "#0C2340" },
+          }}
+        />
+      )}
+      {user.role === "Patient" && (
+        <TextField
+          fullWidth
+          margin="normal"
+          type="Weight"
+          variant="outlined"
+          label={weight.trim() === "" ? "Weight" : ""}
+          onChange={(e) => setWeight(e.target.value)}
+          InputProps={{
+            style: { backgroundColor: "white", color: "#0C2340" },
+          }}
+        />
+      )}
+
       <TextField
         fullWidth
         margin="normal"

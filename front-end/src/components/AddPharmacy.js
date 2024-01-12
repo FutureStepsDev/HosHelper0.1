@@ -30,10 +30,7 @@ const AddPharmacy = () => {
     if (userId !== 0) {
       pharmacie.PharmacienId = userId;
     }
-
-    console.log(pharmacie);
-    axios.post("http://localhost:7000/api/Pharmacy", pharmacie)
-      .then((response) => {
+    axios.post("http://localhost:7000/api/Pharmacy", pharmacie).then((response) => {
         console.log("done");
         navigate("/pharmacy");
       })

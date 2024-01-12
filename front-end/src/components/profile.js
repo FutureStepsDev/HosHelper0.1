@@ -15,8 +15,10 @@ import { useNavigate } from "react-router-dom";
 const PersonalProfile = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.data.data);
+
   const [profil, setProfil] = useState({});
 
+  console.log(user);
   useEffect(() => {
     setProfil(user);
   }, [user]);
@@ -76,6 +78,15 @@ const PersonalProfile = () => {
                         <span>Update profil</span>
                       </button>
                     </IconButton>
+                    {profil.role !=="Pharmacy" && (
+                    <IconButton style={{ marginTop: "50px" }}>
+                    <button
+                        className="create"
+                        onClick={() => navigate("/appointmentsList")}
+                      >
+                        <span>My Appointments</span>
+                      </button>
+                    </IconButton>)}
                     {profil.role === "Pharmacy" && (
                       <IconButton style={{ marginTop: "30px" }}>
                         <button
@@ -147,24 +158,28 @@ const PersonalProfile = () => {
 
                   <div style={{ marginTop: "1rem" }}>
                     <Typography variant="body2" style={{ lineHeight: "1.8" }}>
-                      <strong style={{ color: "#1da1f2" }}>Phone:</strong> 123
-                      456 789
+                      <strong style={{ color: "#1da1f2" }}>Phone:</strong>
+                      {profil.tel}
                     </Typography>
                   </div>
 
-                  <div style={{ marginTop: "1rem" }}>
-                    <Typography variant="body2" style={{ lineHeight: "1.8" }}>
-                      <strong style={{ color: "#1da1f2" }}>Autre Email:</strong>{" "}
-                      info@example.com
-                    </Typography>
-                  </div>
+                  {profil.role === "Patient" && (
+                    <div style={{ marginTop: "1rem" }}>
+                      <Typography variant="body2" style={{ lineHeight: "1.8" }}>
+                        <strong style={{ color: "#1da1f2" }}>Gender:</strong>{" "}
+                        {profil.Gender}
+                      </Typography>
+                    </div>
+                  )}
 
-                  <div style={{ marginTop: "1rem" }}>
-                    <Typography variant="body2" style={{ lineHeight: "1.8" }}>
-                      <strong style={{ color: "#1da1f2" }}>Autre Phone:</strong>{" "}
-                      123 456 789
-                    </Typography>
-                  </div>
+                  {profil.role === "Patient" && (
+                    <div style={{ marginTop: "1rem" }}>
+                      <Typography variant="body2" style={{ lineHeight: "1.8" }}>
+                        <strong style={{ color: "#1da1f2" }}>Weight:</strong>{" "}
+                        {profil.Weight} kg
+                      </Typography>
+                    </div>
+                  )}
 
                   <div
                     className="d-flex justify-content-start"
