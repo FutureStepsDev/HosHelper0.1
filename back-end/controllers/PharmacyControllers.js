@@ -18,6 +18,7 @@ const createPharmacy = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
 const getAllPharmacy = async (req, res) => {
   try {
     const Pharmacies = await Pharmacy.findAll();
@@ -43,6 +44,7 @@ const getPharmacyById = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
 const getAllFarmacyForOne = (req, res) => {
   const PharmacienId = req.params.id;
   db.Pharmacien.findByPk(PharmacienId, {
@@ -52,9 +54,53 @@ const getAllFarmacyForOne = (req, res) => {
     .catch((err) => res.status(400).json(err));
 };
 
+const updatePharmacy = async (req, res) => {
+  try {
+    const PharmacyId = req.params.id;
+    const { name, address, tel } = req.body;
+
+    const pharmacyToUpdate = await Pharmacy.findByPk(PharmacyId);
+
+    if (!pharmacyToUpdate) {
+      return res.status(404).json({ error: "Pharmacy not found" });
+    }
+
+    await pharmacyToUpdate.update({
+      name,
+      address,
+      tel,
+    });
+
+    res.json({ success: true, message: "Pharmacy updated successfully" });
+  } catch (error) {
+    console.error("Error updating pharmacy:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const deletePharmacyById = async (req, res) => {
+  try {
+    const PharmacyId = req.params.id;
+    const pharmacyToDelete = await Pharmacy.findByPk(PharmacyId);
+
+    if (!pharmacyToDelete) {
+      return res.status(404).json({ error: "Pharmacy not found" });
+    }
+
+    await pharmacyToDelete.destroy();
+
+    res.json({ success: true, message: "Pharmacy deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting pharmacy:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   createPharmacy,
   getAllPharmacy,
   getPharmacyById,
   getAllFarmacyForOne,
+  updatePharmacy,
+  deletePharmacyById,
 };

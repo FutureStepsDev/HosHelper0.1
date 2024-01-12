@@ -1,5 +1,4 @@
 const { DataTypes } = require("sequelize");
-
 module.exports = (sequelize) => {
   const Medication = sequelize.define(
     "Medication",
@@ -26,12 +25,6 @@ module.exports = (sequelize) => {
       timestamps: true,
     }
   );
-
-  // Medication.associate = (models) => {
-  //   Medication.belongsTo(models.Pharmacien, {
-  //     onDelete: "cascade",
-  //   });
-  // };
   Medication.associate = (models) => {
     Medication.belongsTo(models.Pharmacy, {
       onDelete: "cascade",

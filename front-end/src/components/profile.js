@@ -78,14 +78,15 @@ const PersonalProfile = () => {
                         <span>Update profil</span>
                       </button>
                     </IconButton>
+                    {profil.role !=="Pharmacy" && (
                     <IconButton style={{ marginTop: "50px" }}>
-                      <button
+                    <button
                         className="create"
                         onClick={() => navigate("/appointmentsList")}
                       >
                         <span>My Appointments</span>
                       </button>
-                    </IconButton>
+                    </IconButton>)}
                     {profil.role === "Pharmacy" && (
                       <IconButton style={{ marginTop: "30px" }}>
                         <button

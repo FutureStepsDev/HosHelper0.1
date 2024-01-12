@@ -61,22 +61,21 @@ module.exports = (sequelize) => {
           }
         },
       },
-    }
-  );
-  User.prototype.comparePassword = async function (enteredPassword) {
-    return await bcrypt.compare(enteredPassword, this.password);
-  };
-
-  User.prototype.getJwtToken = function () {
-    return jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
-      expiresIn: 3600,
     });
-  };
-  // User.associate = (models) => {
-  //   User.hasMany(models.Product, {
-  //     foreignKey: 'userId',
-  //     as: 'products',
-  //   });
-  // };
-  return User;
+    User.prototype.comparePassword = async function (enteredPassword) {
+      return await bcrypt.compare(enteredPassword, this.password);
+    };
+  
+    User.prototype.getJwtToken = function () {
+      return jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
+        expiresIn: 3600,
+      });
+    };
+    // User.associate = (models) => {
+    //   User.hasMany(models.Product, {
+    //     foreignKey: 'userId',
+    //     as: 'products',
+    //   });
+    // };
+    return User;
 };

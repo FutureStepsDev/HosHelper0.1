@@ -37,7 +37,6 @@ module.exports = (sequelize) => {
     },
   });
 
-  // Patient.hasMany(sequelize.models.Appointment, { foreignKey: 'patientId', as: 'appointments' });
   Patient.associate = (models) => {
     Patient.hasMany(models.Appointment, {
       foreignKey: 'patientId', 

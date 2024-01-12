@@ -40,6 +40,11 @@ router.get(
   "/getAllPharmacyForOne/:id",
   PharmacyControllers.getAllFarmacyForOne
 );
+router.delete("/deletePharmacy/:id", PharmacyControllers.deletePharmacyById);
+router.put("/updatePharmacy/:id",PharmacyControllers.updatePharmacy);;
+router.put("/updateHospitals/:id", hospitalController.updateHospital);
+router.get('/getHospitalCount', hospitalController.getHospitalCount);
+router.delete("/deleteHospitals/:id",hospitalController.deleteHospital)
 router.post("/hospitals", hospitalController.createHospital);
 router.get("/gethospitals", hospitalController.getAllHospitals);
 router.get("/hospitals/:id", hospitalController.getHospitalById);
@@ -89,7 +94,3 @@ router.put("/appointments/:appointmentId/reject", AppointmentControllers.rejectA
 
 
 module.exports = router;
-
-
-
-
