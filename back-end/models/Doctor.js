@@ -2,12 +2,12 @@ const { DataTypes, Sequelize } = require("sequelize");
 const db = require("./index");
 
 module.exports = (sequelize) => {
-  const Doctor = sequelize.define('Doctor', {
+  const Doctor = sequelize.define("Doctor", {
     UserName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull: { msg: 'UserName is required' },
+        notNull: { msg: "UserName is required" },
       },
     },
     email: {
@@ -15,28 +15,32 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true,
       validate: {
-        notNull: { msg: 'Email is required' },
-        isEmail: { msg: 'Please add a valid email' },
+        notNull: { msg: "Email is required" },
+        isEmail: { msg: "Please add a valid email" },
       },
     },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     specification: {
       type: DataTypes.STRING,
-      defaultValue: 'general',
+      defaultValue: "general",
       allowNull: true,
     },
     hospitalsRelations: {
       type: DataTypes.STRING,
-    }
+    },
   });
 
   Doctor.associate = (models) => {
     Doctor.hasMany(models.Appointment, {
-      foreignKey: 'doctorId', 
-      as: 'appointments'
+      foreignKey: "doctorId",
+      as: "appointments",
     });
   };
 
