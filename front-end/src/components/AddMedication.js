@@ -17,10 +17,9 @@ const AddMedication = () => {
   const [name, setName] = useState("");
   const [descr, setDescr] = useState("");
   const [price, setPrice] = useState(0);
-  const user = useSelector((state) => state.user.data.data);
-  console.log(user);
-  const userId = user.id;
-  console.log("userId", userId);
+  const pharmacyUser = useSelector((state) => state.PharmacyUser.data);
+  console.log("id", pharmacyUser.id);
+  const userId = pharmacyUser.id;
   const prod = useSelector((state) => state.updates.data);
   console.log("idProduct", prod.id);
 
@@ -61,7 +60,7 @@ const AddMedication = () => {
       .then((response) => {
         console.log("done");
         dispatch(fetchMedication());
-        navigate("/profile");
+        navigate("/pharmacystore");
       })
       .catch((err) => console.log(err));
   };
@@ -82,7 +81,7 @@ const AddMedication = () => {
       medication.price = price;
     }
     if (userId) {
-      medication.PharmacienId = userId;
+      medication.PharmacyId = userId;
     }
 
     axios
@@ -132,8 +131,12 @@ const AddMedication = () => {
             }}
           />
         </form>
-        <button onClick={handleSubmit}>add medication</button>
-        <button onClick={handleUpdate}>update</button>
+        <button className="button" onClick={handleSubmit}>
+          add medication
+        </button>
+        <button className="button" onClick={handleUpdate}>
+          update
+        </button>
       </div>
     </div>
   );

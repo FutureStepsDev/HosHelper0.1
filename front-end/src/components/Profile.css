@@ -1,21 +1,27 @@
 .gradient-custom {
-  background: #f6d365;
+  background: whitesmoke;
 
-  background: -webkit-linear-gradient(
-    to right bottom,
-    rgba(246, 211, 101, 1),
-    rgba(253, 160, 133, 1)
-  );
+  background: -webkit-linear-gradient(to right bottom, #e8e8e8);
 
-  background: linear-gradient(
-    to right bottom,
-    rgba(246, 211, 101, 1),
-    rgba(253, 160, 133, 1)
-  );
+  background: linear-gradient(to right bottom, #e8e8e8);
 }
 .profilContainer {
   margin-top: 100px;
 }
-Typography {
-  color: blue;
+
+.create {
+  border: 2px solid #dae2e9;
+  background-color: #dae2e9;
+  border-radius: 0.9em;
+  padding: 0.5em 0.8em 0.5em 0.8em;
+  transition: all ease-in-out 0.2s;
+  font-size: 16px;
+}
+
+.create span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #918888;
+  font-weight: 600;
 }

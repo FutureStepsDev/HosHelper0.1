@@ -1,12 +1,22 @@
-/* Hospital.css */
 
 .hospital-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Display three columns per row */
-  gap: 50px; /* Adjust the gap between cards */
-  margin: 3rem 0 0 10rem; /* Add space to the top and left */
+  list-style: none;
+  padding: 0;
+  margin: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.hospital-list a {
-  text-decoration: none; /* Remove the default link styling */
+.card {
+  width: calc(100% / 3 - 20px);
+  margin-bottom: 60px;
+  box-sizing: border-box;
+}
+
+/* Add media query for responsiveness if necessary */
+@media (max-width: 768px) {
+  .card {
+    width: calc(50% - 10px);
+  }
 }

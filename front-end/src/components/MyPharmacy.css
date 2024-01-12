@@ -1,0 +1,26 @@
+.Pharmacy-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.btn-update,
+.btn-addmedication {
+  padding: 10px 15px;
+  margin-right: 10px;
+  font-size: 16px;
+  background-color: #494b4d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-update:hover,
+.btn-addmedication:hover {
+  background-color: #2980b9;
+}

@@ -1,23 +1,48 @@
-/* Pharmacy.css */
-
 .Pharmacy-list {
   list-style: none;
-  padding: 10px; /* Add padding to the top */
-  margin: 0; /* Reset margin */
+
+  padding: 0;
+  margin-top: 50px;
+
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around; /* Adjust as needed */
+
+  justify-content: center;
+  align-items: center;
+
 }
 
-.card {
-  width: calc(30% - 20px);
-  margin: 0 0 20px 0; /* Add margin to the bottom of each card */
-  box-sizing: border-box;
-}
 
-/* Add media query for responsiveness if necessary */
+
 @media (max-width: 768px) {
   .card {
     width: calc(50% - 20px);
   }
+}
+
+.card {
+  cursor: pointer;
+  width: 190px;
+  height: 254px;
+  background: rgb(245, 244, 244);
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 255, 0.2);
+  transition: all 0.2s;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
+  margin-right: 40px;
+  padding: 20px 10px;
+  margin-top: 60px;
+  margin-left: -80px;
+}
+
+.card:hover {
+  box-shadow: -12px 12px 2px -1px rgba(0, 0, 255, 0.2);
+}
+.btn-mypharmacy {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
 }

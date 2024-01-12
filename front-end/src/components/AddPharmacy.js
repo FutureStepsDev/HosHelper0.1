@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
-const AddMedication = () => {
+const AddPharmacy = () => {
   const user = useSelector((state) => state.user.data.data);
   console.log(user);
   const userId = user.id;
@@ -75,4 +75,4 @@ const AddMedication = () => {
   );
 };
 
-export default AddMedication;
+export default AddPharmacy;

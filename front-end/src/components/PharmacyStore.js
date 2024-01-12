@@ -6,7 +6,7 @@ import Medication from "./Medication";
 import axios from "axios";
 const PharmacyStore = () => {
   const pharmacyUser = useSelector((state) => state.PharmacyUser.data);
-
+  console.log(pharmacyUser);
   const [medications, setMedications] = useState([]);
 
   useEffect(() => {
