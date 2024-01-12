@@ -47,7 +47,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      Height: {
+      tel: {
         type: DataTypes.STRING,
         allowNull: true,
       },
