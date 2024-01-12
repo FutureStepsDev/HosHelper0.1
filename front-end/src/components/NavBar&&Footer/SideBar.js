@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
 import "./SideBar.css";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Sidebar = () => {
   const navigate = useNavigate();
+  const user = useSelector((state) => state.user.data.data);
+  const [profil, setProfil] = useState({});
+
+  console.log(user);
+  useEffect(() => {
+    setProfil(user);
+  }, [user]);
+  console.log("sidebar", profil);
   return (
     <div className="container">
       <Button color="inherit" onClick={() => navigate("/")}>
@@ -22,12 +31,15 @@ const Sidebar = () => {
       <br />
       <hr />
       <Button color="inherit" onClick={() => navigate("/aboutus")}>
-        {" "}
-        About Us{" "}
+        About Us
       </Button>
       <br />
       <hr />
-      <Button color="inherit">Contact</Button>
+      {profil.role === "Admin" && (
+        <Button color="inherit" onClick={() => navigate("/dashbord")}>
+          dashbord
+        </Button>
+      )}
       <br />
       <hr />
       <Button color="inherit" onClick={() => navigate("/hospital")}>
@@ -42,7 +54,7 @@ const Sidebar = () => {
       <hr />
       <Button color="inherit" onClick={() => navigate("/doctors")}>
         Doctors
-        </Button>
+      </Button>
     </div>
   );
 };

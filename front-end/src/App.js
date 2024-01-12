@@ -4,6 +4,8 @@ import "./App.css";
 import Footer from "./components/NavBar&&Footer/Footer";
 import NavBar from "./components/NavBar&&Footer/NavBar";
 import Home from "./components/home";
+
+
 import Profile from "./components/profile";
 import { useSelector } from "react-redux";
 import "leaflet/dist/leaflet.css";

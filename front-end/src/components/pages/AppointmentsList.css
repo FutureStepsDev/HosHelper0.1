@@ -1,14 +1,12 @@
 .cardApp-list {
   list-style: none;
-  padding: 10px; 
-  margin: 0; 
+  padding: 10px;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-
 }
-
 
 @media (max-width: 768px) {
   .cardApp {
@@ -18,8 +16,8 @@
 
 .cardApp {
   cursor: pointer;
-  width: 190px;
-  height: 254px;
+  width: 300px;
+  height: 300px;
   background: rgb(245, 244, 244);
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 255, 0.2);
@@ -28,10 +26,11 @@
   margin-right: 40px;
   margin-left: 20%;
   margin-top: 5%;
-  
 }
 
 .cardApp:hover {
   box-shadow: -12px 12px 2px -1px rgba(0, 0, 255, 0.2);
 }
-
+.cardApp-details {
+  margin-top: 20px;
+}

@@ -39,7 +39,7 @@ const getPharmacyById = async (req, res) => {
 
     res.json(Pharmacies);
   } catch (error) {
-    console.error("Error getting hospital by ID:", error);
+    console.error("Error getting pharmacy by ID:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
