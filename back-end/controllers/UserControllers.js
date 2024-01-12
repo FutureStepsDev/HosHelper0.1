@@ -147,3 +147,38 @@ exports.getAllUser = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+exports.deleteProfile = async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    // Check if the user exists
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return sendErrorResponse(res, 404, "User not found");
+    }
+
+    
+    await User.destroy({
+      where: { id: userId }
+    });
+
+   
+    if (user.role === 'Patient') {
+      await Patient.destroy({
+        where: { UserId: userId }
+      });
+    } else if (user.role === 'Doctor') {
+      await Doctor.destroy({
+        where: { UserId: userId }
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Profile deleted successfully",
+    });
+  } catch (error) {
+    console.error("Error deleting user profile:", error);
+    sendErrorResponse(res, 500, "Internal Server Error");
+  }
+};

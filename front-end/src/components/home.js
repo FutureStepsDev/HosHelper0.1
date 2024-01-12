@@ -24,7 +24,7 @@ const Home = () => {
           fontWeight: "500",
         }}
       >
-        {"We give you  solution to your pain"}
+        {"Your Life Is Not A Joke. Take Care of it with Preventative Treatments"}
       </Box>
       <div/>
       

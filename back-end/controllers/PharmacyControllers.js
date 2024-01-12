@@ -11,7 +11,7 @@ const createPharmacy = async (req, res) => {
     });
     res.status(201).json({
       success: true,
-      hospital: newPharmacy,
+      pharmacy: newPharmacy,
     });
   } catch (error) {
     console.error("Error creating Pharmacy:", error);

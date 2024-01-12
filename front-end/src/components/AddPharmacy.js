@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
-const AddMedication = () => {
+const AddPharmacy = () => {
   const user = useSelector((state) => state.user.data.data);
   console.log(user);
   const userId = user.id;
@@ -32,8 +32,7 @@ const AddMedication = () => {
     }
 
     console.log(pharmacie);
-    axios
-      .post("http://localhost:7000/api/Pharmacy", pharmacie)
+    axios.post("http://localhost:7000/api/Pharmacy", pharmacie)
       .then((response) => {
         console.log("done");
         navigate("/pharmacy");
@@ -75,4 +74,4 @@ const AddMedication = () => {
   );
 };
 
-export default AddMedication;
+export default AddPharmacy;
