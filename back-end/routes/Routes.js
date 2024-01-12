@@ -3,6 +3,7 @@ const router = express.Router();
 const hospitalController = require("../controllers/HospitalControllers");
 const AppointmentControllers = require('../controllers/AppointmentControllers');
 const { User, Pharmacy } = require('../models/index')
+const { getAllPatients, getPatientById, getPatientByUserId } = require('../controllers/PatientControllers');
 const {
   signup,
   signin,
@@ -16,13 +17,13 @@ const {
   signupPhar,
   updateProfilePhar,
 } = require("../controllers/PharmacienControllers");
-
 const PharmacyControllers = require("../controllers/PharmacyControllers");
 const { isAuthenticated } = require("../middleware/Auth");
 const {
   createDoctor,
   getAllDoctors,
   getdoctorById,
+  getdoctorByUserId
 } = require("../controllers/DoctorControllers");
 const {
   createProduct,
@@ -52,16 +53,17 @@ router.delete('/deleteProfile/:id',deleteProfile)
 router.post("/createDoctor", createDoctor);
 router.get("/doctors", getAllDoctors);
 router.get("/doctor/:id", getdoctorById);
-
+router.get('/doctor/user/:userId', getdoctorByUserId);
 router.post("/createProduct", createProduct);
 router.get("/getAllProducts", getAllProducts);
 router.put("/updateProduct/:id", updateProduct);
 router.delete("/deleteProduct/:id", deleteProduct);
 router.get("/getAllProductForOne/:id", getAllProductForOne);
-
 router.post("/signupPhar", signupPhar);
 router.put("./updateProfilePhar/:id", updateProfilePhar);
-
+router.get('/patients', getAllPatients);
+router.get('/patients/:id', getPatientById);
+router.get('/patients/user/:userId', getPatientByUserId);
 router.post("/appointments", AppointmentControllers.createAppointment);
 router.get('/appointments', AppointmentControllers.getAllAppointments);
 router.get('/getUserCount', async (req, res) => {
@@ -73,8 +75,6 @@ router.get('/getUserCount', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
-// Route to get the count of pharmacies
 router.get('/getPharmacyCount', async (req, res) => {
   try {
     const pharmacyCount = await Pharmacy.count();
@@ -84,9 +84,12 @@ router.get('/getPharmacyCount', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+router.put("/appointments/:appointmentId/approve", AppointmentControllers.approveAppointment);
+router.put("/appointments/:appointmentId/reject", AppointmentControllers.rejectAppointment);
+
 
 module.exports = router;
 
 
 
-module.exports = router;
+

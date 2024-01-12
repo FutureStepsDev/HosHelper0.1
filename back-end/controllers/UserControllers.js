@@ -18,32 +18,34 @@ exports.signup = async (req, res, next) => {
     }
 
     const user = await User.create({
-      UserName,
-      email,
-      password,
-      role,
-      image,
-      Gender,
-      Weight,
-      Height,
-    });
+ UserName,
+ email,
+ password,
+ role,
+ image,
+ Gender,
+ Weight,
+ Height,
+});
 
-    if (role === 'Patient') {
-      await Patient.create({
-        UserName,
-        email,
-        Gender,
-        Weight,
-        Height,
-      });
-    } else if (role === 'Doctor') {
-      await Doctor.create({
-        UserName,
-        email,
-        specification,  
-        hospitalsRelations,  
-      });
-    }
+if (role === 'Patient') {
+ await Patient.create({
+    UserName,
+    email,
+    Gender,
+    Weight,
+    Height,
+    userId: user.id, 
+ });
+} else if (role === 'Doctor') {
+ await Doctor.create({
+    UserName,
+    email,
+    specification,
+    hospitalsRelations,
+    userId: user.id, 
+ });
+}
 
     res.status(201).json({
       success: true,
